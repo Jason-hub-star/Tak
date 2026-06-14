@@ -50,9 +50,9 @@
 - 검증 명령은 Node/npm 도입 기준으로 문서화한다 (`npm run build` 중심).
 
 ## 5) 우선순위 백로그
-1. [긴급] EmailJS 미설정 시 성공 처리되는 문의 폼 오동작 수정
-2. [긴급] `/portfolio` 라우트 부재로 인한 404 링크 수정 (`/portfolio` 페이지 추가 또는 링크 제거)
-3. [긴급] `src/app/portfolio/[slug]/page.tsx` 인코딩 깨짐 텍스트 정정
+1. [완료] EmailJS 미설정 시 성공 처리되는 문의 폼 오동작 수정 → `src/lib/emailjs.ts` throw 처리 (worklog 2026-02-11 02:00)
+2. [완료] `/portfolio` 라우트 부재로 인한 404 링크 수정 → "전체 보기" 링크 제거 (worklog 2026-02-11 02:00). 후속: `/portfolio` index 신설로 링크 복원
+3. [완료] `src/app/portfolio/[slug]/page.tsx` 인코딩 깨짐 → 현 시점 UTF-8 정상 확인 (worklog 2026-02-11 02:00)
 4. [중요] 상세 페이지 Hero 이미지 TODO 제거 (`next/image` 실제 렌더링 적용)
 5. [중요] 카카오 채널 URL 확정 및 전체 CTA 연결
 6. [중요] 포트폴리오 MDX 실데이터 9개 확장 (중복 슬롯 제거)

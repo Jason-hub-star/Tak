@@ -50,12 +50,10 @@
 
 ## 8) 외부 서비스 연동
 - EmailJS (문의 폼 전송)
-  - Service ID: `service_yinltre` (Gmail API)
-  - Template ID: `__ejs-test-mail-service__` (테스트용 — 운영 시 커스텀 템플릿 교체 필요)
-  - Public Key: `VTk3S8YfWWEyaL4Fu`
-  - 수신 메일: `gmdqn2tp@gmail.com`
-  - 설정 파일: `.env.local` (git 미추적)
-  - 운영 전 TODO: EmailJS 대시보드에서 커스텀 템플릿 생성 후 Template ID 교체
+  - 키 값은 **레포에 커밋하지 않는다.** 실제 값은 `.env.local`(git 미추적)에만 보관, 형식은 `.env.local.example` 참조
+  - 필요 키: `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`
+  - 수신 메일/Service·Template ID 등 운영 값은 EmailJS 대시보드 + Vercel 환경변수에서 관리
+  - 운영 전 TODO: 테스트 템플릿 → 운영 커스텀 템플릿 교체 후 `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` 갱신
 - 카카오톡 채널: URL 미확정 (`src/lib/constants.ts` KAKAO_CHANNEL_URL 플레이스홀더)
 
 ## 9) 비기능/운영 원칙
