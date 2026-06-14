@@ -1,0 +1,100 @@
+version: 1
+name: tak-djang-design-studio
+generated_on: 2026-06-15
+description: "포트폴리오 중심 리드 전환 웹사이트 (Next.js 14 + Vercel + EmailJS)"
+
+entrypoints:
+  primary: AGENTS.md
+  secondary: .claude/claude.md
+  machine_readable: HARNESS-MANIFEST.yaml
+
+precedence:
+  - code-and-runtime-truth
+  - project-root-agents-md-or-claude-md
+  - docs-prd-md
+  - docs-status-project-status-md
+  - ai-context-master-plan-md
+  - harnesses-registry-md
+  - docs-governance-document-management-md
+
+required_files:
+  - AGENTS.md
+  - .claude/claude.md
+  - docs/prd.md
+  - docs/status/PROJECT-STATUS.md
+  - docs/status/DECISION-LOG.md
+  - docs/governance/document-management.md
+  - ai-context/master-plan.md
+  - ai-context/project-context.md
+  - ai-context/handover.md
+  - harnesses/REGISTRY.md
+  - harnesses/next-vercel-release-guard.md
+  - harnesses/media-performance-budget.md
+  - harnesses/post-deploy-seo-submit-monitor.md
+  - harnesses/conversion-service-site-spec.md
+  - harnesses/reference-site-style-extraction.md
+  - harnesses/change-class-doc-sync.md
+  - harnesses/claude-code-health.md
+  - harnesses/design-to-code.md
+  - harnesses/session-retro.md
+  - harnesses/socratic-review.md
+
+portable_assets:
+  - .claude
+  - harnesses/
+  - docs/status/
+  - docs/governance/
+
+validation:
+  command: "npm run build"
+  expectations:
+    - typecheck-pass
+    - lint-pass
+    - build-success
+    - no-secrets-in-committed-files
+    - env-example-up-to-date
+    - sitemap-xml-valid
+    - robots-txt-valid
+
+bootstrap:
+  checklist:
+    - "npm run build 성공"
+    - ".env.local.example 로드 (EmailJS 키 형식)"
+    - "문의 폼 제출 테스트 (로컬)"
+    - "docs/prd.md 읽기"
+    - "harnesses/REGISTRY.md 읽기"
+
+obsidian:
+  enabled: false
+  note: "Tak은 Obsidian 설정 없음 (ai-context 문서만 사용)"
+
+tech_stack:
+  framework: "Next.js 14 (App Router)"
+  language: "TypeScript"
+  styling: "Tailwind CSS"
+  forms: "React Hook Form + Zod"
+  animation: "Framer Motion"
+  email: "EmailJS (client-side)"
+  deploy: "Vercel"
+  seo: "sitemap.xml, robots.txt, OpenGraph"
+
+target_seo_markets:
+  - Google (global)
+  - Naver (Korea)
+
+market_notes: |
+  탁디장은 한국 온라인 셀러를 대상으로 하는 포트폴리오 + 리드 전환 사이트.
+  SEO 점검은 Google + Naver 모두 우선.
+  EmailJS 키는 client-safe (NEXT_PUBLIC_*)만 사용.
+  배포 전 post-deploy-seo-submit-monitor 하네스 필수.
+
+harness_philosophy: |
+  Keep-discard-with-evidence.
+  사용 실적 없는 하네스는 예비군.
+  3개 이상 프로젝트 검증 후 범용 승격.
+  Tak 전용 하네스는 harnesses/archive/ 보존.
+
+key_contacts:
+  owner: "gmdqn2tp@gmail.com"
+  repo: "tak (Vercel)"
+  slack: "없음"

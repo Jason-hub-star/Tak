@@ -1,0 +1,23 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/self-review-gate.sh",
+            "timeout": 5,
+            "statusMessage": "자기검토 중..."
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/doc-drift-reminder.sh",
+            "timeout": 5,
+            "statusMessage": "문서 동기화 리마인더..."
+          }
+        ]
+      }
+    ]
+  }
+}
