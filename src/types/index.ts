@@ -61,3 +61,37 @@ export interface NavLink {
   label: string;
   href: string;
 }
+
+/** 서비스 항목 (제작 + 홍보 연계 4-서비스 모델) */
+export interface ServiceItem {
+  id: string;
+  icon: string;
+  eyebrow: string;
+  title: string;
+  summary: string;
+  points: string[];
+  deliverables: string[];
+}
+
+/** 제작→홍보 연계 흐름 단계 */
+export interface LinkageStep {
+  phase: string;
+  label: string;
+  desc: string;
+}
+
+/** 가격 플랜 */
+export interface PricingPlan {
+  id: string;
+  category: "build" | "care" | "ads";
+  label: string;
+  price: string;
+  period: string;
+  originalPrice?: string;
+  body: string;
+  features: string[];
+  cta: string;
+  ctaHref: string;
+  featured: boolean;
+  badge?: string;
+}

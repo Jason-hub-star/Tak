@@ -36,7 +36,7 @@ export default function HeroSection() {
 
         {/* CTA */}
         <motion.div
-          className="mt-10"
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -47,6 +47,12 @@ export default function HeroSection() {
           >
             {HERO_COPY.cta}
             <ArrowRight size={18} />
+          </a>
+          <a
+            href={HERO_COPY.secondaryCtaHref}
+            className="inline-flex items-center gap-2 px-6 py-3.5 md:px-8 md:py-4 min-h-[48px] rounded-xl border border-border bg-white text-foreground text-sm md:text-base font-semibold hover:bg-muted transition-colors"
+          >
+            {HERO_COPY.secondaryCta}
           </a>
         </motion.div>
 

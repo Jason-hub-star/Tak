@@ -315,6 +315,17 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
             </div>
           ))}
         </div>
+
+        {/* 전체 포트폴리오 보기 (/portfolio index) */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/portfolio"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-600 transition-colors"
+          >
+            전체 포트폴리오 보기
+            <span aria-hidden>→</span>
+          </Link>
+        </div>
       </div>
     </section>
   );

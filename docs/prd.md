@@ -532,3 +532,29 @@ Final CTA:
 - [ ] CTA 버튼 대비(명도/크기/카피) 점검
 - [ ] FAQ 질문 문장과 실제 문의 폼 필드의 의미 일치 점검
 - [ ] Lighthouse/수동 점검 시 접근성 치명 이슈 없음
+
+---
+
+10. 제작+홍보 연계 확장 (v1.2 — devfive 벤치마킹)
+
+Version: 1.2.0 / Last Updated: 2026-06-15
+배경: 레퍼런스 devfive(WEFLOW, "문의로 이어지는 홈페이지")는 제작과 홍보를 하나의 흐름으로 판매한다. 탁디장도 상세페이지 제작에 머물지 않고 "브랜드 웹사이트 제작 + 검색·광고 홍보 + 운영"까지 연계 가능함을 어필한다.
+
+10.1 포지셔닝
+- 메시지: "상품을 파는 상세페이지부터, 브랜드를 알리는 웹사이트까지 — 만들고, 알리는 것까지 연결합니다."
+- 핵심 흐름(LINKAGE): 제작 → 연결(검색·광고) → 전환(문의/예약/구매) → 관리(리포트·개선)
+
+10.2 4-서비스 모델 (`src/lib/content/services.ts`)
+1. 상세페이지 제작(핵심) 2. 브랜드 웹사이트 제작(확장) 3. 검색·홍보 연계 4. 운영·관리
+
+10.3 추가 라우트 (Sitemap 갱신)
+- `/services` — 4-서비스 상세 + 연계 흐름 + 프로세스 + CTA
+- `/pricing` — 가격(제작/케어/광고 3계열) + 비교표 + 가격 FAQ + 고지
+- `/portfolio` — 포트폴리오 인덱스(기존 `/portfolio/[slug]` 상세와 연결, 백로그 #2 후속)
+
+10.4 홈(/) 신규 섹션
+- Hero(보조 CTA `/services`) → ServicesSection → WebsiteLinkageSection → Portfolio → Process → About → PricingTeaserSection → FAQ → Contact → FinalCTA
+
+10.5 데이터/컴포넌트 원칙
+- 콘텐츠는 `src/lib/content/{services,pricing}.ts` 정적 데이터로 관리(기존 constants 패턴 일관). 가격은 부가세 별도 '시작가' 표기 + 정확 견적은 상담 안내(탁디장 정가제·상담 원칙 유지).
+- 가격 카드는 `src/components/PricingCard.tsx`로 홈 티저와 `/pricing`이 공유.

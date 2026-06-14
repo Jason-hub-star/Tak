@@ -55,12 +55,13 @@
 3. [완료] `src/app/portfolio/[slug]/page.tsx` 인코딩 깨짐 → 현 시점 UTF-8 정상 확인 (worklog 2026-02-11 02:00)
 4. [중요] 상세 페이지 Hero 이미지 TODO 제거 (`next/image` 실제 렌더링 적용)
 5. [중요] 카카오 채널 URL 확정 및 전체 CTA 연결
-6. [중요] 포트폴리오 MDX 실데이터 9개 확장 (중복 슬롯 제거)
-7. 디자인 품질 게이트 점검(퍼스트뷰 3안 비교 + 최종안 확정)
+6. [완료] 포트폴리오 실데이터 9개 확장 → 9개 slug SSG 확인 (build 19라우트)
+7. 디자인 품질 게이트 점검(퍼스트뷰 3안 비교 + 최종안 확정 — 신규 /services·/pricing 포함)
 8. EmailJS 커스텀 템플릿 생성 및 교체
 9. 성능 점검 (LCP/CLS/INP) 및 이미지 최적화
 10. Vercel 배포 + 도메인 연결
-11. 완료 항목 정리:
+11. [완료] devfive 벤치마킹 — 제작+홍보 연계 포지셔닝 풀 IA (`/services`·`/pricing`·`/portfolio` index + 홈 신규 3섹션, build 19라우트 성공, worklog 2026-06-15)
+12. 완료 항목 정리:
     - App Router 기준 IA/폴더 구조 설계
     - 비주얼 시스템 토큰 초안 확정
     - 랜딩 섹션 7종 컴포넌트화

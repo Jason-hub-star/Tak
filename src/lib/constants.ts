@@ -2,20 +2,23 @@ import type { ProcessStep, FAQItem, NavLink } from "@/types";
 
 /* ── 내비게이션 ── */
 export const NAV_LINKS: NavLink[] = [
-  { label: "포트폴리오", href: "#portfolio" },
-  { label: "프로세스", href: "#process" },
-  { label: "소개", href: "#about" },
-  { label: "FAQ", href: "#faq" },
+  { label: "서비스", href: "/services" },
+  { label: "포트폴리오", href: "/portfolio" },
+  { label: "가격", href: "/pricing" },
+  { label: "프로세스", href: "/#process" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
-/* ── Hero 카피 (PRD 6.0) ── */
+/* ── Hero 카피 (PRD 6.0 — 제작+홍보 연계 확장) ── */
 export const HERO_COPY = {
   headline: "사장님의 상품이 고객에게 닿는",
   headlineAccent: "가장 정확한 언어",
   headlineSuffix: "로 디자인합니다",
-  sub: "겉만 화려한 페이지가 아닌, 브랜드의 가치를 담아 고객을 설득하는 상세페이지를 만듭니다.",
+  sub: "겉만 화려한 페이지가 아닌, 고객을 설득하는 상세페이지에서 시작합니다. 이제 브랜드 웹사이트 제작과 검색·광고 홍보까지 한 흐름으로 연결합니다.",
   cta: "무료 상담으로 가능성 확인하기",
-  trustBadges: ["기획", "촬영", "디자인", "원본 제공"],
+  secondaryCta: "제작+홍보 서비스 보기",
+  secondaryCtaHref: "/services",
+  trustBadges: ["상세페이지", "웹사이트 제작", "검색·광고 홍보", "운영·관리"],
 } as const;
 
 /* ── Final CTA 카피 (PRD 6.0) ── */

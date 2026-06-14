@@ -2,16 +2,17 @@ import { KAKAO_CHANNEL_URL } from "@/lib/constants";
 
 const FOOTER_LINKS = {
   서비스: [
-    { label: "포트폴리오", href: "#portfolio" },
-    { label: "프로세스", href: "#process" },
-    { label: "문의하기", href: "#contact" },
+    { label: "전체 서비스", href: "/services" },
+    { label: "가격 안내", href: "/pricing" },
+    { label: "포트폴리오", href: "/portfolio" },
   ],
   정보: [
-    { label: "소개", href: "#about" },
-    { label: "FAQ", href: "#faq" },
+    { label: "프로세스", href: "/#process" },
+    { label: "FAQ", href: "/#faq" },
     { label: "개인정보처리방침", href: "/privacy" },
   ],
   연결: [
+    { label: "문의하기", href: "/#contact" },
     { label: "카카오톡 채널", href: KAKAO_CHANNEL_URL },
   ],
 };

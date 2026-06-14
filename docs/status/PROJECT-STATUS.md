@@ -15,6 +15,7 @@
 - [x] 문의 폼 (React Hook Form + Zod + EmailJS + honeypot)
 - [x] SEO 기본 (메타/OG/구조화 데이터)
 - [x] 모바일/데스크톱 레이아웃 + 접근성 개선
+- [x] **제작+홍보 연계 포지셔닝** (devfive 벤치마킹): `/services` `/pricing` `/portfolio` + 홈 신규 3섹션
 
 ## 활성 트랙
 
@@ -32,9 +33,9 @@
 | `/privacy` | ✓ 완료 | 법률 텍스트 |
 | `/sitemap.xml` | ✓ 완료 | SEO |
 | `/robots.txt` | ✓ 완료 | SEO |
-| `/services` | 예정 | 서비스 상세 (post-MVP) |
-| `/pricing` | 예정 | 가격표 (post-MVP) |
-| `/portfolio` (index) | 고려중 | 포트폴리오 목록 (현재 `/`에서 볼 수 있음) |
+| `/services` | ✓ 완료 | 제작+홍보 연계 4-서비스 모델 (devfive 벤치마킹) |
+| `/pricing` | ✓ 완료 | build/care/ads 가격 + 비교표 + FAQ |
+| `/portfolio` (index) | ✓ 완료 | 포트폴리오 목록 (홈에서 "전체 보기" 링크 복원) |
 
 ## 검증 상태
 

@@ -22,6 +22,30 @@
   2.
 
 ## 기록
+### [2026-06-15 KST] devfive 벤치마킹 — 제작+홍보 연계 포지셔닝 풀 IA 편입
+- 작업 목표: 상세페이지에 더해 "웹사이트 제작 + 검색·광고 홍보 연계"를 어필하는 풀 IA 확장 (devfive/WEFLOW 벤치마킹)
+- 범위: 데이터 레이어 + 홈 신규 3섹션 + 신규 라우트 3종 + nav/footer/sitemap/metadata + 문서
+- 변경 파일:
+  - `src/types/index.ts` - ServiceItem/LinkageStep/PricingPlan 타입 추가
+  - `src/lib/content/services.ts` - 4-서비스 모델 + LINKAGE 흐름/카피 (신규)
+  - `src/lib/content/pricing.ts` - build/care/ads 플랜 + 비교표/FAQ/고지 (신규)
+  - `src/lib/constants.ts` - NAV_LINKS(페이지 라우트), HERO_COPY(보조 CTA·확장 카피·배지)
+  - `src/components/sections/{ServicesSection,WebsiteLinkageSection,PricingTeaserSection}.tsx` - 홈 신규 섹션 (신규)
+  - `src/components/PricingCard.tsx` - 가격 카드 공유 컴포넌트 (신규)
+  - `src/components/sections/HeroSection.tsx` - 보조 CTA(/services) 추가
+  - `src/components/sections/PortfolioSection.tsx` - "전체 포트폴리오 보기" → /portfolio 링크 복원
+  - `src/app/{services,pricing,portfolio}/page.tsx` - 신규 라우트 3종 (신규)
+  - `src/app/page.tsx` - 홈 섹션 조합 갱신
+  - `src/app/sitemap.ts`, `src/app/layout.tsx`, `src/components/layout/Footer.tsx` - 라우트/메타/푸터 반영
+  - `docs/prd.md` §10, `docs/status/PROJECT-STATUS.md` - IA 확장 문서화
+- 검증:
+  - 명령: `npm run build`
+  - 결과: 성공 (19개 라우트, 신규 /services·/pricing·/portfolio 정적 생성, 타입/린트 오류 없음)
+- 다음 작업:
+  1. 카카오 채널 URL 확정 후 전체 CTA 연결
+  2. 가격 시작가 실수치 확정(현재 대표값) + EmailJS 운영 템플릿 교체
+  3. 신규 페이지 퍼스트뷰/모바일 디자인 게이트 점검
+
 ### [2026-02-11 02:15 KST] PortfolioSection 9슬롯(3-3-3) + 태그 멘트카드 적용
 - 작업 목표: 현재 구조를 유지하면서 포트폴리오를 9개처럼 탐색 가능하게 구성하고 그룹 사이 멘트카드를 계단식으로 배치
 - 범위: `src/components/sections/PortfolioSection.tsx`, 협업 문서 현행화
