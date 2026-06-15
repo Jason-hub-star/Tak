@@ -26,7 +26,7 @@ export const SERVICES: ServiceItem[] = [
     eyebrow: "02 · 확장",
     title: "브랜드 웹사이트 제작",
     summary:
-      "상세페이지의 설득력을 한 페이지가 아닌 브랜드 전체로. 랜딩부터 다페이지 사이트까지.",
+      "상세페이지의 설득력을 브랜드 전체로 넓힙니다. 랜딩부터 다페이지 사이트까지.",
     points: [
       "랜딩 · 회사소개 · 제품/서비스 페이지 구성",
       "PC/모바일 반응형 + 문의 전환 동선 설계",
@@ -83,5 +83,5 @@ export const LINKAGE_COPY = {
 export const SERVICES_PAGE_COPY = {
   eyebrow: "SERVICES",
   title: "만들고, 알리고, 키우는 것까지",
-  sub: "상세페이지 제작에서 출발해 웹사이트와 홍보까지 — 따로따로 의뢰하지 않아도 한 곳에서 연결됩니다.",
+  sub: "상세페이지 제작에서 출발해 웹사이트와 홍보까지, 따로 의뢰하지 않아도 한 곳에서 이어집니다.",
 } as const;

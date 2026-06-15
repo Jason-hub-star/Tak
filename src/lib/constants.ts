@@ -11,11 +11,11 @@ export const NAV_LINKS: NavLink[] = [
 
 /* ── Hero 카피 (PRD 6.0 — 제작+홍보 연계 확장) ── */
 export const HERO_COPY = {
-  headline: "사장님의 상품이 고객에게 닿는",
-  headlineAccent: "가장 정확한 언어",
-  headlineSuffix: "로 디자인합니다",
-  sub: "겉만 화려한 페이지가 아닌, 고객을 설득하는 상세페이지에서 시작합니다. 이제 브랜드 웹사이트 제작과 검색·광고 홍보까지 한 흐름으로 연결합니다.",
-  cta: "무료 상담으로 가능성 확인하기",
+  headline: "고객이 망설임 없이 사게 만드는",
+  headlineAccent: "상세페이지",
+  headlineSuffix: "를 만듭니다",
+  sub: "고객이 왜 사야 하는지부터 설계한 상세페이지에서 시작합니다. 여기에 브랜드 웹사이트 제작과 검색·광고 홍보까지 한 흐름으로 이어집니다.",
+  cta: "15분 무료 상담 신청하기",
   secondaryCta: "제작+홍보 서비스 보기",
   secondaryCtaHref: "/services",
   trustBadges: ["상세페이지", "웹사이트 제작", "검색·광고 홍보", "운영·관리"],
@@ -23,8 +23,8 @@ export const HERO_COPY = {
 
 /* ── Final CTA 카피 (PRD 6.0) ── */
 export const FINAL_CTA_COPY = {
-  headline: "당신의 브랜드에 날개를 달아줄 파트너, 탁디장입니다.",
-  sub: "15분 무료 상담으로 프로젝트 가능성을 먼저 확인해보세요.",
+  headline: "만드는 것부터 알리는 것까지, 함께하는 파트너 탁디장입니다.",
+  sub: "15분 무료 상담으로 지금 필요한 작업부터 짚어드립니다.",
   primaryCta: "무료 상담 신청",
   secondaryCta: "카카오톡으로 빠르게 문의",
 } as const;

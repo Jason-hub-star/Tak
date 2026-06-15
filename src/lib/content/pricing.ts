@@ -64,7 +64,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     label: "베이직 케어",
     price: "90,000원~",
     period: "/월",
-    body: "기본 운영형 — 콘텐츠 갱신과 검색 등록 관리를 매달 가볍게 챙겨드려요.",
+    body: "기본 운영형. 콘텐츠 갱신과 검색 등록 관리를 매달 가볍게 챙겨드려요.",
     features: [
       "유지보수(경미 수정) 월 1건",
       "검색 등록 관리",
@@ -81,7 +81,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     label: "그로스 케어",
     price: "190,000원~",
     period: "/월",
-    body: "성장형 — 콘텐츠·SNS 운영 + 광고 세팅 할인 + 문의 개선까지. 제작과 홍보를 잇는 가장 인기 플랜.",
+    body: "성장형. 콘텐츠·SNS 운영, 광고 세팅 할인, 문의 개선까지. 제작과 홍보를 잇는 가장 인기 플랜.",
     features: [
       "유지보수(경미 수정) 월 3건",
       "검색 등록 관리 + 월 성과 리포트",
