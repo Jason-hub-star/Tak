@@ -76,5 +76,6 @@ export const TEMPLATE_PRODUCTS: TemplateProduct[] = [
       "탁몽 템플릿 활용 전 사전 진단",
     ],
     storeUrl: "https://smartstore.naver.com/takdijang/products/13578172609",
+    image: "/templates/detail-diagnosis/thumbnail.png",
   },
 ];

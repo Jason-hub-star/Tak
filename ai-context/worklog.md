@@ -23,6 +23,31 @@
 
 ## 기록
 
+### [2026-06-15 23:xx KST] 탁몽 AI 템플릿 스토어 확장 + Vercel 배포 + 문서 동기화
+- 작업 목표: 탁몽을 "AI 템플릿 스토어"로 확장(와디즈 성과 + 스마트스토어 판매 2종), 템플릿 상세 페이지 SSG 신설, EmailJS 실연동, Vercel 배포, 문서 7개 현행화
+- 범위: 라우팅 + 콘텐츠 + 배포 + 문서 동기화
+- 변경 파일:
+  - `src/app/takmong/page.tsx` - `/takmong` 확장: 펀딩 성과 + 리워드 4종 + 스마트스토어 판매 2종
+  - `src/app/templates/[slug]/page.tsx` - `/templates/[slug]` SSG 신규 (상세 이미지 27장)
+  - `src/lib/content/templates.ts` - 템플릿 데이터 모델 및 레지스트리 (신규)
+  - `src/lib/content/template-images.ts` - 템플릿 이미지 헬퍼 (thumbnail 제외 자동 필터)
+  - `src/lib/constants.ts` - KAKAO_CHANNEL_URL = "open.kakao.com/o/suSdZzs", NAV_LINKS에 "AI 템플릿" 추가
+  - `src/lib/emailjs.ts` - 프로덕션 키 설정, reply-to·to_email 파라미터 지원
+  - `src/components/layout/Header.tsx` - 상단 네비에 "AI 템플릿" 섹션 추가 → `/takmong` 연결
+  - `src/components/layout/FloatingCTA.tsx` - 카카오톡 실제 링크화
+  - `public/services/` - 서비스 섹션 이미지 4종 컬러 교체
+  - 배포: Vercel 프로젝트 `tak` (GitHub main 자동배포), 도메인 takdijang.com + www, 가비아 A/CNAME 설정 완료, SSL 진행중
+  - 문서 7개: PROJECT-STATUS.md, DECISION-LOG.md, master-plan.md, project-context.md, worklog.md(이 항목), AGENTS.md, README.md
+- 검증:
+  - 명령: `npm run build`
+  - 결과: 성공 (라우트 증가, 타입 클린, 린트 클린)
+  - EmailJS E2E: HTTP 200 검증 완료, 문의 폼 + 무료 진단 실제 발송 확인
+  - 카카오톡: open.kakao.com/o/suSdZzs 실제 연결 확인
+- 다음 작업:
+  1. 배포 후 라우트 최종 검증 (도메인 활성화 확인)
+  2. SEO 제출 (Google Search Console, Naver 웹마스터도구)
+  3. 스마트스토어 판매 분석 모니터링
+
 ### [2026-06-15 22:xx KST] 디자인·카피·기술 정제 완료 (에디토리얼 리디자인 + 무료 진단)
 - 작업 목표: 에디토리얼 리디자인(danbrise-barber.com 무드 재해석), 카피 정제(AI 티 제거), 무료 진단 위저드, 모션/UI 프리미티브 구현으로 배포 준비 완료
 - 범위: 디자인 토큰 + 컴포넌트 + 콘텐츠 + 라우팅 + 문서 동기화

@@ -43,14 +43,18 @@
 ## 6) 핵심 도메인 모델 (PRD 기준)
 - PortfolioItem
   - slug, title, category[], industry, deliverables[], kpi, thumbnail, heroImage, publishedAt, featured, tags[]
+- TemplateItem
+  - slug, title, description, price, discountedPrice, featured, images[], thumbnailUrl, smartstoreUrl
 - Tag
   - name, slug
 - InquiryPayload
   - name, brandOrStore, contact, inquiryType, budgetRange, deadline, message, privacyConsent
 
-## 7) 라우팅 현황 (22개 라우트)
+## 7) 라우팅 현황
 - `/`: 랜딩 원페이지 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
 - `/services`: 제작+홍보 연계 4-서비스 상세
+- `/takmong`: AI 템플릿 스토어 (펀딩 성과 + 리워드 4종 + 스마트스토어 판매 2종)
+- `/templates/[slug]`: 템플릿 상세 (SSG, 상세 이미지 27장)
 - `/pricing`: 가격 비교표 + FAQ
 - `/portfolio`: 포트폴리오 목록
 - `/portfolio/[slug]`: 포트폴리오 상세 (SSG)
@@ -64,11 +68,15 @@
 - EmailJS (문의 폼 + 무료 진단 위저드 전송)
   - 키 값은 **레포에 커밋하지 않는다.** 실제 값은 `.env.local`(git 미추적)에만 보관, 형식은 `.env.local.example` 참조
   - 필요 키: `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`
-  - 수신 메일/Service·Template ID 등 운영 값은 EmailJS 대시보드 + Vercel 환경변수에서 관리
+  - 수신 메일/Service·Template ID 등 운영 값은 환경변수로 설정 완료 (Production·Preview·Development 3환경)
   - 함수: `sendInquiry()` (문의 폼), `sendDiagnosis()` (위저드 → 직렬화 후 동일 템플릿 사용)
-  - 현재 상태: 테스트 템플릿 사용 중 (운영 커스텀 템플릿 교체 필요)
-- 카카오톡 채널: URL 미확정 (`src/lib/constants.ts` KAKAO_CHANNEL_URL 플레이스홀더)
+  - 현재 상태: **실연동 완료** (HTTP 200, reply-to·to_email 파라미터 지원)
+- 카카오톡 채널: `open.kakao.com/o/suSdZzs` (확정 완료)
   - 사용처: Header "무료 상담", FloatingCTA, FinalCTA, 진단 위저드 review 페이지, 가격카드
+  - 현재 상태: **실제 링크 연결 완료**
+- Naver 스마트스토어: 탁몽 AI 템플릿 2종 판매 채널
+  - 상품 1: AI 디자인 템플릿 (정가 320,000원 → 99,000원, 69% 할인, featured, 사은품 PDF)
+  - 상품 2: 상세페이지 진단·1:1 컨설팅 (정가 59,000원 → 29,000원, 50% 할인)
 
 ## 9) 비기능/운영 원칙
 - SEO: SSR/SSG, 메타/OG, sitemap/robots 우선

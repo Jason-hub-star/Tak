@@ -47,6 +47,8 @@ export default function AboutSection() {
         {/* 이미지 (플레이스홀더 — 스튜디오/대표 사진 자리) */}
         <Reveal y={24} duration={0.5} delay={0.1}>
           <MediaFrame
+            src="/studio/about.jpg"
+            alt="탁디장 대표"
             aspect="aspect-[4/5]"
             label="스튜디오 이미지 준비중"
             sizes="(max-width: 1024px) 100vw, 40vw"

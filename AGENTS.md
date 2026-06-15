@@ -4,11 +4,12 @@
 
 ## Loading Order (Tier 1: Always Read)
 
-1. `ai-context/master-plan.md` — 협업 기준, 우선순위, 단계 진입 조건
-2. `ai-context/project-context.md` — 한 줄 정의, 도메인 모델, 외부 서비스 연동
+1. `ai-context/master-plan.md` — 협업 기준, 우선순위, 단계 진입 조건 (배포 완료 → 운영 모드)
+2. `ai-context/project-context.md` — 한 줄 정의, 도메인 모델, 외부 서비스 연동 (EmailJS 실연동, 카카오톡 연결)
 3. `docs/prd.md` — 제품 기준 문서 (기능/기술스택/라우팅) **최우선**
-4. `docs/status/PROJECT-STATUS.md` — 현재 상태(22개 라우트 완료), 활성 트랙, 다음 액션
-5. `harnesses/REGISTRY.md` — 이 프로젝트에 맞는 하네스와 사용 시점
+4. `docs/status/PROJECT-STATUS.md` — 현재 상태(라우트 증가), 활성 트랙, 다음 액션
+5. `docs/status/DECISION-LOG.md` — 구조적 결정 기록 (탁몽 확장, 배포 완료)
+6. `harnesses/REGISTRY.md` — 이 프로젝트에 맞는 하네스와 사용 시점
 
 ## Architecture (Tier 2: Reference)
 
@@ -20,10 +21,14 @@
 - `src/lib/content/services.ts` — 4-서비스 모델 + WebsiteLinkage 흐름
 - `src/lib/content/pricing.ts` — build/care/ads 플랜 + 비교표/FAQ
 - `src/lib/content/diagnose.ts` — 무료 진단 위저드 설정 + 이메일 직렬화
+- `src/lib/content/templates.ts` — 탁몽 AI 템플릿 데이터 모델 (펀딩 성과 + 리워드 4종 + 스마트스토어 2종)
+- `src/lib/content/template-images.ts` — 템플릿 상세 이미지 헬퍼 (27장, thumbnail 제외 필터)
 
 **라우팅**:
 - `/` — 랜딩 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
 - `/services` — 제작+홍보 연계 4-서비스 상세
+- `/takmong` — AI 템플릿 스토어 (펀딩 + 리워드 + 스마트스토어)
+- `/templates/[slug]` — 템플릿 상세 (SSG, 상세 이미지 27장)
 - `/pricing` — 가격 비교표 + FAQ
 - `/portfolio` — 포트폴리오 목록
 - `/portfolio/[slug]` — 상세 (SSG)
