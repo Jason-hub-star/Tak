@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { KAKAO_CHANNEL_URL } from "@/lib/constants";
 
 const FOOTER_LINKS = {
@@ -25,12 +26,13 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xs">
-                T
-              </span>
-              <span className="text-base font-bold">탁디장</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="탁디장"
+              width={851}
+              height={359}
+              className="h-10 w-auto mb-4"
+            />
             <p className="text-sm text-muted-foreground leading-relaxed">
               팔리는 상세페이지를 설계하는
               <br />
@@ -61,17 +63,25 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} 탁디장. All rights reserved.
+        <div className="mt-12 pt-8 border-t border-border space-y-4">
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            탁디장스튜디오 · 사업자등록번호 365-18-00464
+            <span className="mx-1.5 hidden md:inline">·</span>
+            <br className="md:hidden" />
+            덕계로 104 1층 · 010-7153-8014
           </p>
-          <div className="flex gap-6">
-            <a
-              href="/privacy"
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              개인정보처리방침
-            </a>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+            <p className="text-xs text-muted-foreground">
+              &copy; {new Date().getFullYear()} 탁디장. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <a
+                href="/privacy"
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                개인정보처리방침
+              </a>
+            </div>
           </div>
         </div>
       </div>

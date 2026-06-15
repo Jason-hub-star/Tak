@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS } from "@/lib/constants";
 import { Menu, X } from "lucide-react";
@@ -27,11 +28,15 @@ export default function Header() {
     >
       <div className="container-main flex items-center justify-between px-5 md:px-8">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white font-bold text-sm">
-            T
-          </span>
-          <span className="text-lg font-bold text-foreground">탁디장</span>
+        <a href="/" className="flex items-center" aria-label="탁디장 홈">
+          <Image
+            src="/logo.png"
+            alt="탁디장"
+            width={851}
+            height={359}
+            priority
+            className="h-9 w-auto md:h-10"
+          />
         </a>
 
         {/* Desktop Nav */}
