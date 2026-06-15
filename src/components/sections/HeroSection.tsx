@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { HERO_COPY } from "@/lib/constants";
 import { Reveal } from "@/components/ui/Reveal";
@@ -8,13 +9,39 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative section-padding pt-32 md:pt-40 lg:pt-48 pb-16 lg:pb-24"
+      className="relative isolate overflow-hidden section-padding pt-32 md:pt-40 lg:pt-48 pb-16 lg:pb-24"
     >
-      <div className="container-main text-center">
+      {/* 배경 영상 (모바일은 poster 정지컷, reduced-motion은 영상 숨김) */}
+      <div className="absolute inset-0 -z-10" aria-hidden>
+        <Image
+          src="/hero/hero-poster.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <video
+          className="absolute inset-0 hidden h-full w-full object-cover md:block motion-reduce:!hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/hero/hero-poster.jpg"
+        >
+          <source src="/hero/hero-montage.webm" type="video/webm" />
+          <source src="/hero/hero-montage.mp4" type="video/mp4" />
+        </video>
+        {/* 가독성 오버레이 */}
+        <div className="absolute inset-0 bg-[#FAFAF8]/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8]/50 via-transparent to-[#FAFAF8]" />
+      </div>
+
+      <div className="container-main relative z-10 text-center">
         {/* Eyebrow label */}
         <Reveal immediate y={12}>
           <span className="inline-block text-xs font-semibold tracking-[0.3em] uppercase text-primary">
-            TAKDJANG · DESIGN STUDIO
+            TAKDIJANG · DESIGN STUDIO
           </span>
         </Reveal>
 
