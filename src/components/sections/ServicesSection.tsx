@@ -16,8 +16,16 @@ const ICONS: Record<string, React.ElementType> = {
   RefreshCw,
 };
 
+/** 랜딩 서비스 섹션 이미지 — SERVICES 순서(상세페이지·웹사이트·홍보·운영)와 1:1, 위→아래 */
+const SERVICE_IMAGES = [
+  "/home-services/01.png",
+  "/home-services/02.png",
+  "/home-services/03.png",
+  "/home-services/04.png",
+];
+
 export default function ServicesSection() {
-  // 에디토리얼 이미지 컬럼에 포트폴리오 이미지 재활용 (부족분은 플레이스홀더)
+  // 부족분(운영)은 포트폴리오 이미지/플레이스홀더로 대체
   const works = getAllPortfolios();
 
   return (
@@ -34,7 +42,7 @@ export default function ServicesSection() {
         {SERVICES.map((service, i) => {
           const Icon = ICONS[service.icon];
           const reverse = i % 2 === 1;
-          const thumb = works[i]?.thumbnail;
+          const thumb = SERVICE_IMAGES[i] ?? works[i]?.thumbnail;
           return (
             <Reveal key={service.id} y={24} duration={0.5}>
               <div className="grid items-center gap-8 lg:gap-16 md:grid-cols-2">
@@ -82,7 +90,6 @@ export default function ServicesSection() {
                   src={thumb}
                   alt={service.title}
                   aspect="aspect-[4/3]"
-                  grayscale
                   label="작업 이미지 준비중"
                   className={cn(reverse && "md:order-1")}
                 />
