@@ -4,7 +4,9 @@ import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingCTA from "@/components/layout/FloatingCTA";
-import { getAllPortfolios } from "@/lib/content/portfolio";
+import { ArrowUpRight } from "lucide-react";
+import { getAllPortfolios, getExternalWorks } from "@/lib/content/portfolio";
+import { Badge } from "@/components/ui/Badge";
 
 export const metadata: Metadata = {
   title: "포트폴리오 | 탁디장",
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
 
 export default function PortfolioIndexPage() {
   const portfolios = getAllPortfolios();
+  const externalWorks = getExternalWorks();
 
   return (
     <>
@@ -40,12 +43,71 @@ export default function PortfolioIndexPage() {
               </p>
             </div>
 
+            {/* ── 진행 중 · 운영 채널 (외부 링크 항목) ── */}
+            {externalWorks.length > 0 && (
+              <div className="mb-16">
+                <h2 className="text-sm font-semibold tracking-wide text-muted-foreground mb-4">
+                  진행 중 · 운영 채널
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {externalWorks.map((item) => {
+                    const isInternal = Boolean(item.productHref);
+                    const href = item.productHref ?? item.externalUrl;
+                    const linkProps = isInternal
+                      ? {}
+                      : {
+                          target: "_blank" as const,
+                          rel: "noopener noreferrer",
+                        };
+                    return (
+                    <a
+                      key={item.slug}
+                      href={href}
+                      {...linkProps}
+                      className="group flex flex-col justify-between rounded-card bg-primary-50 border border-primary/20 p-6 hover:-translate-y-1 hover:border-primary/40 transition-all duration-200"
+                    >
+                      <div>
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex flex-wrap gap-1.5">
+                            {item.tags.slice(0, 2).map((tag) => (
+                              <Badge
+                                key={tag}
+                                variant="accent"
+                                size="sm"
+                                className="px-2.5 py-0.5"
+                              >
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                          <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:rotate-12">
+                            <ArrowUpRight size={18} strokeWidth={2.5} />
+                          </span>
+                        </div>
+                        <h3 className="mt-4 text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="mt-1.5 text-sm text-muted-foreground">
+                          {item.industry} · {item.kpi}
+                        </p>
+                      </div>
+                      <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                        {item.externalLabel ?? "바로가기"}
+                        <ArrowUpRight size={15} strokeWidth={2.5} />
+                      </span>
+                    </a>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {portfolios.map((item) => (
                 <Link
                   key={item.slug}
                   href={`/portfolio/${item.slug}`}
-                  className="group block rounded-card overflow-hidden bg-white shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200"
+                  className="group block rounded-none overflow-hidden bg-white border border-border hover:-translate-y-1 transition-all duration-200"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-gray-100">
                     {item.thumbnail ? (
@@ -54,7 +116,7 @@ export default function PortfolioIndexPage() {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
                         unoptimized={item.thumbnail.endsWith(".gif")}
                       />
                     ) : (
@@ -68,12 +130,14 @@ export default function PortfolioIndexPage() {
                   <div className="p-5">
                     <div className="flex flex-wrap gap-1.5 mb-2">
                       {item.tags.slice(0, 2).map((tag) => (
-                        <span
+                        <Badge
                           key={tag}
-                          className="px-2.5 py-0.5 rounded-full bg-primary-50 text-primary-700 text-xs font-medium"
+                          variant="accent"
+                          size="sm"
+                          className="px-2.5 py-0.5"
                         >
                           {tag}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
                     <h2 className="text-base font-bold text-foreground group-hover:text-primary transition-colors">

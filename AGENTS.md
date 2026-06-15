@@ -7,8 +7,34 @@
 1. `ai-context/master-plan.md` — 협업 기준, 우선순위, 단계 진입 조건
 2. `ai-context/project-context.md` — 한 줄 정의, 도메인 모델, 외부 서비스 연동
 3. `docs/prd.md` — 제품 기준 문서 (기능/기술스택/라우팅) **최우선**
-4. `docs/status/PROJECT-STATUS.md` — 현재 상태, 활성 트랙, 다음 액션
+4. `docs/status/PROJECT-STATUS.md` — 현재 상태(22개 라우트 완료), 활성 트랙, 다음 액션
 5. `harnesses/REGISTRY.md` — 이 프로젝트에 맞는 하네스와 사용 시점
+
+## Architecture (Tier 2: Reference)
+
+**UI 레이어**: 
+- `src/components/ui/` — 공용 프리미티브 (Button, Badge, Card, Section, Reveal, MediaFrame) 및 cva 기반 스타일
+- `src/lib/motion.ts` — 모션 토큰 SSOT (duration/easing distill)
+
+**콘텐츠 레이어**:
+- `src/lib/content/services.ts` — 4-서비스 모델 + WebsiteLinkage 흐름
+- `src/lib/content/pricing.ts` — build/care/ads 플랜 + 비교표/FAQ
+- `src/lib/content/diagnose.ts` — 무료 진단 위저드 설정 + 이메일 직렬화
+
+**라우팅**:
+- `/` — 랜딩 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
+- `/services` — 제작+홍보 연계 4-서비스 상세
+- `/pricing` — 가격 비교표 + FAQ
+- `/portfolio` — 포트폴리오 목록
+- `/portfolio/[slug]` — 상세 (SSG)
+- `/contact` — 진단 상담 카드 랜딩
+- `/contact/form` — 13문항 5단계 위저드 (localStorage 저장, sendDiagnosis)
+- `/contact/form/thank-you` — 감사 페이지
+
+**디자인 토큰** (`tailwind.config.ts`):
+- Colors: 배경 오프화이트 #FAFAF8, 본문 #1A1A1A, Primary Rose #CB6664, 카드 #FFFFFF
+- Typography: Pretendard 산세리프 중심, display 스케일 확대
+- Spacing/Radius: card 10px, shadow 플랫
 
 ## Hard Rules
 

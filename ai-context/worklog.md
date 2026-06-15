@@ -22,6 +22,30 @@
   2.
 
 ## 기록
+
+### [2026-06-15 22:xx KST] 디자인·카피·기술 정제 완료 (에디토리얼 리디자인 + 무료 진단)
+- 작업 목표: 에디토리얼 리디자인(danbrise-barber.com 무드 재해석), 카피 정제(AI 티 제거), 무료 진단 위저드, 모션/UI 프리미티브 구현으로 배포 준비 완료
+- 범위: 디자인 토큰 + 컴포넌트 + 콘텐츠 + 라우팅 + 문서 동기화
+- 변경 파일:
+  - `tailwind.config.ts` - 에디토리얼 오프화이트 #FAFAF8, 근접 블랙 #1A1A1A, Rose #CB6664, 카드 10px, shadow 플랫화
+  - `src/lib/motion.ts` - 모션 토큰 SSOT (duration/easing distill, fadeUp variants)
+  - `src/components/ui/` - Button, Badge, Card, Section, Reveal, MediaFrame 프리미티브 + cva 기반 스타일
+  - `src/lib/content/diagnose.ts` - 무료 진단 위저드 설정 + buildDiagnosisMessage (신규)
+  - `src/components/diagnose/` - DiagnoseFormShell, Progress, Step, Field, Review (신규)
+  - `src/app/contact/` - /contact (카드), /contact/form (위저드), /contact/form/thank-you (감사)
+  - 섹션 전역: Hero/Services/Pricing/FinalCTA 카피 정제, FloatingCTA/PricingCard 로즈톤, Footer 라이트
+  - `src/lib/content/services.ts`, `src/lib/content/pricing.ts` - 카피 재정제
+  - 문서: AGENTS.md, PROJECT-STATUS.md, README.md, master-plan.md, project-context.md, DECISION-LOG.md, 이 worklog
+- 검증:
+  - 명령: `npm run build`
+  - 결과: 성공 (22개 라우트, 타입 클린, 린트 클린)
+  - 추가: 위저드 e2e (단계 진행/검증 차단) 확인, 폼 제출 테스트 미실시 (EmailJS 테스트 템플릿)
+- 다음 작업:
+  1. EmailJS 프로덕션 키 설정 및 커스텀 템플릿 교체
+  2. 카카오톡 채널 URL 확정 후 전체 CTA 연결
+  3. 배포 전 보안 점검 (next-vercel-release-guard harness)
+  4. Vercel 배포
+
 ### [2026-06-15 KST] devfive 벤치마킹 — 제작+홍보 연계 포지셔닝 풀 IA 편입
 - 작업 목표: 상세페이지에 더해 "웹사이트 제작 + 검색·광고 홍보 연계"를 어필하는 풀 IA 확장 (devfive/WEFLOW 벤치마킹)
 - 범위: 데이터 레이어 + 홈 신규 3섹션 + 신규 라우트 3종 + nav/footer/sitemap/metadata + 문서

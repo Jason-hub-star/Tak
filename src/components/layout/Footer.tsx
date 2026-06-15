@@ -3,6 +3,7 @@ import { KAKAO_CHANNEL_URL } from "@/lib/constants";
 const FOOTER_LINKS = {
   서비스: [
     { label: "전체 서비스", href: "/services" },
+    { label: "탁몽 (AI 상세페이지)", href: "/takmong" },
     { label: "가격 안내", href: "/pricing" },
     { label: "포트폴리오", href: "/portfolio" },
   ],
@@ -19,18 +20,18 @@ const FOOTER_LINKS = {
 
 export default function Footer() {
   return (
-    <footer className="bg-cta-dark text-cta-dark-foreground">
+    <footer className="bg-background border-t border-border text-foreground">
       <div className="container-main px-5 md:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white font-bold text-xs">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xs">
                 T
               </span>
               <span className="text-base font-bold">탁디장</span>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               팔리는 상세페이지를 설계하는
               <br />
               디자인 스튜디오
@@ -40,13 +41,15 @@ export default function Footer() {
           {/* Link Columns */}
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (
             <div key={title}>
-              <h4 className="text-sm font-semibold mb-4">{title}</h4>
+              <h4 className="text-sm font-semibold mb-4 text-foreground">
+                {title}
+              </h4>
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-gray-400 hover:text-white transition-colors"
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {link.label}
                     </a>
@@ -58,14 +61,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-500">
+        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} 탁디장. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a
               href="/privacy"
-              className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
               개인정보처리방침
             </a>

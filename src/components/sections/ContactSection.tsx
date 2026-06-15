@@ -12,6 +12,7 @@ import {
   BUDGET_RANGE_OPTIONS,
   KAKAO_CHANNEL_URL,
 } from "@/lib/constants";
+import { Button } from "@/components/ui/Button";
 
 /* ── Zod 스키마 (PRD InquiryPayload) ── */
 const inquirySchema = z.object({
@@ -95,15 +96,17 @@ export default function ContactSection() {
             <p className="mt-2 text-muted-foreground">
               24시간 내 회신드리겠습니다.
             </p>
-            <a
+            <Button
               href={KAKAO_CHANNEL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FEE500] text-[#3C1E1E] text-sm font-semibold"
+              variant="kakao"
+              size="sm"
+              className="mt-6"
+              leadingIcon={<MessageCircle size={16} />}
             >
-              <MessageCircle size={16} />
               카카오톡으로 빠르게 연결하기
-            </a>
+            </Button>
           </div>
         ) : (
           <form
@@ -313,28 +316,33 @@ export default function ContactSection() {
 
             {/* 제출 */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <button
+              <Button
                 type="submit"
+                variant="primary"
+                size="lg"
+                className="flex-1"
                 disabled={submitState === "loading"}
-                className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[48px] rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary-600 transition-colors shadow-cta disabled:opacity-60"
+                leadingIcon={
+                  submitState === "loading" ? (
+                    <Loader2 size={18} className="animate-spin" />
+                  ) : (
+                    <Send size={16} />
+                  )
+                }
               >
-                {submitState === "loading" ? (
-                  <Loader2 size={18} className="animate-spin" />
-                ) : (
-                  <Send size={16} />
-                )}
                 무료 상담 신청
-              </button>
+              </Button>
 
-              <a
+              <Button
                 href={KAKAO_CHANNEL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 min-h-[48px] rounded-xl bg-[#FEE500] text-[#3C1E1E] text-sm font-semibold hover:bg-[#F5DC00] transition-colors"
+                variant="kakao"
+                size="lg"
+                leadingIcon={<MessageCircle size={16} />}
               >
-                <MessageCircle size={16} />
                 카카오톡 문의
-              </a>
+              </Button>
             </div>
           </form>
         )}

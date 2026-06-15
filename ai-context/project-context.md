@@ -24,13 +24,19 @@
 4. 명확한 견적: 길이 단위가 아닌 프로젝트 단위 정가 운영
 
 ## 5) 현재 상태와 기준선
-- 현재 코드베이스: Next.js 14 App Router 기반 구현 완료 (빌드 성공, 10개 라우트)
+- 현재 코드베이스: Next.js 14 App Router 기반 구현 + 디자인 정제 완료 (빌드 성공, 22개 라우트)
 - 구현 완료 항목:
-  - 랜딩 7섹션 (Hero/Portfolio/Process/About/FAQ/Contact/FinalCTA)
+  - 랜딩 10섹션 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
+  - **제작+홍보 연계 풀 IA** (devfive 벤치마킹): `/services`, `/pricing`, `/portfolio` 라우트
+  - **무료 진단 위저드** (`/contact/form`, 13문항 5단계, localStorage)
   - `/portfolio/[slug]` SSG (MDX frontmatter 파싱, 샘플 3개)
   - 문의 폼 (React Hook Form + Zod + EmailJS + honeypot 스팸 방지)
+  - **에디토리얼 리디자인** (오프화이트/근접블랙/Rose 토큰, 카드 10px, 플랫 그림자)
+  - **카피 정제** (AI 티 제거: 은유·부정병렬·막연한 마무리·em대시)
+  - **블랙 완전 제거** (primary 로즈, footer/FinalCTA 라이트톤)
+  - **모션 토큰 SSOT** (`src/lib/motion.ts`, duration/easing)
+  - **UI 프리미티브** (Button, Badge, Card, Section, Reveal, MediaFrame - cva 기반)
   - SEO (메타/OG/sitemap.xml/robots.txt)
-  - 디자인 토큰 (컬러/타이포/간격/라운드/그림자)
 - 협업 기준: `docs/prd.md`의 Next.js 목표 구조를 기준으로 계획/구현/리뷰 수행
 - 결정 규칙: 문서 간 충돌 발생 시 `docs/prd.md` 우선
 
@@ -42,19 +48,27 @@
 - InquiryPayload
   - name, brandOrStore, contact, inquiryType, budgetRange, deadline, message, privacyConsent
 
-## 7) 라우팅 목표
-- `/`: 랜딩 원페이지 (Hero/Portfolio/Process/About/Contact)
-- `/portfolio/[slug]`: 포트폴리오 상세
+## 7) 라우팅 현황 (22개 라우트)
+- `/`: 랜딩 원페이지 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
+- `/services`: 제작+홍보 연계 4-서비스 상세
+- `/pricing`: 가격 비교표 + FAQ
+- `/portfolio`: 포트폴리오 목록
+- `/portfolio/[slug]`: 포트폴리오 상세 (SSG)
+- `/contact`: 진단 상담 카드 랜딩
+- `/contact/form`: 무료 진단 위저드 (13문항 5단계, localStorage)
+- `/contact/form/thank-you`: 감사 페이지
 - `/privacy`: 개인정보 처리방침
 - `/sitemap.xml`, `/robots.txt`: SEO 운영 경로
 
 ## 8) 외부 서비스 연동
-- EmailJS (문의 폼 전송)
+- EmailJS (문의 폼 + 무료 진단 위저드 전송)
   - 키 값은 **레포에 커밋하지 않는다.** 실제 값은 `.env.local`(git 미추적)에만 보관, 형식은 `.env.local.example` 참조
   - 필요 키: `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`
   - 수신 메일/Service·Template ID 등 운영 값은 EmailJS 대시보드 + Vercel 환경변수에서 관리
-  - 운영 전 TODO: 테스트 템플릿 → 운영 커스텀 템플릿 교체 후 `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` 갱신
+  - 함수: `sendInquiry()` (문의 폼), `sendDiagnosis()` (위저드 → 직렬화 후 동일 템플릿 사용)
+  - 현재 상태: 테스트 템플릿 사용 중 (운영 커스텀 템플릿 교체 필요)
 - 카카오톡 채널: URL 미확정 (`src/lib/constants.ts` KAKAO_CHANNEL_URL 플레이스홀더)
+  - 사용처: Header "무료 상담", FloatingCTA, FinalCTA, 진단 위저드 review 페이지, 가격카드
 
 ## 9) 비기능/운영 원칙
 - SEO: SSR/SSG, 메타/OG, sitemap/robots 우선

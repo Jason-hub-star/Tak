@@ -1,7 +1,40 @@
 import type { PortfolioItemData } from "@/types";
 
-/** 9개 포트폴리오 정적 레지스트리 — slug = public/portfolio/ 하위 폴더명 */
+/**
+ * 포트폴리오 정적 레지스트리.
+ * - 내부 항목: slug = public/portfolio/ 하위 폴더명 (상세페이지 작업)
+ * - 외부 항목: externalUrl 지정 (와디즈 펀딩·블로그 운영 등). 내부 상세페이지는 생성하지 않음.
+ */
 export const PORTFOLIO_ITEMS: PortfolioItemData[] = [
+  {
+    slug: "takmong-wadiz",
+    title: "탁몽 · 와디즈 펀딩 상세페이지",
+    clientType: "자사 브랜드",
+    category: ["상세페이지", "펀딩"],
+    industry: "와디즈 펀딩",
+    deliverables: ["브랜딩", "기획", "촬영", "상세페이지 디자인"],
+    kpi: "펀딩 740% 달성 · 3,701,000원 · 서포터 51명",
+    publishedAt: "2026-05-06",
+    featured: true,
+    tags: ["와디즈", "펀딩성공", "상세페이지"],
+    externalUrl: "https://www.wadiz.kr/web/campaign/detail/384334",
+    externalLabel: "탁몽 자세히 보기",
+    productHref: "/takmong",
+  },
+  {
+    slug: "artdoorstore-blog",
+    title: "금강이지스 현관중문 · 블로그 운영",
+    clientType: "현관중문 브랜드",
+    category: ["블로그 운영", "콘텐츠 마케팅"],
+    industry: "인테리어 · 홈",
+    deliverables: ["콘텐츠 기획", "포스팅 운영", "검색 노출 관리"],
+    kpi: "누적 48,000+ 방문 · 이웃 1,800명+",
+    publishedAt: "2026-06-10",
+    featured: true,
+    tags: ["블로그운영", "콘텐츠마케팅"],
+    externalUrl: "https://blog.naver.com/artdoorstore",
+    externalLabel: "블로그 바로가기",
+  },
   {
     slug: "ricecake",
     title: "순수기정 떡 상세페이지",

@@ -36,7 +36,7 @@ export default function FloatingCTA() {
       </button>
       <div
         className={cn(
-          "fixed bottom-[5.5rem] right-6 z-40 rounded-xl bg-foreground text-white text-sm font-medium px-4 py-2.5 shadow-lg transition-all duration-300",
+          "fixed bottom-[5.5rem] right-6 z-40 rounded-xl bg-primary text-primary-foreground text-sm font-medium px-4 py-2.5 shadow-lg transition-all duration-300",
           showToast
             ? "translate-y-0 opacity-100"
             : "translate-y-2 opacity-0 pointer-events-none"

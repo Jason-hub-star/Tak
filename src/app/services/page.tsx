@@ -14,6 +14,11 @@ import WebsiteLinkageSection from "@/components/sections/WebsiteLinkageSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import { SERVICES, SERVICES_PAGE_COPY } from "@/lib/content/services";
+import { getAllPortfolios } from "@/lib/content/portfolio";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
+import { MediaFrame } from "@/components/ui/MediaFrame";
 
 export const metadata: Metadata = {
   title: "서비스 | 상세페이지부터 웹사이트·홍보까지 — 탁디장",
@@ -36,6 +41,8 @@ const ICONS: Record<string, React.ElementType> = {
 };
 
 export default function ServicesPage() {
+  const works = getAllPortfolios();
+
   return (
     <>
       <Header />
@@ -55,66 +62,76 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Detailed services — alternating rows */}
+        {/* Detailed services — 비대칭 [텍스트 | 대형 이미지] 교차 행 (에디토리얼) */}
         <section className="section-padding pt-0">
-          <div className="container-main space-y-6">
-            {SERVICES.map((service) => {
+          <div className="container-main space-y-16 lg:space-y-24">
+            {SERVICES.map((service, i) => {
               const Icon = ICONS[service.icon];
+              const reverse = i % 2 === 1;
+              const thumb = works[i]?.thumbnail;
               return (
                 <div
                   key={service.id}
-                  className="rounded-card bg-white border border-border p-7 md:p-9 grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-6 md:gap-10"
+                  className="grid items-center gap-8 lg:gap-16 md:grid-cols-2"
                 >
-                  <div>
+                  <div className={cn(reverse && "md:order-2")}>
                     <div className="flex items-center gap-3">
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-50 text-primary">
                         {Icon && <Icon size={24} />}
                       </div>
-                      <span className="text-xs font-semibold tracking-wide text-muted-foreground">
+                      <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
                         {service.eyebrow}
                       </span>
                     </div>
-                    <h2 className="mt-4 text-2xl font-bold text-foreground">
+                    <h2 className="mt-5 text-2xl md:text-3xl font-bold text-foreground leading-tight">
                       {service.title}
                     </h2>
-                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                    <p className="mt-3 text-sm md:text-base text-muted-foreground leading-relaxed">
                       {service.summary}
                     </p>
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {service.deliverables.map((d) => (
-                        <span
-                          key={d}
-                          className="px-3 py-1 rounded-full bg-muted text-xs font-medium text-muted-foreground"
+
+                    <ul className="mt-6 space-y-3">
+                      {service.points.map((point) => (
+                        <li
+                          key={point}
+                          className="flex items-start gap-3 text-sm md:text-base text-foreground/90"
                         >
+                          <Check size={18} className="mt-0.5 text-primary shrink-0" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {service.deliverables.map((d) => (
+                        <Badge key={d} variant="muted" size="sm">
                           {d}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
                   </div>
 
-                  <ul className="space-y-3 md:border-l md:border-border md:pl-10 self-center">
-                    {service.points.map((point) => (
-                      <li
-                        key={point}
-                        className="flex items-start gap-3 text-sm md:text-base text-foreground/90"
-                      >
-                        <Check size={18} className="mt-0.5 text-primary shrink-0" />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
+                  <MediaFrame
+                    src={thumb}
+                    alt={service.title}
+                    aspect="aspect-[4/3]"
+                    grayscale
+                    label="작업 이미지 준비중"
+                    className={cn(reverse && "md:order-1")}
+                  />
                 </div>
               );
             })}
 
             <div className="text-center pt-2">
-              <a
+              <Button
                 href="/pricing"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-600 transition-colors"
+                variant="ghost"
+                size="link"
+                trailingIcon={<ArrowRight size={16} />}
               >
                 서비스별 가격 보기
-                <ArrowRight size={16} />
-              </a>
+              </Button>
             </div>
           </div>
         </section>

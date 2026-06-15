@@ -20,7 +20,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "쇼핑몰 플랫폼 가이드 반영",
     ],
     cta: "상세페이지 견적 보기",
-    ctaHref: "#contact",
+    ctaHref: "/contact",
     featured: false,
   },
   {
@@ -37,7 +37,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "기본 SEO · 검색 등록 세팅",
     ],
     cta: "웹사이트 견적 보기",
-    ctaHref: "#contact",
+    ctaHref: "/contact",
     featured: true,
     badge: "BUILD ⭐ 인기",
   },
@@ -55,7 +55,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "SEO 최적화",
     ],
     cta: "풀패키지 견적 보기",
-    ctaHref: "#contact",
+    ctaHref: "/contact",
     featured: false,
   },
   {
@@ -72,7 +72,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "SNS 콘텐츠 월 4회 (옵션)",
     ],
     cta: "베이직 케어 시작하기",
-    ctaHref: "#contact",
+    ctaHref: "/contact",
     featured: false,
   },
   {
@@ -90,7 +90,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "문의 전환 개선 제안",
     ],
     cta: "그로스 케어 시작하기",
-    ctaHref: "#contact",
+    ctaHref: "/contact",
     featured: true,
     badge: "CARE ⭐ 추천",
   },
@@ -108,7 +108,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "월 결과 리포트 + 다음 액션",
     ],
     cta: "광고 운영 견적 보기",
-    ctaHref: "#contact",
+    ctaHref: "/contact",
     featured: false,
   },
 ];

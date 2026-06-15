@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS } from "@/lib/constants";
 import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -44,12 +45,9 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="inline-flex items-center px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary-600 transition-colors shadow-cta"
-          >
+          <Button href="/contact" variant="primary" size="sm">
             무료 상담
-          </a>
+          </Button>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -80,13 +78,15 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            className="block text-center px-5 py-3 min-h-[48px] flex items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-semibold mt-2"
+          <Button
+            href="/contact"
+            variant="primary"
+            size="md"
+            className="mt-2 w-full"
             onClick={() => setMobileOpen(false)}
           >
             무료 상담
-          </a>
+          </Button>
         </nav>
       )}
     </header>

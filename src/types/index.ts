@@ -13,6 +13,12 @@ export interface PortfolioItem {
   featured: boolean;
   tags: string[];
   detailImages: string[];
+  /** 외부 링크 항목(와디즈 펀딩·블로그 운영 등). 있으면 내부 상세페이지 대신 외부로 연결 */
+  externalUrl?: string;
+  /** 외부 링크 버튼 라벨 (예: "와디즈에서 보기") */
+  externalLabel?: string;
+  /** 내부 전용 랜딩이 있으면 카드를 그쪽으로 연결 (예: 탁몽 → /takmong) */
+  productHref?: string;
 }
 
 /** 포트폴리오 정적 데이터 레지스트리 항목 */
@@ -27,6 +33,11 @@ export interface PortfolioItemData {
   publishedAt: string;
   featured: boolean;
   tags: string[];
+  /** 외부 링크 항목이면 채운다(와디즈·네이버 블로그 등). 내부 상세페이지를 생성하지 않음 */
+  externalUrl?: string;
+  externalLabel?: string;
+  /** 내부 전용 랜딩이 있으면 카드를 그쪽으로 연결 (예: 탁몽 → /takmong) */
+  productHref?: string;
 }
 
 /** 문의 폼 페이로드 (PRD InquiryPayload) */

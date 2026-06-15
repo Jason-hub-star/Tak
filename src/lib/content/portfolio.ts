@@ -19,22 +19,38 @@ function resolveItem(data: (typeof PORTFOLIO_ITEMS)[number]): PortfolioItem {
     featured: data.featured,
     tags: data.tags,
     detailImages: images.detailImages,
+    externalUrl: data.externalUrl,
+    externalLabel: data.externalLabel,
+    productHref: data.productHref,
   };
 }
 
-/** 전체 포트폴리오 목록 (최신순) */
+const sortByDateDesc = (a: PortfolioItem, b: PortfolioItem) =>
+  new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+
+/**
+ * 내부 상세페이지 포트폴리오 목록 (최신순).
+ * 외부 링크 항목(externalUrl)은 제외 — 홈 계단·서비스·연관추천은 모두 내부 라우팅이라
+ * 외부 항목이 섞이면 /portfolio/[slug] 404가 발생하기 때문.
+ */
 export function getAllPortfolios(): PortfolioItem[] {
-  return PORTFOLIO_ITEMS.map(resolveItem).sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
+  return PORTFOLIO_ITEMS.filter((p) => !p.externalUrl)
+    .map(resolveItem)
+    .sort(sortByDateDesc);
 }
 
-/** slug 기준 단일 조회 */
+/** 외부 링크 항목 목록 (와디즈 펀딩·블로그 운영 등, 최신순) */
+export function getExternalWorks(): PortfolioItem[] {
+  return PORTFOLIO_ITEMS.filter((p) => p.externalUrl)
+    .map(resolveItem)
+    .sort(sortByDateDesc);
+}
+
+/** slug 기준 단일 조회 (내부 항목만 — 외부 링크 항목은 상세페이지가 없음) */
 export function getPortfolioBySlug(
   slug: string
 ): { item: PortfolioItem; content: string } | null {
-  const data = PORTFOLIO_ITEMS.find((p) => p.slug === slug);
+  const data = PORTFOLIO_ITEMS.find((p) => p.slug === slug && !p.externalUrl);
   if (!data) return null;
 
   return {
@@ -43,9 +59,9 @@ export function getPortfolioBySlug(
   };
 }
 
-/** 모든 slug 목록 (SSG용 generateStaticParams) */
+/** 모든 slug 목록 (SSG용 generateStaticParams — 내부 항목만) */
 export function getAllPortfolioSlugs(): string[] {
-  return PORTFOLIO_ITEMS.map((p) => p.slug);
+  return PORTFOLIO_ITEMS.filter((p) => !p.externalUrl).map((p) => p.slug);
 }
 
 /** 유사 프로젝트 추천 (같은 카테고리, 최대 3개) */

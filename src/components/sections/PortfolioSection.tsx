@@ -16,6 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { PortfolioItem } from "@/types";
+import { Badge } from "@/components/ui/Badge";
 
 interface PortfolioSectionProps {
   portfolios: PortfolioItem[];
@@ -189,7 +190,7 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                     >
                       <Link
                         href={`/portfolio/${item.slug}`}
-                        className={`group relative block rounded-card overflow-hidden ${BG_COLORS[(g * 3 + col) % BG_COLORS.length]} shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-200`}
+                        className={`group relative block rounded-none overflow-hidden ${BG_COLORS[(g * 3 + col) % BG_COLORS.length]} hover:-translate-y-1 transition-all duration-200`}
                       >
                         <div className={`${imageAspects[col]} relative overflow-hidden`}>
                           {item.thumbnail ? (
@@ -198,7 +199,7 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                               alt={item.title}
                               fill
                               sizes="(max-width: 768px) 100vw, 33vw"
-                              className="object-cover transition-transform duration-300 group-hover:scale-105"
+                              className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
                               unoptimized={item.thumbnail.endsWith(".gif")}
                             />
                           ) : (
@@ -298,12 +299,9 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                           </div>
                           <div className="mt-4 flex flex-wrap gap-2 justify-start">
                             {message.tags.slice(0, 5).map((tag) => (
-                              <span
-                                key={`${g}-${tag}`}
-                                className="px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-xs font-medium"
-                              >
+                              <Badge key={`${g}-${tag}`} variant="accent" size="sm">
                                 {tag}
-                              </span>
+                              </Badge>
                             ))}
                           </div>
                         </div>
