@@ -13,9 +13,10 @@ import {
 } from "@/lib/content/pricing";
 
 export const metadata: Metadata = {
-  title: "가격 | 상세페이지·웹사이트 제작·홍보 케어 — 탁디장",
+  title: "가격 | 상세페이지·웹사이트 제작·홍보 케어",
   description:
     "상세페이지 단품부터 브랜드 웹사이트 제작, 검색·광고 홍보 케어까지. 필요한 범위부터 투명하게 시작하는 탁디장 가격 안내.",
+  alternates: { canonical: "/pricing" },
   openGraph: {
     title: "가격 | 탁디장",
     description: "제작 · 케어 · 광고 운영을 필요한 범위부터 투명하게.",

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>탁디장 SEO 설정 가이드 — 주인님이 채워주실 것</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  :root{
+    --bg:#FAFAF8; --ink:#1A1A1A; --rose:#CB6664; --rose-700:#A94E4C;
+    --muted:#6B6B68; --card:#FFFFFF; --line:#E7E5E0; --soft:#F3F1EC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;
+    background:var(--bg); color:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden; -webkit-font-smoothing:antialiased;
+  }
+  .deck{width:min(1040px,94vw); height:min(640px,92vh); position:relative}
+  .slide{
+    position:absolute; inset:0; background:var(--card);
+    border:1px solid var(--line); border-radius:16px;
+    box-shadow:0 1px 0 rgba(0,0,0,.02);
+    padding:56px 64px; opacity:0; transform:translateY(8px);
+    pointer-events:none; transition:opacity .35s ease, transform .35s ease;
+    display:flex; flex-direction:column; overflow:auto;
+  }
+  .slide.active{opacity:1; transform:none; pointer-events:auto}
+  .eyebrow{color:var(--rose); font-weight:700; font-size:14px; letter-spacing:.06em; text-transform:uppercase}
+  h1{font-size:46px; line-height:1.18; font-weight:800; margin-top:14px}
+  h2{font-size:34px; line-height:1.25; font-weight:800; margin-top:10px}
+  .lead{color:var(--muted); font-size:18px; margin-top:16px; line-height:1.6}
+  .accent{color:var(--rose)}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--soft);border:1px solid var(--line);
+    border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600;color:var(--muted)}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+  .c{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .c .n{width:30px;height:30px;border-radius:8px;background:var(--rose);color:#fff;font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:15px}
+  .c h3{font-size:18px;margin-top:14px;font-weight:800}
+  .c p{color:var(--muted);font-size:14px;margin-top:6px;line-height:1.55}
+  .c .tag{display:inline-block;margin-top:12px;font-size:12px;font-weight:700;color:var(--rose-700);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+  ol.steps{margin-top:24px;list-style:none;display:flex;flex-direction:column;gap:14px}
+  ol.steps li{display:flex;gap:14px;align-items:flex-start;font-size:17px;line-height:1.5}
+  ol.steps li .s{flex:none;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;
+    font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+  ol.steps li b{font-weight:800}
+  ol.steps li code{background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:2px 7px;font-size:15px}
+  .copy{margin-top:auto;display:flex;flex-direction:column;gap:8px;padding-top:24px}
+  .copy .k{font-size:13px;color:var(--muted);font-weight:700}
+  .copyrow{display:flex;align-items:center;gap:10px;background:#1A1A1A;border-radius:10px;padding:14px 16px}
+  .copyrow code{color:#F3F1EC;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px;flex:1;
+    overflow:auto;white-space:nowrap}
+  .copyrow button{flex:none;background:var(--rose);color:#fff;border:0;border-radius:7px;padding:8px 14px;
+    font-weight:700;font-size:13px;cursor:pointer;font-family:inherit}
+  .copyrow button:hover{background:var(--rose-700)}
+  .note{margin-top:18px;background:#FFF6F5;border:1px solid #F2D9D8;border-radius:10px;padding:14px 16px;
+    font-size:14px;color:var(--rose-700);line-height:1.55}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+  .field{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .field .lab{font-weight:800;font-size:16px}
+  .field .ex{color:var(--muted);font-size:13px;margin-top:6px}
+  .field .ex b{color:var(--ink)}
+  pre.env{margin-top:18px;background:#1A1A1A;color:#F3F1EC;border-radius:12px;padding:20px 22px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;line-height:1.7;overflow:auto}
+  pre.env .cm{color:#8C8C86}
+  pre.env .v{color:#E6A6A4}
+  .foot{position:absolute;left:64px;right:64px;bottom:22px;display:flex;align-items:center;
+    justify-content:space-between;color:var(--muted);font-size:13px}
+  .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+  .nav button{background:var(--ink);color:#fff;border:0;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:16px}
+  .nav button:disabled{opacity:.3;cursor:default}
+  .dots{display:flex;gap:7px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer}
+  .dot.on{background:var(--rose);width:22px;border-radius:999px}
+  .count{font-weight:700;color:var(--ink);font-size:13px;min-width:42px;text-align:center}
+  .toast{position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--ink);
+    color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;transition:.25s}
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+  @media print{
+    body{display:block;overflow:visible}
+    .deck{width:100%;height:auto}
+    .slide{position:relative;opacity:1!important;transform:none!important;page-break-after:always;
+      pointer-events:auto;margin-bottom:20px;height:auto;min-height:90vh}
+    .nav{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="toast" id="toast">복사됐어요 ✓</div>
+<div class="deck" id="deck">
+
+  <!-- 1 표지 -->
+  <section class="slide active">
+    <span class="pill">탁디장 디자인 스튜디오 · SEO 셋업</span>
+    <h1 style="margin-top:28px">주인님이 채워주실<br><span class="accent">단 3가지</span>로 검색 노출이 켜집니다</h1>
+    <p class="lead">코드 작업은 제가 전부 끝내뒀어요(JSON-LD·OG 이미지·sitemap·canonical 완료).<br>
+      이제 <b>검색엔진 등록</b>에 필요한 값만 주시면 돼요. 한 장씩 따라오시면 됩니다.</p>
+    <div class="foot"><span>예상 소요 15~20분</span><span>← → 방향키로 넘기기</span></div>
+  </section>
+
+  <!-- 2 한눈에 -->
+  <section class="slide">
+    <span class="eyebrow">한눈에 보기</span>
+    <h2>이 세 칸만 채우면 끝</h2>
+    <div class="cards">
+      <div class="c"><div class="n">1</div><h3>구글 소유확인</h3>
+        <p>구글 검색에 사이트를 등록하기 위한 확인 코드 1개.</p><span class="tag">필수 · 5분</span></div>
+      <div class="c"><div class="n">2</div><h3>네이버 소유확인</h3>
+        <p>한국에서 제일 중요해요. 네이버 검색 등록용 코드 1개.</p><span class="tag">필수 · 5분</span></div>
+      <div class="c"><div class="n">3</div><h3>사업자 정보</h3>
+        <p>상호·주소·전화. 지도/지역 검색 노출(LocalBusiness)에 사용.</p><span class="tag">권장 · 3분</span></div>
+    </div>
+    <div class="note">🔒 모든 값은 <code>.env.local</code> 파일에만 들어가요. 깃허브에 올라가지 않으니 안심하세요.
+      마지막 장에 붙여넣기 양식을 통째로 드릴게요.</div>
+    <div class="foot"><span>탁디장 SEO 가이드</span><span>2 / 7</span></div>
+  </section>
+
+  <!-- 3 구글 -->
+  <section class="slide">
+    <span class="eyebrow">① 필수</span>
+    <h2>구글 서치콘솔 소유확인 코드</h2>
+    <ol class="steps">
+      <li><span class="s">1</span><span><b>search.google.com/search-console</b> 접속 → 구글 로그인</span></li>
+      <li><span class="s">2</span><span>속성 추가에서 <b>“URL 접두어”</b> 선택 → <code>https://takdijang.com</code> 입력</span></li>
+      <li><span class="s">3</span><span>소유확인 방법 중 <b>“HTML 태그”</b> 펼치기</span></li>
+      <li><span class="s">4</span><span><code>&lt;meta name="google-site-verification" content="<b>이부분</b>" /&gt;</code> 에서
+        <b>content 안의 값만</b> 복사 (따옴표·태그 빼고)</span></li>
+    </ol>
+    <div class="copy">
+      <span class="k">→ 이렇게 넘겨주세요 (값만 바꿔서):</span>
+      <div class="copyrow"><code id="g">GOOGLE_SITE_VERIFICATION=여기에_복사한_content_값</code>
+        <button onclick="cp('g')">복사</button></div>
+    </div>
+    <div class="foot"><span>구글</span><span>3 / 7</span></div>
+  </section>
+
+  <!-- 4 네이버 -->
+  <section class="slide">
+    <span class="eyebrow">② 필수 · 한국 핵심</span>
+    <h2>네이버 서치어드바이저 소유확인 코드</h2>
+    <ol class="steps">
+      <li><span class="s">1</span><span><b>searchadvisor.naver.com</b> 접속 → 네이버 로그인 → <b>웹마스터 도구</b></span></li>
+      <li><span class="s">2</span><span>사이트 등록란에 <code>https://takdijang.com</code> 입력 후 추가</span></li>
+      <li><span class="s">3</span><span>소유확인 방법에서 <b>“HTML 태그”</b> 선택</span></li>
+      <li><span class="s">4</span><span><code>&lt;meta name="naver-site-verification" content="<b>이부분</b>" /&gt;</code> 의
+        <b>content 값만</b> 복사</span></li>
+    </ol>
+    <div class="copy">
+      <span class="k">→ 이렇게 넘겨주세요:</span>
+      <div class="copyrow"><code id="n">NAVER_SITE_VERIFICATION=여기에_복사한_content_값</code>
+        <button onclick="cp('n')">복사</button></div>
+    </div>
+    <div class="note">💡 소유확인을 누르기 전에 제가 코드를 배포해야 태그가 보여요.
+      값 주시면 바로 반영하고, 그다음 “확인” 누르시면 됩니다.</div>
+    <div class="foot"><span>네이버</span><span>4 / 7</span></div>
+  </section>
+
+  <!-- 5 사업자 정보 -->
+  <section class="slide">
+    <span class="eyebrow">③ 권장 · 지역 검색</span>
+    <h2>사업자 정보 (NAP)</h2>
+    <p class="lead" style="margin-top:10px">아래 3개를 알려주시면 구글이 “지역 업체”로 인식해요. (지도·업체 카드 노출에 유리)</p>
+    <div class="grid2">
+      <div class="field"><div class="lab">상호 / 정식 명칭</div>
+        <div class="ex">예: <b>탁디장 디자인 스튜디오</b></div></div>
+      <div class="field"><div class="lab">대표 전화</div>
+        <div class="ex">예: <b>010-0000-0000</b> 또는 070 번호</div></div>
+      <div class="field"><div class="lab">주소</div>
+        <div class="ex">예: <b>서울특별시 ○○구 ○○로 00, 0층</b> (사무실 없으면 생략 가능)</div></div>
+      <div class="field"><div class="lab">영업시간 (선택)</div>
+        <div class="ex">예: <b>평일 10:00–19:00</b></div></div>
+    </div>
+    <div class="note">주소가 없으면 상호·전화만 주셔도 돼요. 그땐 일반 업체(Organization)로,
+      주소까지 주시면 지역 업체(LocalBusiness)로 승격해드릴게요.</div>
+    <div class="foot"><span>사업자 정보</span><span>5 / 7</span></div>
+  </section>
+
+  <!-- 6 IndexNow (선택) -->
+  <section class="slide">
+    <span class="eyebrow">④ 선택 · 색인 가속</span>
+    <h2>IndexNow 키 <span style="font-size:18px;color:var(--muted);font-weight:600">— 나중에 해도 OK</span></h2>
+    <p class="lead" style="margin-top:10px">새 글·수정 페이지를 네이버/Bing에 <b>즉시 통보</b>하는 기능이에요. 안 해도 검색은 됩니다.</p>
+    <ol class="steps">
+      <li><span class="s">1</span><span>아무 영문/숫자 <b>32자 이상</b> 키를 하나 정해요 (비밀번호 만들듯)</span></li>
+      <li><span class="s">2</span><span>그 키를 제게 주시면 <code>public/&lt;키&gt;.txt</code> 파일로 올릴게요</span></li>
+      <li><span class="s">3</span><span>이후 <code>npm run seo:indexnow</code> 한 번으로 전체 URL 통보 완료</span></li>
+    </ol>
+    <div class="copy">
+      <span class="k">→ 이렇게 넘겨주세요:</span>
+      <div class="copyrow"><code id="i">INDEXNOW_KEY=내가_정한_32자_이상_임의키</code>
+        <button onclick="cp('i')">복사</button></div>
+    </div>
+    <div class="foot"><span>IndexNow</span><span>6 / 7</span></div>
+  </section>
+
+  <!-- 7 마무리 붙여넣기 양식 -->
+  <section class="slide">
+    <span class="eyebrow">마무리</span>
+    <h2>이 양식 그대로 채워서 주세요</h2>
+    <p class="lead" style="margin-top:8px">값만 바꿔서 통째로 보내주시면 제가 <code>.env.local</code>에 넣고 배포·소유확인까지 끝낼게요.</p>
+    <pre class="env" id="env"><span class="cm"># 검색엔진 소유확인 (필수)</span>
+GOOGLE_SITE_VERIFICATION=<span class="v">구글_content_값</span>
+NAVER_SITE_VERIFICATION=<span class="v">네이버_content_값</span>
+
+<span class="cm"># IndexNow (선택)</span>
+INDEXNOW_KEY=<span class="v">32자_이상_임의키</span>
+
+<span class="cm"># 사업자 정보 — 메일/메시지로 같이 적어주세요</span>
+<span class="cm"># 상호: 탁디장 디자인 스튜디오</span>
+<span class="cm"># 전화: 010-0000-0000</span>
+<span class="cm"># 주소: (있으면) 서울 ○○구 …</span></pre>
+    <div class="copy" style="padding-top:16px">
+      <div class="copyrow"><code style="white-space:pre">env 양식 전체 복사</code>
+        <button onclick="cpEnv()">전체 복사</button></div>
+    </div>
+    <div class="foot"><span>다 주시면 “ㄱ” 하고 알려주세요 🌹</span><span>7 / 7</span></div>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prev" onclick="go(idx-1)">‹</button>
+  <div class="dots" id="dots"></div>
+  <span class="count" id="count">1 / 7</span>
+  <button id="next" onclick="go(idx+1)">›</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dotsWrap=document.getElementById('dots');
+  let idx=0;
+  slides.forEach((_,i)=>{const d=document.createElement('span');d.className='dot'+(i?'':' on');
+    d.onclick=()=>go(i);dotsWrap.appendChild(d);});
+  const dots=[...document.querySelectorAll('.dot')];
+  function go(n){
+    idx=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+    dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
+    document.getElementById('count').textContent=(idx+1)+' / '+slides.length;
+    document.getElementById('prev').disabled=idx===0;
+    document.getElementById('next').disabled=idx===slides.length-1;
+  }
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' ')go(idx+1);
+    if(e.key==='ArrowLeft')go(idx-1);
+  });
+  function toast(){const t=document.getElementById('toast');t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),1300);}
+  function cp(id){navigator.clipboard.writeText(document.getElementById(id).textContent).then(toast);}
+  function cpEnv(){
+    const txt=`# 검색엔진 소유확인 (필수)
+GOOGLE_SITE_VERIFICATION=
+NAVER_SITE_VERIFICATION=
+
+# IndexNow (선택)
+INDEXNOW_KEY=
+
+# 사업자 정보
+# 상호:
+# 전화:
+# 주소:`;
+    navigator.clipboard.writeText(txt).then(toast);
+  }
+  go(0);
+</script>
+</body>
+</html>

@@ -16,9 +16,9 @@ source: "Generic post-deploy SEO + Tak 한국 시장 맞춤"
 
 | Input | Example | Required |
 |---|---|---|
-| production domain | `https://takdjang.com` 또는 `https://tak.vercel.app` | yes |
-| sitemap URL | `https://takdjang.com/sitemap.xml` | yes |
-| Google Search Console property | `https://takdjang.com/` 또는 `sc-domain:takdjang.com` | submit/monitor |
+| production domain | `https://takdijang.com` 또는 `https://tak.vercel.app` | yes |
+| sitemap URL | `https://takdijang.com/sitemap.xml` | yes |
+| Google Search Console property | `https://takdijang.com/` 또는 `sc-domain:takdijang.com` | submit/monitor |
 | Google credential | service account JSON 또는 OAuth token | submit/monitor |
 | Naver IndexNow key | Naver 관리자 도구 key | submit |
 | Naver crawl token | Naver 검색 어드바이저 크롤 요청 token | optional |
@@ -26,17 +26,17 @@ source: "Generic post-deploy SEO + Tak 한국 시장 맞춤"
 ## Success Pattern
 
 1. **DNS와 배포 분리 검증**
-   - DNS resolution: `dig takdjang.com A`
+   - DNS resolution: `dig takdijang.com A`
    - Vercel 배포: `curl https://tak.vercel.app/` (preview protection 확인)
-   - 프로덕션 도메인: `curl https://takdjang.com/` (정상 응답 200)
+   - 프로덕션 도메인: `curl https://takdijang.com/` (정상 응답 200)
 
 2. **SEO 문서 health 확인**
    ```bash
    # robots.txt 확인
-   curl -s https://takdjang.com/robots.txt | head -20
+   curl -s https://takdijang.com/robots.txt | head -20
 
    # sitemap.xml 확인
-   curl -s https://takdjang.com/sitemap.xml | grep -c '<loc>'
+   curl -s https://takdijang.com/sitemap.xml | grep -c '<loc>'
    ```
 
 3. **read-only health 먼저**
@@ -63,30 +63,30 @@ source: "Generic post-deploy SEO + Tak 한국 시장 맞춤"
 
 ```bash
 # 1. DNS 확인
-nslookup takdjang.com 8.8.8.8
-dig takdjang.com A
+nslookup takdijang.com 8.8.8.8
+dig takdijang.com A
 
 # 2. Vercel deployment 확인 (preview protection 없음)
 curl -I https://tak.vercel.app/
 
 # 3. 프로덕션 도메인 확인
-curl -I https://takdjang.com/
+curl -I https://takdijang.com/
 ```
 
 ### 2. Route Health Check
 
 ```bash
 # robots.txt
-curl -s https://takdjang.com/robots.txt | head
+curl -s https://takdijang.com/robots.txt | head
 
 # sitemap.xml
-curl -s https://takdjang.com/sitemap.xml | xmllint --format - | head
+curl -s https://takdijang.com/sitemap.xml | xmllint --format - | head
 
 # 메인 페이지
-curl -I https://takdjang.com/
+curl -I https://takdijang.com/
 
 # 포트폴리오 상세 (샘플)
-curl -I https://takdjang.com/portfolio/[slug-example]
+curl -I https://takdijang.com/portfolio/[slug-example]
 ```
 
 ### 3. Google Search Console Dry Run
@@ -94,8 +94,8 @@ curl -I https://takdjang.com/portfolio/[slug-example]
 ```bash
 # GSC 에서 sitemap 제출 (수동)
 # 1. https://search.google.com/search-console
-# 2. "takdjang.com" 속성 확인
-# 3. "Sitemaps" → "Add sitemap" → https://takdjang.com/sitemap.xml
+# 2. "takdijang.com" 속성 확인
+# 3. "Sitemaps" → "Add sitemap" → https://takdijang.com/sitemap.xml
 # 4. 처리 상태 확인 (24h 소요 가능)
 ```
 
@@ -104,7 +104,7 @@ curl -I https://takdjang.com/portfolio/[slug-example]
 ```bash
 # Naver 검색 어드바이저
 # 1. https://searchadvisor.naver.com/
-# 2. "takdjang.com" 소유권 확인
+# 2. "takdijang.com" 소유권 확인
 # 3. "웹마스터 도구" → "요청" → "URL 제출" → sitemap 제출
 # 또는 "IndexNow" → Naver key 입력
 ```
@@ -137,7 +137,7 @@ curl -I https://takdjang.com/portfolio/[slug-example]
 
 ## 탁디장 체크리스트
 
-- [ ] `takdjang.com` DNS A record 설정됨 (도메인 등록처)
+- [ ] `takdijang.com` DNS A record 설정됨 (도메인 등록처)
 - [ ] Vercel 프로젝트 domain 설정됨 (`vercel.json` 또는 dashboard)
 - [ ] `.env.local.example` 에 Google/Naver credential 경로 명시
 - [ ] Vercel 환경변수에 Google API key 추가됨

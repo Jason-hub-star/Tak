@@ -7,7 +7,7 @@ import { KAKAO_CHANNEL_URL } from "@/lib/constants";
 import { DIAGNOSE_FORM } from "@/lib/content/diagnose";
 
 export const metadata: Metadata = {
-  title: "진단 신청이 접수됐어요 | 탁디장",
+  title: "진단 신청이 접수됐어요",
   description: "주신 내용을 검토하고 영업일 기준 30분~3시간 안에 이메일로 회신드려요.",
   robots: { index: false },
 };

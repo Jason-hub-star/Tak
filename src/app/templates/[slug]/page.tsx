@@ -15,6 +15,8 @@ import {
   formatPrice,
 } from "@/lib/content/templates";
 import { getTemplateImages } from "@/lib/content/template-images";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { productSchema, breadcrumbSchema } from "@/lib/seo/schema";
 
 export function generateStaticParams() {
   return TEMPLATE_PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -26,10 +28,11 @@ export function generateMetadata({
   params: { slug: string };
 }): Metadata {
   const product = TEMPLATE_PRODUCTS.find((p) => p.slug === params.slug);
-  if (!product) return { title: "AI 템플릿 | 탁디장" };
+  if (!product) return { title: "AI 템플릿" };
   return {
-    title: `${product.name} | 탁디장 AI 템플릿`,
+    title: `${product.name} · AI 템플릿`,
     description: product.summary,
+    alternates: { canonical: `/templates/${params.slug}` },
     openGraph: {
       title: product.name,
       description: product.summary,
@@ -52,6 +55,22 @@ export default function TemplateDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          productSchema({
+            name: product.name,
+            description: product.summary,
+            price: product.price,
+            image: product.image,
+            storeUrl: product.storeUrl,
+          }),
+          breadcrumbSchema([
+            { name: "홈", path: "/" },
+            { name: "AI 템플릿", path: "/takmong" },
+            { name: product.name, path: `/templates/${product.slug}` },
+          ]),
+        ]}
+      />
       <Header />
       <main className="pt-24 pb-20">
         <article className="container-main max-w-3xl px-5 md:px-8">

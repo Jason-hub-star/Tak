@@ -12,6 +12,8 @@ import { KAKAO_CHANNEL_URL } from "@/lib/constants";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingCTA from "@/components/layout/FloatingCTA";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { creativeWorkSchema, breadcrumbSchema } from "@/lib/seo/schema";
 
 /* ── SSG: 모든 slug에 대해 정적 생성 ── */
 export function generateStaticParams() {
@@ -25,12 +27,13 @@ export function generateMetadata({
   params: { slug: string };
 }): Metadata {
   const result = getPortfolioBySlug(params.slug);
-  if (!result) return { title: "포트폴리오 | 탁디장" };
+  if (!result) return { title: "포트폴리오" };
 
   const { item } = result;
   return {
-    title: `${item.title} | 탁디장`,
+    title: item.title,
     description: `${item.industry} 분야 ${item.category.join("/")} 프로젝트 — ${item.kpi}`,
+    alternates: { canonical: `/portfolio/${params.slug}` },
     openGraph: {
       title: item.title,
       description: `${item.industry} 분야 ${item.category.join("/")} 프로젝트`,
@@ -52,6 +55,21 @@ export default function PortfolioDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          creativeWorkSchema({
+            title: item.title,
+            description: `${item.industry} 분야 ${item.category.join("/")} 프로젝트 — ${item.kpi}`,
+            path: `/portfolio/${params.slug}`,
+            image: item.thumbnail,
+          }),
+          breadcrumbSchema([
+            { name: "홈", path: "/" },
+            { name: "포트폴리오", path: "/portfolio" },
+            { name: item.title, path: `/portfolio/${params.slug}` },
+          ]),
+        ]}
+      />
       <Header />
       <main className="pt-24 pb-20">
         <article className="container-main max-w-4xl px-5 md:px-8">

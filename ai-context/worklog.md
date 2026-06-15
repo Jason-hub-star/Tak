@@ -23,6 +23,50 @@
 
 ## 기록
 
+### [2026-06-15 23:59 KST] SEO 셋업 완전 종료 — 검색엔진 등록·소유확인·색인 통보 완료
+- 작업 목표: 도메인 정정(takdjang → takdijang) + 검색엔진 소유확인(구글·네이버) 통과 + sitemap/IndexNow 제출 완료
+- 범위: 도메인 오타 정정 전 저장소 + 환경변수 Vercel 반영 + 색인 통보 API
+- 변경 파일:
+  - 도메인 정정: `src/lib/seo/site.ts`, `src/app/sitemap.ts`, `src/app/robots.ts`, `.env.local.example` (SITE.url: takdjang.com → takdijang.com)
+  - 환경변수: Vercel Production 환경변수 (GOOGLE_SITE_VERIFICATION, NAVER_SITE_VERIFICATION, INDEXNOW_KEY) 등록
+  - `.env.local`: 3가지 env 로컬 설정 (개인 검증용)
+  - `public/<KEY>.txt`: IndexNow 키파일 배포
+  - `scripts/indexnow-ping.mjs`: 색인 통보 (202 Accepted, 6 URL)
+- 검증:
+  - 구글 서치콘솔: 소유확인 통과 (DNS/HTML 태그 확인 가능)
+  - 네이버 서치어드바이서: 소유확인 통과 (메타 태그 확인 가능)
+  - Sitemap: 구글·네이버 각각 제출 (XML 유효성 검증 완료)
+  - IndexNow: npm run seo:indexnow 실행 결과 202 Accepted (6 URL 색인 통보)
+  - Vercel 배포: 도메인 takdijang.com alias 활성화, READY 상태
+- 다음 작업:
+  1. 색인 반영 모니터링 (구글 Search Console, 네이버 검색 / 2026-06-17~2026-06-29 예상)
+  2. 사업자 NAP(상호·주소·전화) 확정 시 Organization JSON-LD LocalBusiness 승격
+  3. (선택) Pretendard CDN → next/font 마이그레이션 CWV 점검
+
+### [2026-06-15 SEO 강화 — JSON-LD 실제 주입 + 동적 OG 이미지 + SSOT 통합]
+- 작업 목표: JSON-LD 구조화 데이터 이전 0건 → 28개 라우트 실제 주입 (홈/서비스/포트폴리오/템플릿), 동적 OG 이미지 생성, SEO 검색엔진 소유확인 환경변수 스캐폴딩
+- 범위: SEO SSOT + 스키마 빌더 + 컴포넌트 + 메타 + 배포 설정
+- 변경 파일:
+  - `src/lib/seo/site.ts` - SEO SSOT (사이트 정보·소셜·검색엔진 소유확인 env)
+  - `src/lib/seo/schema.ts` - 스키마 빌더 (Organization/WebSite/FAQPage/ItemList/CreativeWork/Product/Offer/Breadcrumb 헬퍼)
+  - `src/components/seo/JsonLd.tsx` - JSON-LD 재사용 주입 컴포넌트
+  - `src/app/opengraph-image.tsx` - 동적 OG 이미지 (Pretendard CDN 폰트 페치, 한글 텍스트 렌더, 페이지별 제목)
+  - `src/app/icon.tsx`, `src/app/apple-icon.tsx` - 파비콘/아이콘 동적 생성 (32x32, 180x180)
+  - `src/app/layout.tsx` - title 템플릿("%s | 탁디장"), canonical + alternates, 폰트 CDN preconnect, keywords/robots/verification env, viewport themeColor
+  - `src/app/sitemap.ts` - /takmong·/contact·/templates/[slug] 추가 (14→18 URL), SITE.url SSOT 사용
+  - `src/app/robots.ts` - host 추가, SITE.url SSOT 사용
+  - `.env.local.example` - GOOGLE_SITE_VERIFICATION, NAVER_SITE_VERIFICATION, INDEXNOW_KEY 스캐폴딩
+  - `scripts/indexnow-ping.mjs` - IndexNow API 핑 스크립트 (신규)
+  - `package.json` - npm run seo:indexnow 스크립트 추가
+- 검증:
+  - 명령: `npm run build`
+  - 결과: 성공 (28개 라우트 통과, JSON-LD 28개 라우트 주입 검증, no TypeScript/lint 오류)
+- 다음 작업:
+  1. 구글 서치콘솔 / 네이버 서치어드바이저 소유확인 코드 입력 (.env.local)
+  2. 사업자 NAP(상호·주소·전화) 확정 시 Organization → LocalBusiness 승격
+  3. IndexNow 키 발급 + public/<KEY>.txt 배포
+  4. (선택) Pretendard CDN → next/font 마이그레이션 검토 (CWV)
+
 ### [2026-06-15 23:xx KST] 탁몽 AI 템플릿 스토어 확장 + Vercel 배포 + 문서 동기화
 - 작업 목표: 탁몽을 "AI 템플릿 스토어"로 확장(와디즈 성과 + 스마트스토어 판매 2종), 템플릿 상세 페이지 SSG 신설, EmailJS 실연동, Vercel 배포, 문서 7개 현행화
 - 범위: 라우팅 + 콘텐츠 + 배포 + 문서 동기화

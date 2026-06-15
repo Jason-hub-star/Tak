@@ -9,9 +9,10 @@ import { getAllPortfolios, getExternalWorks } from "@/lib/content/portfolio";
 import { Badge } from "@/components/ui/Badge";
 
 export const metadata: Metadata = {
-  title: "포트폴리오 | 탁디장",
+  title: "포트폴리오",
   description:
     "기획부터 납품까지, 설득의 구조로 완성한 상세페이지·웹사이트 작업들. 탁디장 포트폴리오.",
+  alternates: { canonical: "/portfolio" },
   openGraph: {
     title: "포트폴리오 | 탁디장",
     description: "설득의 구조로 완성한 상세페이지·웹사이트 작업들.",
@@ -116,7 +117,7 @@ export default function PortfolioIndexPage() {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
+                        className="object-cover transition-all duration-500 group-hover:scale-105"
                         unoptimized={item.thumbnail.endsWith(".gif")}
                       />
                     ) : (

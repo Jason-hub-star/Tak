@@ -6,9 +6,10 @@ import { DiagnoseFormShell } from "@/components/diagnose/DiagnoseFormShell";
 import { DIAGNOSE_FORM } from "@/lib/content/diagnose";
 
 export const metadata: Metadata = {
-  title: "무료 진단 폼 | 탁디장",
+  title: "무료 진단 폼",
   description:
     "13개 질문 5단계로 끝나는 무료 진단 폼. 답해주신 내용으로 약점과 우선순위를 정리해 회신드립니다.",
+  alternates: { canonical: "/contact/form" },
 };
 
 export default function DiagnoseFormPage() {

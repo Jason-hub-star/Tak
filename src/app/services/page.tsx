@@ -15,6 +15,8 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import { SERVICES, SERVICES_PAGE_COPY } from "@/lib/content/services";
 import { getAllPortfolios } from "@/lib/content/portfolio";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { serviceListSchema, breadcrumbSchema } from "@/lib/seo/schema";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -24,6 +26,7 @@ export const metadata: Metadata = {
   title: "서비스 | 상세페이지부터 웹사이트·홍보까지 — 탁디장",
   description:
     "상세페이지 제작에서 출발해 브랜드 웹사이트 제작과 검색·광고 홍보, 운영까지. 따로 의뢰하지 않아도 한 곳에서 연결되는 탁디장 서비스.",
+  alternates: { canonical: "/services" },
   openGraph: {
     title: "서비스 | 탁디장",
     description:
@@ -53,6 +56,15 @@ export default function ServicesPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          serviceListSchema(SERVICES),
+          breadcrumbSchema([
+            { name: "홈", path: "/" },
+            { name: "서비스", path: "/services" },
+          ]),
+        ]}
+      />
       <Header />
       <main className="pt-32 pb-4">
         {/* Page header */}

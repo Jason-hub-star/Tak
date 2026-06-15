@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "images:optimize": "node scripts/optimize-portfolio-images.mjs"
+    "images:optimize": "node scripts/optimize-portfolio-images.mjs",
+    "seo:indexnow": "node scripts/indexnow-ping.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.0",

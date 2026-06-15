@@ -2,7 +2,7 @@
 
 기준일: 2026-06-15  
 정본: `docs/prd.md` + `ai-context/master-plan.md`  
-검증: `npm run build` (25개 라우트 통과)
+검증: `npm run build` (28개 라우트 통과, SEO SSOT 신설)
 
 ## 현재 단계
 
@@ -20,15 +20,17 @@
 - [x] **블랙 완전 제거**: primary 로즈·footer 라이트·FinalCTA 라이트·FloatingCTA 로즈톤
 - [x] 모션 토큰 (SSOT: `src/lib/motion.ts`, duration/easing)
 - [x] UI 프리미티브 (Button, Badge, Card, Section, Reveal, MediaFrame)
-- [x] SEO 기본 (메타/OG/구조화 데이터)
+- [x] **SEO 강화** (JSON-LD 28개 라우트 주입, OG 이미지 동적 생성, sitemap/robots SSOT)
 - [x] 모바일/데스크톱 레이아웃 + 접근성 개선
 
 ## 활성 트랙
 
-1. **배포 전 게이트**: RSC 경계, env 누수, 폼 보안, 이미지 최적화 (harness: `next-vercel-release-guard`)
-2. **EmailJS 프로덕션 키**: `.env.local`/Vercel 환경변수 설정 (현재 테스트 템플릿)
-3. **카카오톡 채널**: URL 확정 후 전체 CTA 연결
-4. **포트폴리오 실데이터**: MDX 9개 확장 (현재 3개 반복 노출 → 실제 포토셋)
+1. **색인 반영 모니터링** (구글/네이버 며칠~2주 소요)
+   - Google Search Console: 소유확인 통과, sitemap 제출 완료
+   - Naver Search Advisor: 소유확인 통과, sitemap 제출 완료
+   - IndexNow: 키파일 배포, 202 Accepted (6 URL)
+2. **사업자 정보 확정** (NAP 확정 시 Organization → LocalBusiness 승격)
+3. **포트폴리오 실데이터**: MDX 9개 확장 (현재 3개 반복 노출 → 실제 포토셋)
 
 ## 라우팅 현황
 
@@ -62,11 +64,12 @@
 
 ## 다음 액션 (우선순위 순)
 
-1. **배포 후 운영 체크**
-   - [x] EmailJS 프로덕션 키 설정 및 실연동 완료
-   - [x] 카카오톡 채널 URL 확정 및 연결 완료
-   - [ ] 배포 후 라우트 최종 검증 (도메인 연결 완료)
-   - [ ] SEO 제출 (Google Search Console, Naver)
+1. **SEO 색인 모니터링** (완료: 검색엔진 등록·소유확인·sitemap 제출)
+   - [x] Google Search Console 소유확인 통과
+   - [x] Naver Search Advisor 소유확인 통과
+   - [x] Sitemap 제출 완료 (구글/네이버)
+   - [x] IndexNow 키파일 배포 + 색인 통보
+   - [ ] 색인 반영 확인 (며칠~2주 소요)
 
 2. **스마트스토어 판매 채널 운영**
    - [x] 스마트스토어 상품 2종 등록 (AI 템플릿 99,000원 / 상담 29,000원)
@@ -83,6 +86,27 @@
    - [ ] Core Web Vitals 개선 (필요 시)
 
 ## 최근 변경 요약 (2026-06-15)
+
+**SEO 셋업 완전 종료 — 검색엔진 등록·소유확인·색인 통보 완료**:
+- JSON-LD 28개 라우트 주입 (홈 Organization+WebSite+FAQPage / services ItemList+Breadcrumb / portfolio·templates CreativeWork/Product+Offer)
+- 동적 OG 이미지 (`src/app/opengraph-image.tsx`, Pretendard 폰트, 한글 렌더, twitter 카드)
+- 파비콘/아이콘 동적 생성 (`src/app/icon.tsx`, `src/app/apple-icon.tsx`)
+- 도메인 정정: `takdjang.com`(오타) → `takdijang.com`(정상, i 포함), canonical·sitemap·OG·robots 전 저장소 수정
+- Sitemap 18 URL (/takmong·/contact·/templates/* 포함), robots host 추가, SSOT 기반
+- **검색엔진 등록**: 구글 서치콘솔 소유확인 통과, 네이버 서치어드바이저 소유확인 통과
+- **색인 통보**: Sitemap 제출(구글/네이버), IndexNow 키파일 배포, npm run seo:indexnow 스크립트
+- Vercel CLI 배포 완료 (alias takdijang.com, READY)
+
+**변경 파일**: `src/lib/seo/`, `src/components/seo/`, `src/app/`, `scripts/`, `.env.local.example`, `package.json`, `public/`, sitemap/robots SSOT
+
+**후속 (운영 모드)**:
+- 색인 반영 모니터링 (며칠~2주)
+- 사업자 NAP 확정 시 Organization → LocalBusiness 승격
+- (선택) Pretendard CDN → next/font 마이그레이션 (CWV)
+
+---
+
+### 이전 변경 요약 (2026-06-15)
 
 **탁몽 AI 템플릿 스토어 확장**: `/takmong` → AI 템플릿 스토어, `/templates/[slug]` 상세 신설.
 - `/takmong`: 와디즈 펀딩 성과(740% 달성·3,701,000원·서포터 51명, 2026.05.06 종료) + 리워드 4종 + 스마트스토어 판매 2종(AI 디자인 템플릿 99,000원, 상세페이지 진단·컨설팅 29,000원)
@@ -111,7 +135,7 @@
 - `docs/prd.md` (제품 정본)
 
 **첫 검증**:
-- `npm run build` (25개 라우트 통과)
+- `npm run build` (28개 라우트 통과, JSON-LD 28개 라우트 검증)
 - `.env.local` 설정 (EmailJS 키)
 - `/contact/form` 위저드 단계 검증
 - 폼 + 위저드 제출 테스트

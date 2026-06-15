@@ -19,9 +19,10 @@ import {
 import { getTemplateImages } from "@/lib/content/template-images";
 
 export const metadata: Metadata = {
-  title: "탁몽 · AI 상세페이지 제작 서비스 | 탁디장",
+  title: "탁몽 · AI 상세페이지 제작 서비스",
   description:
     "AI로 브랜딩부터 기획·촬영까지 — 셀러가 직접 상세페이지를 완성하는 실무형 서비스. 와디즈 펀딩 740% 달성.",
+  alternates: { canonical: "/takmong" },
   openGraph: {
     title: "탁몽 · AI 상세페이지 제작 서비스",
     description: "와디즈 펀딩 740% 달성. 단계별 리워드로 필요한 만큼 시작하세요.",

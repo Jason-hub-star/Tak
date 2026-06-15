@@ -12,12 +12,16 @@ import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import { getAllPortfolios } from "@/lib/content/portfolio";
+import { FAQ_ITEMS } from "@/lib/constants";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqSchema } from "@/lib/seo/schema";
 
 export default function Home() {
   const portfolios = getAllPortfolios();
 
   return (
     <>
+      <JsonLd data={faqSchema(FAQ_ITEMS)} />
       <Header />
       <main>
         <HeroSection />

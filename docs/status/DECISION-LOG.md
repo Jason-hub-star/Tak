@@ -4,6 +4,22 @@
 
 ---
 
+## 2026-06-15 | 도메인 정정: takdjang.com(오타) → takdijang.com(정상, i 포함)
+
+**결정**: 실제 운영 도메인 오타(takdjang.com, i 없음)를 정정(takdijang.com)해 전 저장소 canonical·sitemap·OG·robots·SITE.url을 통일한다.
+
+**배경**:
+- 기존 코드 전체가 죽은 도메인 takdjang.com을 SSOT로 사용 중
+- 실제 등록·운영 도메인은 takdijang.com(i 포함)
+- SEO 제출 전 발견해 구글·네이버 소유확인에 정정된 도메인 적용 가능
+
+**영향**:
+- SITE.url 변경: `src/lib/seo/site.ts`, `src/app/sitemap.ts`, `src/app/robots.ts` 통일
+- canonical/OG/robots: 존재하지 않던 도메인 가리키던 버그 해소
+- 검색엔진: 구글·네이버 소유확인 takdijang.com으로 진행, Sitemap 제출 완료
+
+---
+
 ## 2026-06-15 | 탁몽 AI 템플릿 스토어 확장 + 배포 완료
 
 **결정**: 탁몽 제품을 "AI 템플릿 스토어"로 포지셔닝해 와디즈 펀딩 성과 + 스마트스토어 판매 2종을 통합 노출한다. 템플릿 상세 페이지(SSG)를 신설해 상품 매력도를 극대화한다. EmailJS 실연동 + Vercel 배포를 완료한다.

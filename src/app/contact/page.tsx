@@ -7,9 +7,10 @@ import { KAKAO_CHANNEL_URL } from "@/lib/constants";
 import { DIAGNOSE_FORM } from "@/lib/content/diagnose";
 
 export const metadata: Metadata = {
-  title: "무료 진단 신청 | 탁디장",
+  title: "무료 진단 신청",
   description:
     "5분 안에 끝나는 13개 질문으로 상세페이지·웹사이트의 약점과 우선순위를 정리해 회신드립니다.",
+  alternates: { canonical: "/contact" },
   openGraph: {
     title: "무료 진단 신청 | 탁디장",
     description: "5분이면 끝나는 무료 진단으로 지금 필요한 작업부터 짚어드려요.",
