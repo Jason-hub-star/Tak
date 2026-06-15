@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, MessageCircle } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingCTA from "@/components/layout/FloatingCTA";
@@ -8,8 +8,15 @@ import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { MediaFrame } from "@/components/ui/MediaFrame";
 import { KAKAO_CHANNEL_URL } from "@/lib/constants";
 import { TAKMONG } from "@/lib/content/takmong";
+import {
+  TEMPLATE_PRODUCTS,
+  discountRate,
+  formatPrice,
+} from "@/lib/content/templates";
+import { getTemplateImages } from "@/lib/content/template-images";
 
 export const metadata: Metadata = {
   title: "탁몽 · AI 상세페이지 제작 서비스 | 탁디장",
@@ -79,8 +86,141 @@ export default function TakmongPage() {
           </Reveal>
         </Section>
 
-        {/* ── 리워드(가격) 4종 ── */}
+        {/* ── AI 템플릿 스토어 (스마트스토어 판매 상품) ── */}
         <Section bg="muted">
+          <div className="mb-10">
+            <span className="text-sm font-semibold tracking-wide text-primary">
+              AI 템플릿 스토어
+            </span>
+            <h2 className="mt-3 text-display-sm font-bold text-foreground">
+              지금 바로 구매 가능
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              탁디장·탁몽 스마트스토어에서 판매 중인 상품입니다.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {TEMPLATE_PRODUCTS.map((p) => {
+              const rate = discountRate(p);
+              const detailImages = getTemplateImages(p.slug);
+              const thumb = p.image ?? detailImages[0];
+              const hasDetail = detailImages.length > 0;
+              const detailHref = `/templates/${p.slug}`;
+              return (
+                <div
+                  key={p.slug}
+                  className={
+                    p.featured
+                      ? "flex flex-col overflow-hidden rounded-card border-2 border-primary bg-white"
+                      : "flex flex-col overflow-hidden rounded-card border border-border bg-white"
+                  }
+                >
+                  {hasDetail ? (
+                    <Link href={detailHref} className="group block">
+                      <MediaFrame
+                        src={thumb}
+                        alt={p.name}
+                        aspect="aspect-[16/10]"
+                        label="상세 이미지 준비중"
+                      />
+                    </Link>
+                  ) : (
+                    <MediaFrame
+                      src={thumb}
+                      alt={p.name}
+                      aspect="aspect-[16/10]"
+                      label="상세 이미지 준비중"
+                    />
+                  )}
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="flex items-center gap-2">
+                      <Badge variant={p.featured ? "solid" : "accent"} size="sm">
+                        {p.category}
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">
+                        {p.brand}
+                      </span>
+                    </div>
+                    <h3 className="mt-3 text-lg font-bold text-foreground">
+                      {p.name}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      {p.summary}
+                    </p>
+                    <ul className="mt-4 space-y-2">
+                      {p.highlights.map((h) => (
+                        <li
+                          key={h}
+                          className="flex items-start gap-2 text-sm text-foreground/90"
+                        >
+                          <Check
+                            size={16}
+                            className="mt-0.5 shrink-0 text-primary"
+                          />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                    {p.freebie && (
+                      <p className="mt-4 rounded-md bg-primary-50 px-3 py-2 text-xs text-primary-700">
+                        🎁 {p.freebie}
+                      </p>
+                    )}
+                    <div className="mt-auto pt-6">
+                      <div className="flex items-baseline gap-2">
+                        {rate > 0 && (
+                          <span className="text-sm font-bold text-primary">
+                            {rate}%
+                          </span>
+                        )}
+                        {p.originalPrice > p.price && (
+                          <span className="text-sm text-muted-foreground line-through">
+                            {formatPrice(p.originalPrice)}
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-1 text-2xl font-bold text-foreground">
+                        {formatPrice(p.price)}
+                      </p>
+                      <div className="mt-4 flex gap-2">
+                        {hasDetail && (
+                          <Button
+                            href={detailHref}
+                            variant="outline"
+                            size="sm"
+                            fullWidth
+                          >
+                            상세 보기
+                          </Button>
+                        )}
+                        <Button
+                          href={p.storeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          variant="primary"
+                          size="sm"
+                          fullWidth
+                          trailingIcon={<ArrowUpRight size={16} />}
+                        >
+                          구매하기
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <p className="mt-6 text-xs text-muted-foreground">
+            * 구매·결제는 네이버 스마트스토어에서 진행됩니다. 세로로 긴 상세
+            이미지는 추후 추가됩니다.
+          </p>
+        </Section>
+
+        {/* ── 리워드(가격) 4종 ── */}
+        <Section bg="none">
           <div className="mb-10">
             <h2 className="text-display-sm font-bold text-foreground">
               단계별 구성
@@ -130,7 +270,7 @@ export default function TakmongPage() {
         </Section>
 
         {/* ── CTA ── */}
-        <Section bg="none" containerClassName="text-center">
+        <Section bg="muted" containerClassName="text-center">
           <Reveal y={24} className="max-w-2xl mx-auto">
             <h2 className="text-display-sm md:text-display-md font-bold leading-tight text-foreground">
               상세페이지, 직접 만들어볼까요

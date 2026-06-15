@@ -3,6 +3,7 @@ import type { ProcessStep, FAQItem, NavLink } from "@/types";
 /* ── 내비게이션 ── */
 export const NAV_LINKS: NavLink[] = [
   { label: "서비스", href: "/services" },
+  { label: "AI 템플릿", href: "/takmong" },
   { label: "포트폴리오", href: "/portfolio" },
   { label: "가격", href: "/pricing" },
   { label: "프로세스", href: "/#process" },
@@ -111,8 +112,8 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
 ];
 
-/* ── 카카오 채널 ── */
-export const KAKAO_CHANNEL_URL = "https://pf.kakao.com/_placeholder";
+/* ── 카카오 오픈채팅 ── */
+export const KAKAO_CHANNEL_URL = "https://open.kakao.com/o/suSdZzs";
 
 /* ── 문의 유형 옵션 ── */
 export const INQUIRY_TYPE_OPTIONS = [

@@ -8,6 +8,9 @@ import {
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "";
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "";
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "";
+// 수신 이메일. EmailJS 템플릿 "To Email"에 {{to_email}}로 두면 이 값으로 발송된다.
+// 비워두면 템플릿에 직접 설정한 수신 주소를 사용한다. (실주소는 .env.local에만, 레포 커밋 금지)
+const TO_EMAIL = process.env.NEXT_PUBLIC_EMAILJS_TO_EMAIL ?? "";
 
 export interface EmailPayload {
   name: string;
@@ -17,6 +20,8 @@ export interface EmailPayload {
   budgetRange: string;
   deadline?: string;
   message: string;
+  /** 답장(Reply-To) 받을 고객 이메일. 템플릿 Reply To에 {{email}} 로 매핑 */
+  replyEmail?: string;
 }
 
 export async function sendInquiry(payload: EmailPayload): Promise<void> {
@@ -27,6 +32,8 @@ export async function sendInquiry(payload: EmailPayload): Promise<void> {
   }
 
   await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+    ...(TO_EMAIL ? { to_email: TO_EMAIL } : {}),
+    ...(payload.replyEmail ? { email: payload.replyEmail } : {}),
     from_name: payload.name,
     brand: payload.brandOrStore,
     contact: payload.contact,
@@ -51,5 +58,6 @@ export async function sendDiagnosis(
     budgetRange: f.budget || "상담 후 결정",
     deadline: f.timeline || undefined,
     message: buildDiagnosisMessage(answers, otherTexts),
+    replyEmail: f.email || undefined,
   });
 }

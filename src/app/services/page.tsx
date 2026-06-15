@@ -40,6 +40,14 @@ const ICONS: Record<string, React.ElementType> = {
   RefreshCw,
 };
 
+/** 서비스 섹션 이미지 — SERVICES 순서(상세페이지·웹사이트·홍보·운영)와 1:1, 위→아래 */
+const SERVICE_IMAGES = [
+  "/services/01-detail.jpg",
+  "/services/02-website.jpg",
+  "/services/03-promotion.png",
+  "/services/04-care.png",
+];
+
 export default function ServicesPage() {
   const works = getAllPortfolios();
 
@@ -68,7 +76,7 @@ export default function ServicesPage() {
             {SERVICES.map((service, i) => {
               const Icon = ICONS[service.icon];
               const reverse = i % 2 === 1;
-              const thumb = works[i]?.thumbnail;
+              const thumb = SERVICE_IMAGES[i] ?? works[i]?.thumbnail;
               return (
                 <div
                   key={service.id}
@@ -115,7 +123,6 @@ export default function ServicesPage() {
                     src={thumb}
                     alt={service.title}
                     aspect="aspect-[4/3]"
-                    grayscale
                     label="작업 이미지 준비중"
                     className={cn(reverse && "md:order-1")}
                   />
