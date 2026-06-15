@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { sendDiagnosis } from "@/lib/emailjs";
+import { trackLead } from "@/lib/analytics/track";
 import {
   OTHER_VALUE,
   type AnswerValue,
@@ -128,6 +129,7 @@ export function DiagnoseFormShell({ data }: { data: DiagnoseForm }) {
     setSubmitError(null);
     try {
       await sendDiagnosis(answers, otherTexts);
+      trackLead("diagnosis_wizard");
       if (typeof window !== "undefined")
         window.localStorage.removeItem(DRAFT_KEY);
       router.push("/contact/form/thank-you");

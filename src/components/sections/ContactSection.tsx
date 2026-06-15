@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Send, MessageCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { sendInquiry } from "@/lib/emailjs";
+import { trackLead } from "@/lib/analytics/track";
 import {
   INQUIRY_TYPE_OPTIONS,
   BUDGET_RANGE_OPTIONS,
@@ -65,6 +66,7 @@ export default function ContactSection() {
         deadline: data.deadline,
         message: data.message,
       });
+      trackLead("inquiry_form", { inquiry_type: data.inquiryType });
       setSubmitState("success");
       reset();
     } catch {

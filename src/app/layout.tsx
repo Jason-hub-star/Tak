@@ -3,6 +3,7 @@ import "./globals.css";
 import { SITE, VERIFICATION } from "@/lib/seo/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
+import { Analytics } from "@/components/analytics/Analytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -74,6 +75,7 @@ export default function RootLayout({
       <body>
         {children}
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
+        <Analytics />
       </body>
     </html>
   );
