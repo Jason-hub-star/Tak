@@ -22,7 +22,7 @@ export default function FAQSection() {
         <span className="text-sm font-semibold text-primary uppercase tracking-wider">
           Got Questions?
         </span>
-        <h2 className="mt-2 text-display-sm md:text-display-md font-bold text-foreground">
+        <h2 className="mt-2 text-display-sm md:text-display-md font-bold text-foreground break-keep text-balance">
           자주 묻는 질문
         </h2>
       </div>
@@ -36,7 +36,7 @@ export default function FAQSection() {
               className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-muted/50 transition-colors"
               aria-expanded={openIndex === i}
             >
-              <span className="text-sm md:text-base font-medium text-foreground pr-4">
+              <span className="text-sm md:text-base font-medium text-foreground pr-4 break-keep">
                 {item.question}
               </span>
               <ChevronDown
@@ -58,7 +58,7 @@ export default function FAQSection() {
               transition={{ duration: 0.22, ease: "easeOut" }}
               className="overflow-hidden"
             >
-              <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed">
+              <div className="px-6 pb-5 text-sm text-muted-foreground leading-relaxed break-keep text-pretty">
                 {item.answer}
               </div>
             </motion.div>

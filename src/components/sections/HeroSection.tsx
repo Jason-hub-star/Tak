@@ -47,9 +47,9 @@ export default function HeroSection() {
 
         {/* Headline */}
         <Reveal immediate delay={0.08}>
-          <h1 className="mt-6 text-display-sm md:text-display-md lg:text-display-lg xl:text-[5.25rem] tracking-tight text-foreground">
+          <h1 className="mt-6 text-display-sm md:text-display-md lg:text-display-lg xl:text-[5.25rem] tracking-tight text-foreground break-keep text-balance">
             {HERO_COPY.headline}
-            <br />
+            <br className="sm:hidden" />
             <span className="text-primary">{HERO_COPY.headlineAccent}</span>
             {HERO_COPY.headlineSuffix}
           </h1>
@@ -57,8 +57,16 @@ export default function HeroSection() {
 
         {/* Sub */}
         <Reveal immediate delay={0.15} y={16}>
-          <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            {HERO_COPY.sub}
+          <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed break-keep text-pretty">
+            {/* 모바일(sm 미만)에서만 구절 단위로 줄바꿈, 데스크톱에서는 한 문단으로 */}
+            <span className="hidden sm:inline">{HERO_COPY.sub}</span>
+            <span className="sm:hidden">
+              {HERO_COPY.subLines?.map((line, idx) => (
+                <span key={idx} className="block">
+                  {line}
+                </span>
+              ))}
+            </span>
           </p>
         </Reveal>
 

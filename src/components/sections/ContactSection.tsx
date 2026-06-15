@@ -79,10 +79,10 @@ export default function ContactSection() {
     <section id="contact" className="section-padding">
       <div className="container-main max-w-2xl">
         <div className="text-center mb-12">
-          <h2 className="text-display-sm md:text-display-md font-bold text-foreground">
+          <h2 className="text-display-sm md:text-display-md font-bold text-foreground break-keep text-balance">
             문의하기
           </h2>
-          <p className="mt-3 text-muted-foreground">
+          <p className="mt-3 text-muted-foreground break-keep text-pretty">
             프로젝트에 대해 편하게 알려주세요. 24시간 내 회신드립니다.
           </p>
         </div>
@@ -92,8 +92,8 @@ export default function ContactSection() {
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-success">
               <Send size={28} />
             </div>
-            <h3 className="text-xl font-bold text-foreground">접수 완료</h3>
-            <p className="mt-2 text-muted-foreground">
+            <h3 className="text-xl font-bold text-foreground break-keep">접수 완료</h3>
+            <p className="mt-2 text-muted-foreground break-keep text-pretty">
               24시간 내 회신드리겠습니다.
             </p>
             <Button
@@ -119,7 +119,7 @@ export default function ContactSection() {
 
             {/* 이름 */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">
+              <label className="block text-sm font-medium text-foreground mb-1.5 break-keep">
                 이름 <span className="text-destructive">*</span>
               </label>
               <input

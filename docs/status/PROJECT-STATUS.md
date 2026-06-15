@@ -87,17 +87,18 @@
 
 ## 최근 변경 요약 (2026-06-15)
 
-**SEO 셋업 완전 종료 — 검색엔진 등록·소유확인·색인 통보 완료**:
-- JSON-LD 28개 라우트 주입 (홈 Organization+WebSite+FAQPage / services ItemList+Breadcrumb / portfolio·templates CreativeWork/Product+Offer)
-- 동적 OG 이미지 (`src/app/opengraph-image.tsx`, Pretendard 폰트, 한글 렌더, twitter 카드)
-- 파비콘/아이콘 동적 생성 (`src/app/icon.tsx`, `src/app/apple-icon.tsx`)
-- 도메인 정정: `takdjang.com`(오타) → `takdijang.com`(정상, i 포함), canonical·sitemap·OG·robots 전 저장소 수정
-- Sitemap 18 URL (/takmong·/contact·/templates/* 포함), robots host 추가, SSOT 기반
-- **검색엔진 등록**: 구글 서치콘솔 소유확인 통과, 네이버 서치어드바이저 소유확인 통과
-- **색인 통보**: Sitemap 제출(구글/네이버), IndexNow 키파일 배포, npm run seo:indexnow 스크립트
-- Vercel CLI 배포 완료 (alias takdijang.com, READY)
+**배포 완료 + 운영 모드 전환 — 10가지 변경사항 반영**:
 
-**변경 파일**: `src/lib/seo/`, `src/components/seo/`, `src/app/`, `scripts/`, `.env.local.example`, `package.json`, `public/`, sitemap/robots SSOT
+1. **포트폴리오 썸네일 컬러화**: 기본 흑백(grayscale) 호버 컬러 효과 제거 → 처음부터 컬러 노출 (portfolio/page.tsx, PortfolioSection.tsx)
+2. **SEO 셋업 배치 완료**: JSON-LD 28개 라우트 주입, 동적 OG 이미지, sitemap/robots SSOT, 도메인 정정(takdjang→takdijang), 검색엔진 소유확인 통과
+3. **랜딩 "상세페이지 제작" 서비스 사진 교체**: public/home-services/01.png 새 데스크 이미지로
+4. **가격 개편**: 상세페이지 330,000→490,000원, "상세페이지+쇼츠 패키지" 신규 추가(990,000원, BOOST⭐베스트), 비교표 4열→5열 확장
+5. **푸터 사업자 정보 추가**: 탁디장스튜디오 / 사업자등록번호 365-18-00464 / 덕계로 104 1층 / 010-7153-8014
+6. **로고 교체**: 헤더·푸터 "T 동그라미+탁디장 텍스트" → `{ TAK DI JANG. }` 워드마크 이미지(public/logo.png)
+7. **/takmong 모바일 펀딩 통계 카드 텍스트 넘침 수정**: 반응형 폰트·자간·여백 조정
+8. **"PSD/AI 원본 파일 제공" 문구 전면 제거**(9곳): 완성본 납품·수정 2회 중심으로 정리. FAQ는 새로운 정책 반영
+9. **히어로 배경영상 추가**: 무료 스톡 8클립 짜깁기(30초 루프, 1080p, 크로스페이드, 무음) → public/hero/에 mp4/webm/poster.jpg 배포. 크림 오버레이 50%, 모바일 poster 정지컷, prefers-reduced-motion 시 영상 숨김. 상단 라벨 TAKDJANG→TAKDIJANG 수정
+10. **배포 검증 완료**: takdijang.com에 위 변경 전부 반영 확인 (에셋 HTTP 200, 콘솔 에러 0, 시각 검증 통과)
 
 **후속 (운영 모드)**:
 - 색인 반영 모니터링 (며칠~2주)

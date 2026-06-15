@@ -8,11 +8,11 @@ export default function FinalCTASection() {
   return (
     <Section bg="muted" containerClassName="text-center">
       <Reveal y={24} duration={0.5} className="max-w-2xl mx-auto">
-        <h2 className="text-display-sm md:text-display-md font-bold leading-tight text-foreground">
+        <h2 className="text-display-sm md:text-display-md font-bold leading-tight text-foreground break-keep text-balance">
           {FINAL_CTA_COPY.headline}
         </h2>
 
-        <p className="mt-4 text-muted-foreground text-base md:text-lg">
+        <p className="mt-4 text-muted-foreground text-base md:text-lg break-keep text-pretty">
           {FINAL_CTA_COPY.sub}
         </p>
 

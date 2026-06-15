@@ -31,7 +31,7 @@ export default function Footer() {
               alt="탁디장"
               width={851}
               height={359}
-              className="h-10 w-auto mb-4"
+              className="h-8 w-auto mb-4"
             />
             <p className="text-sm text-muted-foreground leading-relaxed">
               팔리는 상세페이지를 설계하는

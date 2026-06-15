@@ -4,6 +4,34 @@
 
 ---
 
+## 2026-06-15 | 가격 모델 확장 + 원본 소스 파일 미제공 정책 + 히어로 배경영상 + 로고 워드마크 + 사업자 정보
+
+**결정**: 
+(a) 가격 개편: 상세페이지 330k→490k, "상세페이지+쇼츠 패키지" 신규(990k, BOOST⭐베스트), 비교표 5열 확장.  
+(b) 원본 소스 파일(PSD/AI) 미제공 정책으로 변경 — FAQ "작업 원본은 미제공, 플랫폼 규격 완성본+수정 2회+케어"로 명시.  
+(c) 히어로 배경영상 도입: 무료 스톡 8클립 웹최적(webm+mp4+poster, 모바일 폴백, prefers-reduced-motion 고려).  
+(d) 로고 워드마크 채택: "T 동그라미" → `{ TAK DI JANG. }` 텍스트 이미지(public/logo.png).  
+(e) 사업자 정보 확정: 탁디장스튜디오 / 365-18-00464 / 덕계로 104 1층 / 010-7153-8014.
+
+**배경**:
+- 가격: 쇼츠 영상 서비스 출시(탁몽 리워드 통합) → 번들 상품으로 마케팅 강화 필요
+- 원본 파일: 고객 기대 관리 + 법적 저작권(PSD/AI 원본 미제공 명시)
+- 히어로: 정적 블록 → 동적 영상으로 랜딩 임팩트 극대화 (성능 최적화 우선)
+- 로고: 직관적 브랜드 인식(기존 아이콘 약함) → 워드마크로 강화
+- 사업자: 법적 요건(푸터 표기) + SEO(LocalBusiness 승격 조건)
+
+**영향**:
+- `src/lib/content/pricing.ts`: 가격 플랜 재구성, 비교표 열 추가
+- `src/lib/constants.ts`: FAQ "원본 미제공" 명시(faqSchema/SEO 연동), 히어로 불릿·라벨(TAKDIJANG) 정리
+- `src/lib/content/services.ts`, `src/lib/content/portfolio-data.ts`: 딜리버러블 "원본"→"완성본 납품" 정리
+- `src/components/sections/HeroSection.tsx`: 배경영상 렌더(video/poster/prefers-reduced-motion)
+- `src/components/layout/Header.tsx`, `src/components/layout/Footer.tsx`: 로고 이미지 경로 변경
+- `src/components/layout/Footer.tsx`: 사업자 정보 4줄 추가
+- `public/logo.png`: 신규 워드마크 이미지
+- `public/hero/`: hero-montage.mp4/webm/poster.jpg
+
+---
+
 ## 2026-06-15 | 도메인 정정: takdjang.com(오타) → takdijang.com(정상, i 포함)
 
 **결정**: 실제 운영 도메인 오타(takdjang.com, i 없음)를 정정(takdijang.com)해 전 저장소 canonical·sitemap·OG·robots·SITE.url을 통일한다.

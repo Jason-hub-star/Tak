@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
  * trust 배지 / deliverable 태그 / featured 배지를 한 변형 세트로 통합.
  */
 export const badgeVariants = cva(
-  "inline-flex items-center rounded-full font-medium whitespace-nowrap",
+  "inline-flex items-center rounded-full font-medium whitespace-nowrap break-keep",
   {
     variants: {
       variant: {

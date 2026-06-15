@@ -57,10 +57,10 @@ export default function ServicesSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground leading-tight break-keep">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-sm md:text-base text-muted-foreground leading-relaxed">
+                  <p className="mt-3 text-sm md:text-base text-muted-foreground leading-relaxed break-keep text-pretty">
                     {service.summary}
                   </p>
 
@@ -68,7 +68,7 @@ export default function ServicesSection() {
                     {service.points.map((point) => (
                       <li
                         key={point}
-                        className="text-sm md:text-base text-foreground/80 flex items-start gap-2.5"
+                        className="text-sm md:text-base text-foreground/80 flex items-start gap-2.5 break-keep"
                       >
                         <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                         {point}

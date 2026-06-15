@@ -23,6 +23,33 @@
 
 ## 기록
 
+### [2026-06-15 운영 모드 전환 — 포트폴리오·가격·사업자·영상·로고 최종 갱신 + 배포 검증]
+- 작업 목표: 2026-06-15 세션 모든 변경사항(10가지) 운영 환경(takdijang.com)에 반영 완료
+- 범위: 포트폴리오·가격·푸터·로고·히어로·정책 등 다층 갱신 + 배포 후 최종 검증
+- 변경 파일:
+  - `portfolio/page.tsx`, `PortfolioSection.tsx` - 썸네일 컬러화 (grayscale 호버 효과 제거)
+  - `src/lib/content/pricing.ts` - 가격 개편: 상세 490k, 쇼츠 패키지 990k(BOOST⭐), 비교표 5열
+  - `src/lib/content/services.ts` - FAQ "원본 PSD/AI 미제공" 명시 (9곳)
+  - `src/components/layout/Footer.tsx` - 사업자 정보 4줄 추가 (탁디장스튜디오·365-18-00464·주소·전화)
+  - `src/components/layout/Header.tsx`, `Footer.tsx` - 로고 경로 public/logo.png (워드마크)
+  - `src/components/sections/HeroSection.tsx` - 배경영상 삽입 (hero-montage.mp4/webm+poster, 크림 오버레이 50%, 모바일 poster, prefers-reduced-motion 고려)
+  - `public/logo.png` - 신규 워드마크 이미지 `{ TAK DI JANG. }`
+  - `public/home-services/01.png` - 데스크 사진 새로 교체
+  - `public/hero/hero-montage.{mp4,webm,jpg}` - 배경영상 3종 (8클립 짜깁기, 30초 루프, 1080p, 크로스페이드, 무음)
+  - `/takmong` - 펀딩 통계 카드 모바일 텍스트 넘침 수정 (반응형 폰트·자간·여백)
+  - 히어로 상단 라벨 TAKDJANG→TAKDIJANG 수정
+- 검증:
+  - 배포: takdijang.com alias, READY 상태
+  - 에셋: 모든 이미지/영상 HTTP 200 확인
+  - 콘솔: 에러 0, 경고 0
+  - 시각: 포트폴리오·가격·푸터·로고·히어로 영상 정상 렌더 확인
+- 다음 작업:
+  1. 색인 반영 모니터링 (구글/네이버 2026-06-17~2026-06-29 예상)
+  2. 판매 분석 (쇼츠 패키지 전환율)
+  3. (선택) 포트폴리오 실데이터 9개 확장
+
+---
+
 ### [2026-06-15 23:59 KST] SEO 셋업 완전 종료 — 검색엔진 등록·소유확인·색인 통보 완료
 - 작업 목표: 도메인 정정(takdjang → takdijang) + 검색엔진 소유확인(구글·네이버) 통과 + sitemap/IndexNow 제출 완료
 - 범위: 도메인 오타 정정 전 저장소 + 환경변수 Vercel 반영 + 색인 통보 API

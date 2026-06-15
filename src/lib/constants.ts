@@ -16,6 +16,12 @@ export const HERO_COPY = {
   headlineAccent: "상세페이지",
   headlineSuffix: "를 만듭니다",
   sub: "고객이 왜 사야 하는지부터 설계한 상세페이지에서 시작합니다. 여기에 브랜드 웹사이트 제작과 검색·광고 홍보까지 한 흐름으로 이어집니다.",
+  subLines: [
+    "고객이 왜 사야 하는지부터",
+    "설계한 상세페이지에서 시작합니다.",
+    "여기에 브랜드 웹사이트 제작과",
+    "검색·광고 홍보까지 한 흐름으로 이어집니다.",
+  ],
   cta: "15분 무료 상담 신청하기",
   secondaryCta: "제작+홍보 서비스 보기",
   secondaryCtaHref: "/services",

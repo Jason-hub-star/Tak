@@ -35,14 +35,14 @@ export default function ProcessSection() {
                   {Icon && <Icon size={22} className="text-muted-foreground" />}
                 </div>
 
-                <h3 className="mt-6 text-lg font-bold text-foreground">
+                <h3 className="mt-6 text-lg font-bold text-foreground break-keep">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed break-keep text-pretty">
                   {step.description}
                 </p>
 
-                <Badge variant="muted" size="sm" className="mt-4">
+                <Badge variant="muted" size="sm" className="mt-4 break-keep">
                   {step.deliverable}
                 </Badge>
               </div>

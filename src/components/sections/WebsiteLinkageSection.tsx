@@ -23,13 +23,13 @@ export default function WebsiteLinkageSection() {
               <span className="text-5xl font-bold leading-none text-primary/80 tabular-nums">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-6 text-lg font-bold text-foreground">
+              <h3 className="mt-6 text-lg font-bold text-foreground break-keep">
                 {step.phase}
               </h3>
-              <p className="mt-1 text-sm font-semibold text-foreground/80">
+              <p className="mt-1 text-sm font-semibold text-foreground/80 break-keep">
                 {step.label}
               </p>
-              <p className="mt-1 text-sm text-muted-foreground">{step.desc}</p>
+              <p className="mt-1 text-sm text-muted-foreground break-keep text-pretty">{step.desc}</p>
 
               {/* 단계 연결 화살표 (마지막 제외) */}
               {i < LINKAGE_STEPS.length - 1 && (

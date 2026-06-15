@@ -161,10 +161,10 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
       <div className="container-main">
         {/* Header */}
         <div className="mb-12">
-          <h2 className="text-display-sm md:text-display-md font-bold text-foreground">
+          <h2 className="text-display-sm md:text-display-md font-bold text-foreground break-keep text-balance">
             Selected Works
           </h2>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 text-muted-foreground break-keep text-pretty">
             기획부터 납품까지, 설득의 구조로 완성한 작업들
           </p>
         </div>
@@ -251,11 +251,11 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                             <div className="w-9 h-9 rounded-full bg-primary-100 flex items-center justify-center text-primary">
                               <Icon className="w-4 h-4" />
                             </div>
-                            <p className="text-sm font-semibold text-foreground">
+                            <p className="text-sm font-semibold text-foreground break-keep">
                               {strength.title}
                             </p>
                           </div>
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-xs text-muted-foreground break-keep text-pretty">
                             {strength.description}
                           </p>
                         </div>
@@ -290,10 +290,10 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                             <span className="text-xs font-medium uppercase tracking-widest text-primary/80">
                               Strategy Note
                             </span>
-                            <p className="mt-3 text-xl md:text-2xl font-bold whitespace-pre-line leading-tight text-foreground">
+                            <p className="mt-3 text-xl md:text-2xl font-bold whitespace-pre-line leading-tight text-foreground break-keep text-balance">
                               {message.title}
                             </p>
-                            <p className="mt-3 text-sm text-muted-foreground">
+                            <p className="mt-3 text-sm text-muted-foreground break-keep text-pretty">
                               {message.body}
                             </p>
                           </div>

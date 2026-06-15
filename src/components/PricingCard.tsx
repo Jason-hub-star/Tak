@@ -21,25 +21,25 @@ export default function PricingCard({ plan }: { plan: PricingPlan }) {
         </span>
       )}
 
-      <h3 className="text-sm font-semibold tracking-wide text-muted-foreground">
+      <h3 className="text-sm font-semibold tracking-wide text-muted-foreground break-keep">
         {plan.label}
       </h3>
 
       <div className="mt-3 flex items-end gap-1">
         {plan.originalPrice && (
-          <span className="mr-1 text-sm text-muted-foreground line-through">
+          <span className="mr-1 text-sm text-muted-foreground line-through break-keep">
             {plan.originalPrice}
           </span>
         )}
-        <span className="text-4xl font-bold tracking-tight text-foreground">
+        <span className="text-4xl font-bold tracking-tight text-foreground break-keep">
           {plan.price}
         </span>
-        <span className="mb-1 text-sm text-muted-foreground">
+        <span className="mb-1 text-sm text-muted-foreground break-keep">
           {plan.period}
         </span>
       </div>
 
-      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+      <p className="mt-4 text-sm leading-relaxed text-muted-foreground break-keep text-pretty">
         {plan.body}
       </p>
 
@@ -47,7 +47,7 @@ export default function PricingCard({ plan }: { plan: PricingPlan }) {
         {plan.features.map((f) => (
           <li
             key={f}
-            className="flex items-start gap-2.5 text-sm text-foreground/80"
+            className="flex items-start gap-2.5 text-sm text-foreground/80 break-keep"
           >
             <Check size={16} className="mt-0.5 shrink-0 text-primary" />
             {f}
