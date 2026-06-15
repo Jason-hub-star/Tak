@@ -15,7 +15,7 @@
 
 **영향**:
 - 라우팅: `/takmong` 확장(리워드 4종 + 스마트스토어 판매 2종), `/templates/[slug]` SSG 신규
-- 콘텐츠: `src/lib/content/templates.ts`, `src/lib/content/template-images.ts` 신규 (27장 이미지)
+- 콘텐츠: `src/lib/content/templates.ts`, `src/lib/content/template-images.ts` 신규 (상세 이미지 takmong-ai-template 27장·detail-diagnosis 5장 실제 반영 완료, 라이브 배포됨)
 - 네비게이션: 상단 네비에 "AI 템플릿" 섹션 추가 → `/takmong` 연결
 - 배포: Vercel 프로젝트 `tak` (GitHub main 자동배포), 커스텀 도메인 `takdijang.com` 연결 (가비아 설정 완료, SSL 진행중)
 - EmailJS: 프로덕션 키 설정, 문의 폼 + 무료 진단 실제 발송(HTTP 200 검증)
@@ -38,7 +38,7 @@
 - 스타일: tailwind.config.ts 색상/타이포/radius 정교화, 블랙 완전 제거
 - 콘텐츠: services.ts/pricing.ts 카피 재정제, diagnose.ts 설정 신규
 - 컴포넌트: UI 프리미티브 (Button/Badge/Card/Section/Reveal/MediaFrame), motion.ts SSOT
-- 검증: `npm run build` 22개 라우트 통과
+- 검증: `npm run build` 25개 라우트 통과
 
 ---
 

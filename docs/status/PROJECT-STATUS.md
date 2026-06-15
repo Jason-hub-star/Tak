@@ -2,11 +2,11 @@
 
 기준일: 2026-06-15  
 정본: `docs/prd.md` + `ai-context/master-plan.md`  
-검증: `npm run build` (22개 라우트 통과)
+검증: `npm run build` (25개 라우트 통과)
 
 ## 현재 단계
 
-**구현 + 디자인 정제 완료 → 배포 준비 (점증적 개선 모드)**
+**배포 완료 → 운영 모드 (점증적 개선)**
 
 - [x] Next.js 14 App Router + TypeScript + Tailwind + Framer Motion 세팅 완료
 - [x] 핵심 라우팅 (/, /portfolio/[slug], /services, /pricing, /portfolio, /contact, /contact/form, /contact/form/thank-you, /privacy) + sitemap.xml, robots.txt
@@ -37,7 +37,7 @@
 | `/` | ✓ 완료 | 원페이지 랜딩 (Hero + Services + WebsiteLinkage + PricingTeaser + Portfolio + Process + About + FAQ + Contact + FinalCTA) |
 | `/services` | ✓ 완료 | 제작+홍보 연계 4-서비스 모델 (devfive 벤치마킹) |
 | `/takmong` | ✓ 완료 | AI 템플릿 스토어 (탁몽 제품 펀딩 성과 · 리워드 4종 + 스마트스토어 판매 2종) |
-| `/templates/[slug]` | ✓ 완료 | AI 템플릿 상세 (SSG, 상세 이미지 27장) |
+| `/templates/[slug]` | ✓ 완료 | AI 템플릿 상세 (SSG) |
 | `/pricing` | ✓ 완료 | build/care/ads 가격 + 비교표 + FAQ |
 | `/portfolio` | ✓ 완료 | 포트폴리오 목록 |
 | `/portfolio/[slug]` | ✓ 완료 | SSG, MDX 파싱 |
@@ -86,7 +86,7 @@
 
 **탁몽 AI 템플릿 스토어 확장**: `/takmong` → AI 템플릿 스토어, `/templates/[slug]` 상세 신설.
 - `/takmong`: 와디즈 펀딩 성과(740% 달성·3,701,000원·서포터 51명, 2026.05.06 종료) + 리워드 4종 + 스마트스토어 판매 2종(AI 디자인 템플릿 99,000원, 상세페이지 진단·컨설팅 29,000원)
-- `/templates/[slug]`: SSG 상세 페이지, 상세 이미지 27장(gif 포함) 세로 긴 스택. `src/lib/content/template-images.ts` 헬퍼(thumbnail 제외 자동 필터)
+- `/templates/[slug]`: SSG 상세 페이지 + 상세 이미지 실제 반영 완료(takmong-ai-template 27장 + gif 4개, detail-diagnosis 5장, 라이브 배포 반영). `src/lib/content/template-images.ts` 헬퍼(thumbnail 제외 자동 필터)
 - 데이터: `src/lib/content/templates.ts`, 스마트스토어 구매 링크 네이버 연결
 - 상단 네비에 "AI 템플릿" 추가 → `/takmong` 연결
 
@@ -111,7 +111,7 @@
 - `docs/prd.md` (제품 정본)
 
 **첫 검증**:
-- `npm run build` (22개 라우트 통과)
+- `npm run build` (25개 라우트 통과)
 - `.env.local` 설정 (EmailJS 키)
 - `/contact/form` 위저드 단계 검증
 - 폼 + 위저드 제출 테스트

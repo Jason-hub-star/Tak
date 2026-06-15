@@ -75,8 +75,8 @@ export default function TakmongPage() {
             </div>
             <div className="mt-5 grid grid-cols-3 max-w-xl divide-x divide-border rounded-card border border-border bg-white">
               {FUNDING_STATS.map((s) => (
-                <div key={s.label} className="px-4 py-5 text-center">
-                  <p className="text-2xl md:text-3xl font-bold text-primary">
+                <div key={s.label} className="px-2 py-5 text-center md:px-4">
+                  <p className="text-lg md:text-3xl font-bold text-primary whitespace-nowrap">
                     {s.value}
                   </p>
                   <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>

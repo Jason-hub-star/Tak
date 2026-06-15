@@ -28,7 +28,7 @@
 - 범위: 라우팅 + 콘텐츠 + 배포 + 문서 동기화
 - 변경 파일:
   - `src/app/takmong/page.tsx` - `/takmong` 확장: 펀딩 성과 + 리워드 4종 + 스마트스토어 판매 2종
-  - `src/app/templates/[slug]/page.tsx` - `/templates/[slug]` SSG 신규 (상세 이미지 27장)
+  - `src/app/templates/[slug]/page.tsx` - `/templates/[slug]` SSG 신규 (상세 이미지 takmong-ai-template 27장·detail-diagnosis 5장 실제 반영 완료, 라이브 배포됨)
   - `src/lib/content/templates.ts` - 템플릿 데이터 모델 및 레지스트리 (신규)
   - `src/lib/content/template-images.ts` - 템플릿 이미지 헬퍼 (thumbnail 제외 자동 필터)
   - `src/lib/constants.ts` - KAKAO_CHANNEL_URL = "open.kakao.com/o/suSdZzs", NAV_LINKS에 "AI 템플릿" 추가
@@ -63,7 +63,7 @@
   - 문서: AGENTS.md, PROJECT-STATUS.md, README.md, master-plan.md, project-context.md, DECISION-LOG.md, 이 worklog
 - 검증:
   - 명령: `npm run build`
-  - 결과: 성공 (22개 라우트, 타입 클린, 린트 클린)
+  - 결과: 성공 (25개 라우트, 타입 클린, 린트 클린)
   - 추가: 위저드 e2e (단계 진행/검증 차단) 확인, 폼 제출 테스트 미실시 (EmailJS 테스트 템플릿)
 - 다음 작업:
   1. EmailJS 프로덕션 키 설정 및 커스텀 템플릿 교체

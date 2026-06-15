@@ -46,7 +46,7 @@ src/
 │   ├── globals.css
 │   ├── takmong/page.tsx        # AI 템플릿 스토어 (펀딩 성과 + 스마트스토어)
 │   ├── templates/
-│   │   └── [slug]/page.tsx     # 템플릿 상세 (SSG, 27장 이미지)
+│   │   └── [slug]/page.tsx     # 템플릿 상세 (SSG)
 │   ├── contact/
 │   │   ├── page.tsx            # 진단 상담 카드
 │   │   └── form/

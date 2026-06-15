@@ -1,6 +1,6 @@
 ﻿# Tak Master Plan
 
-기준일: 2026-02-10 (KST)
+기준일: 2026-06-15 (KST)
 프로젝트: Tak Djang Design Studio
 협업 폴더: `ai-context`
 
@@ -37,7 +37,7 @@
   - [x] 모바일/접근성 안정화 (CTA 48px 터치, ARIA, 반응형)
   - [x] **EmailJS 실연동** (프로덕션 키, HTTP 200 검증, reply-to·to_email 지원)
   - [x] **카카오톡 채널 연결** (open.kakao.com/o/suSdZzs, FloatingCTA 실제 링크)
-  - [x] **탁몽 AI 템플릿 스토어** (`/takmong` 확장, `/templates/[slug]` SSG, 스마트스토어 판매 2종)
+  - [x] **탁몽 AI 템플릿 스토어** (`/takmong` 확장, `/templates/[slug]` SSG 구조, 스마트스토어 판매 2종)
   - [x] **Vercel 배포** (프로젝트 `tak`, 도메인 takdijang.com, SSL 진행중)
 - 현재 목표:
   - 배포 후 라우트 최종 검증 및 도메인 연결 확인

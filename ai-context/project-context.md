@@ -1,6 +1,6 @@
 ﻿# 프로젝트 컨텍스트 (Tak)
 
-기준일: 2026-02-10 (KST)
+기준일: 2026-06-15 (KST)
 프로젝트명: Tak Djang Design Studio
 기준 문서: `docs/prd.md`
 
@@ -24,7 +24,7 @@
 4. 명확한 견적: 길이 단위가 아닌 프로젝트 단위 정가 운영
 
 ## 5) 현재 상태와 기준선
-- 현재 코드베이스: Next.js 14 App Router 기반 구현 + 디자인 정제 완료 (빌드 성공, 22개 라우트)
+- 현재 코드베이스: Next.js 14 App Router 기반 구현 + 디자인 정제 완료 (빌드 성공, 25개 라우트)
 - 구현 완료 항목:
   - 랜딩 10섹션 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
   - **제작+홍보 연계 풀 IA** (devfive 벤치마킹): `/services`, `/pricing`, `/portfolio` 라우트
@@ -54,7 +54,7 @@
 - `/`: 랜딩 원페이지 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
 - `/services`: 제작+홍보 연계 4-서비스 상세
 - `/takmong`: AI 템플릿 스토어 (펀딩 성과 + 리워드 4종 + 스마트스토어 판매 2종)
-- `/templates/[slug]`: 템플릿 상세 (SSG, 상세 이미지 27장)
+- `/templates/[slug]`: 템플릿 상세 (SSG)
 - `/pricing`: 가격 비교표 + FAQ
 - `/portfolio`: 포트폴리오 목록
 - `/portfolio/[slug]`: 포트폴리오 상세 (SSG)
