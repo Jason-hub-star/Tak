@@ -88,12 +88,12 @@ const STUDIO_STRENGTHS: StrengthCard[][] = [
   [
     { icon: Target, title: "설득 중심 설계", description: "예쁜 화면이 아닌, 구매를 이끄는 구조를 만듭니다" },
     { icon: PenTool, title: "콘티 먼저, 디자인은 그 다음", description: "스케치로 방향을 합의한 뒤 제작해 수정을 줄입니다" },
-    { icon: Camera, title: "촬영부터 디자인까지 원스톱", description: "기획·촬영·디자인·원본 제공을 한 번에" },
+    { icon: Camera, title: "촬영부터 디자인까지 원스톱", description: "기획·촬영·디자인을 한 번에" },
   ],
   [
     { icon: DollarSign, title: "프로젝트 단위 정가제", description: "길이 기준이 아닌 프로젝트 범위로 견적합니다" },
     { icon: Clock, title: "평균 2~3주 완성", description: "기획부터 납품까지 체계적으로 진행합니다" },
-    { icon: FileText, title: "원본 + 운영 가이드 납품", description: "PSD/AI 파일과 활용 가이드를 함께 제공합니다" },
+    { icon: FileText, title: "바로 쓰는 완성본 납품", description: "플랫폼 규격에 맞춘 완성 이미지와 운영 가이드를 함께 드립니다" },
   ],
   [
     { icon: Monitor, title: "모든 플랫폼 대응", description: "스마트스토어·쿠팡·자사몰 가이드라인 반영" },
