@@ -23,6 +23,24 @@
 
 ## 기록
 
+### [2026-06-17 고객 후기 섹션 신규 추가 (캐러셀·framer-motion 드래그)]
+- 작업 목표: 랜딩 페이지 AboutSection·PricingTeaserSection 사이에 고객 후기 섹션 삽입해 전환 신뢰도 강화
+- 범위: 후기 데이터 SSOT + 대화형 캐러셀 컴포넌트 + 페이지 배선
+- 변경 파일:
+  - `src/lib/content/testimonials.ts` - 고객 후기 5개 항목 SSOT (이름·직무·카테고리·원문·강점 태그 배열: 일정 준수/전략 기획/원스톱 진행/콘티 선확인/브랜드 파트너)
+  - `src/components/sections/TestimonialCarousel.tsx` - use client, framer-motion drag/momentum + 6초 자동재생(hover·포커스·drag 중 정지) + 좌/우 화살표·점 컨트롤 + 키보드 arrow 지원 + aria-live 폴리트 + prefers-reduced-motion 자동재생 비활성화
+  - `src/components/sections/TestimonialsSection.tsx` - 서버 컴포넌트 래퍼(Section bg="muted")
+  - `src/app/page.tsx` - AboutSection 다음 줄에 TestimonialsSection 배선, PricingTeaserSection 앞
+- 검증:
+  - 명령: `npm run build`
+  - 결과: 성공 (28개 라우트 통과, 타입/린트 클린)
+  - 로컬 dev HTTP 200, 홈페이지 후기 섹션 서버 렌더 확인, 드래그/자동재생 정상 동작
+- 다음 작업:
+  1. 프로덕션 배포 후 라이브 후기 섹션 UI/인터랙션 검증
+  2. (선택) 후기 항목 추가 시 `testimonials.ts` 갱신만 수행
+
+---
+
 ### [2026-06-16 분석·측정 인프라 추가 (GA4·네이버·Meta) + Vercel 환경변수 등록 + 라이브 검증]
 - 작업 목표: Google Analytics 4 · Naver wcs · Meta Pixel을 통합한 분석 인프라 신설 및 Vercel 배포 환경에 반영, 라이브 takdijang.com에서 수집 동작 검증
 - 범위: 분석 라이브러리 + 이벤트 배선 + Vercel env 등록 + 라이브 테스트

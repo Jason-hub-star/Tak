@@ -7,6 +7,7 @@ import WebsiteLinkageSection from "@/components/sections/WebsiteLinkageSection";
 import PortfolioSection from "@/components/sections/PortfolioSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import AboutSection from "@/components/sections/AboutSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingTeaserSection from "@/components/sections/PricingTeaserSection";
 import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
@@ -30,6 +31,7 @@ export default function Home() {
         <PortfolioSection portfolios={portfolios} />
         <ProcessSection />
         <AboutSection />
+        <TestimonialsSection />
         <PricingTeaserSection />
         <FAQSection />
         <ContactSection />

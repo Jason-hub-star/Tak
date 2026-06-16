@@ -4,6 +4,29 @@
 
 ---
 
+## 2026-06-17 | 고객 후기 섹션 추가 (캐러셀·framer-motion 드래그)
+
+**결정**: 
+랜딩 페이지에 "고객 후기(Testimonials)" 섹션을 신규 추가해 고객 신뢰도를 강화한다. 후기 데이터 SSOT 관리(원문 보존+강점 태그) + framer-motion 기반 대화형 캐러셀(드래그/스와이프·자동재생·arrow/dot 컨트롤)로 구성한다.
+
+**배경**:
+- 랜딩 전환율 개선: 포트폴리오와 가격 사이에 "실제 고객 만족도" 증거 추가 필요
+- 모션 일관성: 기존 framer-motion 스택에 맞춤(신규 라이브러리 미도입)
+- 접근성: 브라우저·스크린 리더·키보드 네비 모두 지원
+
+**영향**:
+- 신규 파일: `src/lib/content/testimonials.ts` (5개 항목 SSOT, 원문·강점 태그·프로필), `src/components/sections/TestimonialCarousel.tsx` (use client, framer-motion drag/drag momentum, 6초 자동재생·hover/포커스 정지, arrow/dot 컨트롤), `src/components/sections/TestimonialsSection.tsx` (서버 컴포넌트 래퍼, Section bg="muted")
+- 컴포넌트 변경: `src/app/page.tsx` (AboutSection 다음, PricingTeaserSection 앞에 TestimonialsSection 배선)
+- 스타일: 캐러셀 너비 조정, 카드 padding/radius 기존 프리미티브 따름
+- 접근성: aria-live="polite" + 키보드 arrow(좌/우) 지원 + prefers-reduced-motion 자동재생 비활성화
+- 의존성: **신규 라이브러리 없음** (framer-motion 기존 사용)
+
+**후속**:
+- 후기 원문·프로필 사진·강점 태그 추가/수정은 `testimonials.ts` SSOT만 갱신
+- 캐러셀 UI/타이밍 조정 필요 시 `TestimonialCarousel.tsx` 수정
+
+---
+
 ## 2026-06-16 | 분석·측정 인프라 통합 (GA4·Naver·Meta)
 
 **결정**: 

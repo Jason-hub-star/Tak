@@ -1,6 +1,6 @@
 # Tak Djang Design Studio — Project Status
 
-기준일: 2026-06-16  
+기준일: 2026-06-17  
 정본: `docs/prd.md` + `ai-context/master-plan.md`  
 검증: `npm run build` (28개 라우트 통과, 측정 인프라 추가)
 
@@ -39,7 +39,7 @@
 
 | Route | Status | Notes |
 |---|---|---|
-| `/` | ✓ 완료 | 원페이지 랜딩 (Hero + Services + WebsiteLinkage + PricingTeaser + Portfolio + Process + About + FAQ + Contact + FinalCTA) |
+| `/` | ✓ 완료 | 원페이지 랜딩 (Hero + Services + WebsiteLinkage + PricingTeaser + Portfolio + **Testimonials** + Process + About + FAQ + Contact + FinalCTA) |
 | `/services` | ✓ 완료 | 제작+홍보 연계 4-서비스 모델 (devfive 벤치마킹) |
 | `/takmong` | ✓ 완료 | AI 템플릿 스토어 (탁몽 제품 펀딩 성과 · 리워드 4종 + 스마트스토어 판매 2종) |
 | `/templates/[slug]` | ✓ 완료 | AI 템플릿 상세 (SSG) |
@@ -88,9 +88,9 @@
    - [ ] Vercel Analytics (LCP/CLS/INP 점검)
    - [ ] Core Web Vitals 개선 (필요 시)
 
-## 최근 변경 요약 (2026-06-16)
+## 최근 변경 요약 (2026-06-17)
 
-**분석·측정 인프라 추가**: GA4·네이버 wcs·Meta 픽셀 중앙화 (`src/lib/analytics/config.ts`, `track.ts`), 이벤트 배선(FloatingCTA/문의폼/위저드), Vercel env 등록 완료. 라이브 검증: takdijang.com gtag.js 200 · collect 204 · generate_lead 확인.
+**고객 후기 섹션 신규 추가**: 랜딩 AboutSection 다음·PricingTeaserSection 앞에 `<TestimonialsSection>` 배선. 신규 데이터 SSOT(`src/lib/content/testimonials.ts`, 5개 항목 원문 보존+강점 태그), framer-motion 드래그/자동재생 캐러셀(`TestimonialCarousel.tsx`, 6초·hover/포커스 정지) + 접근성(aria-live/prefers-reduced-motion 존중). `npm run build` 성공(28개 라우트), 로컬 dev 후기 섹션 서버 렌더 확인.
 
 **이전 변경 요약**: 포트폴리오 컬러화, SEO 셋업(JSON-LD 28개·도메인 정정 takdjang→takdijang), 가격 개편(490k·990k 패키지), 사업자 정보·로고·히어로 배경영상·EmailJS·Vercel 배포 완료. 상세는 `ai-context/worklog.md`·`docs/status/DECISION-LOG.md` 참조.
 
