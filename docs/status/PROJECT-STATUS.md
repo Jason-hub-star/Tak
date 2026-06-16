@@ -1,8 +1,8 @@
 # Tak Djang Design Studio — Project Status
 
-기준일: 2026-06-15  
+기준일: 2026-06-16  
 정본: `docs/prd.md` + `ai-context/master-plan.md`  
-검증: `npm run build` (28개 라우트 통과, SEO SSOT 신설)
+검증: `npm run build` (28개 라우트 통과, 측정 인프라 추가)
 
 ## 현재 단계
 
@@ -29,7 +29,10 @@
    - Google Search Console: 소유확인 통과, sitemap 제출 완료
    - Naver Search Advisor: 소유확인 통과, sitemap 제출 완료
    - IndexNow: 키파일 배포, 202 Accepted (6 URL)
-2. **사업자 정보 확정** (NAP 확정 시 Organization → LocalBusiness 승격)
+2. **분석 데이터 반영 모니터링** (GA4/네이버 관리 화면)
+   - GA4 (G-QE6BN0V7VM): gtag.js 200, google-analytics/g/collect 204 확인, `generate_lead` 주요 이벤트 표시 대기
+   - 네이버 wcs (443e9d63b3a7d): wcs.pstatic.net/wcslog.js 라이브 주입 확인
+   - 메타픽셀: 미사용(ID 미입력, 정상 no-op)
 3. **포트폴리오 실데이터**: MDX 9개 확장 (현재 3개 반복 노출 → 실제 포토셋)
 
 ## 라우팅 현황
@@ -85,68 +88,21 @@
    - [ ] Vercel Analytics (LCP/CLS/INP 점검)
    - [ ] Core Web Vitals 개선 (필요 시)
 
-## 최근 변경 요약 (2026-06-15)
+## 최근 변경 요약 (2026-06-16)
 
-**배포 완료 + 운영 모드 전환 — 10가지 변경사항 반영**:
+**분석·측정 인프라 추가**: GA4·네이버 wcs·Meta 픽셀 중앙화 (`src/lib/analytics/config.ts`, `track.ts`), 이벤트 배선(FloatingCTA/문의폼/위저드), Vercel env 등록 완료. 라이브 검증: takdijang.com gtag.js 200 · collect 204 · generate_lead 확인.
 
-1. **포트폴리오 썸네일 컬러화**: 기본 흑백(grayscale) 호버 컬러 효과 제거 → 처음부터 컬러 노출 (portfolio/page.tsx, PortfolioSection.tsx)
-2. **SEO 셋업 배치 완료**: JSON-LD 28개 라우트 주입, 동적 OG 이미지, sitemap/robots SSOT, 도메인 정정(takdjang→takdijang), 검색엔진 소유확인 통과
-3. **랜딩 "상세페이지 제작" 서비스 사진 교체**: public/home-services/01.png 새 데스크 이미지로
-4. **가격 개편**: 상세페이지 330,000→490,000원, "상세페이지+쇼츠 패키지" 신규 추가(990,000원, BOOST⭐베스트), 비교표 4열→5열 확장
-5. **푸터 사업자 정보 추가**: 탁디장스튜디오 / 사업자등록번호 365-18-00464 / 덕계로 104 1층 / 010-7153-8014
-6. **로고 교체**: 헤더·푸터 "T 동그라미+탁디장 텍스트" → `{ TAK DI JANG. }` 워드마크 이미지(public/logo.png)
-7. **/takmong 모바일 펀딩 통계 카드 텍스트 넘침 수정**: 반응형 폰트·자간·여백 조정
-8. **"PSD/AI 원본 파일 제공" 문구 전면 제거**(9곳): 완성본 납품·수정 2회 중심으로 정리. FAQ는 새로운 정책 반영
-9. **히어로 배경영상 추가**: 무료 스톡 8클립 짜깁기(30초 루프, 1080p, 크로스페이드, 무음) → public/hero/에 mp4/webm/poster.jpg 배포. 크림 오버레이 50%, 모바일 poster 정지컷, prefers-reduced-motion 시 영상 숨김. 상단 라벨 TAKDJANG→TAKDIJANG 수정
-10. **배포 검증 완료**: takdijang.com에 위 변경 전부 반영 확인 (에셋 HTTP 200, 콘솔 에러 0, 시각 검증 통과)
-
-**후속 (운영 모드)**:
-- 색인 반영 모니터링 (며칠~2주)
-- 사업자 NAP 확정 시 Organization → LocalBusiness 승격
-- (선택) Pretendard CDN → next/font 마이그레이션 (CWV)
-
----
-
-### 이전 변경 요약 (2026-06-15)
-
-**탁몽 AI 템플릿 스토어 확장**: `/takmong` → AI 템플릿 스토어, `/templates/[slug]` 상세 신설.
-- `/takmong`: 와디즈 펀딩 성과(740% 달성·3,701,000원·서포터 51명, 2026.05.06 종료) + 리워드 4종 + 스마트스토어 판매 2종(AI 디자인 템플릿 99,000원, 상세페이지 진단·컨설팅 29,000원)
-- `/templates/[slug]`: SSG 상세 페이지 + 상세 이미지 실제 반영 완료(takmong-ai-template 27장 + gif 4개, detail-diagnosis 5장, 라이브 배포 반영). `src/lib/content/template-images.ts` 헬퍼(thumbnail 제외 자동 필터)
-- 데이터: `src/lib/content/templates.ts`, 스마트스토어 구매 링크 네이버 연결
-- 상단 네비에 "AI 템플릿" 추가 → `/takmong` 연결
-
-**서비스 섹션 이미지 4종 컬러 교체**: `public/services/` (상세페이지·웹사이트·홍보·운영 순).
-
-**카카오톡 오픈채팅 실연동**: KAKAO_CHANNEL_URL = `open.kakao.com/o/suSdZzs`, FloatingCTA 실제 링크화.
-
-**EmailJS 실연동 완료**: 문의 폼 + 무료 진단 위저드 실제 발송(E2E HTTP 200 검증). reply-to·to_email 파라미터 지원.
-- 보안: 키와 수신 이메일 주소는 `.env.local`/Vercel 환경변수로 설정(Production·Preview·Development 3환경).
-
-**Vercel 배포 + 커스텀 도메인**: 프로젝트 `tak` (GitHub main 자동배포), 도메인 `takdijang.com`+`www` 연결(가비아 A 레코드 @→76.76.21.21, CNAME www→cname.vercel-dns.com). HTTP 서빙 확인, SSL 자동발급 진행중.
-
-**실프로젝트 포트폴리오 반영**: 외부 링크형 포트폴리오 항목 도입.
-- 신규 2건: `takmong-wadiz`(자사 와디즈 펀딩), `artdoorstore-blog`(금강이지스 현관중문 블로그)
-- 타입 `externalUrl?`/`externalLabel?` 추가, 내부 함수(slug/related/홈)는 내부 9개만 유지(404 방지)
+**이전 변경 요약**: 포트폴리오 컬러화, SEO 셋업(JSON-LD 28개·도메인 정정 takdjang→takdijang), 가격 개편(490k·990k 패키지), 사업자 정보·로고·히어로 배경영상·EmailJS·Vercel 배포 완료. 상세는 `ai-context/worklog.md`·`docs/status/DECISION-LOG.md` 참조.
 
 ## Handoff Capsule
 
-**들어올 때 확인**: 
+**진입 체크리스트**:
 - `ai-context/master-plan.md` (우선순위 백로그)
-- `ai-context/handover.md` (블로커/즉시 실행 체크리스트)
 - `docs/prd.md` (제품 정본)
+- `.env.local` 설정 후 `npm run build` (28개 라우트 + JSON-LD 검증)
 
-**첫 검증**:
-- `npm run build` (28개 라우트 통과, JSON-LD 28개 라우트 검증)
-- `.env.local` 설정 (EmailJS 키)
-- `/contact/form` 위저드 단계 검증
-- 폼 + 위저드 제출 테스트
-
-**공유된 컨텍스트**:
-- ai-context가 협업 정본
-- docs/prd.md가 제품 정본
-- docs/status/ 는 얇은 현황 대시보드
-- 상세 로그/증거는 `ai-context/worklog.md` + `docs/status/DECISION-LOG.md`
-
----
-
-*이 문서는 `ai-context/master-plan.md`의 파생 대시보드입니다. 상세 내용과 결정 로그는 다른 문서를 참고하세요.*
+**문서 계층**:
+- 정본: `docs/prd.md` (제품)
+- 협업: `ai-context/` (계획·로그)
+- 현황: 이 파일 (얇은 대시보드, 60~110줄)
+- 증거: `worklog.md` + `DECISION-LOG.md`

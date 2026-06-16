@@ -20,7 +20,7 @@ const ICONS: Record<string, React.ElementType> = {
 const SERVICE_IMAGES = [
   "/home-services/01.png",
   "/home-services/02.png",
-  "/home-services/03.png",
+  "/home-services/03.jpg",
   "/home-services/04.png",
 ];
 

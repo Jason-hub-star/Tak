@@ -1,6 +1,6 @@
 ﻿# Tak Master Plan
 
-기준일: 2026-06-15 (KST)
+기준일: 2026-06-16 (KST)
 프로젝트: Tak Djang Design Studio
 협업 폴더: `ai-context`
 
@@ -39,10 +39,11 @@
   - [x] **카카오톡 채널 연결** (open.kakao.com/o/suSdZzs, FloatingCTA 실제 링크)
   - [x] **탁몽 AI 템플릿 스토어** (`/takmong` 확장, `/templates/[slug]` SSG 구조, 스마트스토어 판매 2종)
   - [x] **Vercel 배포** (프로젝트 `tak`, 도메인 takdijang.com, SSL 진행중)
+  - [x] **분석·측정 인프라** (GA4 G-QE6BN0V7VM · Naver wcs 443e9d63b3a7d · Meta Pixel 스캐폴딩, 이벤트 배선, Vercel env 등록, 라이브 검증)
 - 현재 목표:
-  - 배포 후 라우트 최종 검증 및 도메인 연결 확인
-  - SEO 제출 (Google Search Console, Naver)
-  - 스마트스토어 판매 채널 운영 (분석/리뷰 모니터링)
+  - GA4 "주요 이벤트" 설정 (수동, `generate_lead`)
+  - 색인 반영 모니터링 (구글/네이버 며칠~2주)
+  - 스마트스토어 판매 분석 모니터링
 
 ## 4) 핵심 규칙
 - 문서 충돌 시 `docs/prd.md`를 최우선으로 따른다.
@@ -69,10 +70,12 @@
 11. [완료] 카카오톡 채널 URL 확정 (open.kakao.com/o/suSdZzs) 및 전체 CTA 연결
 12. [완료] 탁몽 AI 템플릿 스토어 확장 (`/takmong`, `/templates/[slug]` SSG, 스마트스토어 판매 2종)
 13. [완료] Vercel 배포 + 도메인 연결 (takdijang.com, 가비아 A/CNAME 설정, SSL 진행중)
-14. [현재] 배포 후 라우트 최종 검증 및 도메인 활성화 확인
-15. [현재] SEO 제출 (Google Search Console, Naver 웹마스터도구)
-16. 포트폴리오 실데이터 9개 확장 (현재 3개 반복 → 9개 개별 포토셋) — 선택사항
-17. 성능 점검 (LCP/CLS/INP, Vercel Analytics) 및 이미지 최적화
+14. [완료] SEO 제출 (Google Search Console 소유확인·sitemap·IndexNow 완료, Naver 소유확인·sitemap 완료)
+15. [완료] 분석·측정 인프라 (GA4·Naver·Meta 스크립트 통합, 이벤트 배선, Vercel env 등록, 라이브 검증)
+16. [현재] GA4 관리 > 이벤트에서 `generate_lead` "주요 이벤트" 표시 (수동)
+17. [현재] 색인 반영 모니터링 (구글/네이버 데이터 반영 기다림)
+18. 포트폴리오 실데이터 9개 확장 (현재 3개 반복 → 9개 개별 포토셋) — 선택사항
+19. 성능 점검 (LCP/CLS/INP, Vercel Analytics) 및 이미지 최적화
 
 ## 6) Phase 전환 기준
 - 구현 -> 배포 준비 진입 조건 (완료):

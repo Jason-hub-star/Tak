@@ -66,10 +66,10 @@ export const SERVICES: ServiceItem[] = [
 
 /** 제작 → 연결 → 전환 → 관리 흐름 (홈 연계 섹션) */
 export const LINKAGE_STEPS: LinkageStep[] = [
-  { phase: "제작", label: "상세페이지 · 웹사이트", desc: "설득 구조로 만든다" },
-  { phase: "연결", label: "검색 · 광고 노출", desc: "고객이 찾아오게 한다" },
-  { phase: "전환", label: "문의 · 예약 · 구매", desc: "유입을 매출로 잇는다" },
-  { phase: "관리", label: "리포트 · 개선", desc: "결과를 보고 키운다" },
+  { phase: "제작", label: "상세페이지 · 웹사이트", desc: "설득 구조로 만들어요" },
+  { phase: "연결", label: "검색 · 광고 노출", desc: "고객이 찾아오게 해요" },
+  { phase: "전환", label: "문의 · 예약 · 구매", desc: "유입을 매출로 이어요" },
+  { phase: "관리", label: "리포트 · 개선", desc: "결과를 보고 키워요" },
 ];
 
 /** 연계 포지셔닝 카피 */

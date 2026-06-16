@@ -1,6 +1,6 @@
 ﻿# 프로젝트 컨텍스트 (Tak)
 
-기준일: 2026-06-15 (KST)
+기준일: 2026-06-16 (KST)
 프로젝트명: Tak Djang Design Studio
 기준 문서: `docs/prd.md`
 
@@ -65,6 +65,21 @@
 - `/sitemap.xml`, `/robots.txt`: SEO 운영 경로
 
 ## 8) 외부 서비스 연동
+- **분석·측정 인프라** (GA4·Naver wcs·Meta Pixel)
+  - **Google Analytics 4** (G-QE6BN0V7VM)
+    - 환경변수: NEXT_PUBLIC_GA_ID (레포 미커밋, `.env.local` + Vercel Production·Development 등록)
+    - 스크립트: `src/components/analytics/Analytics.tsx` (next/script, ID 있을 때만 로드)
+    - 이벤트: `track()` (범용), `trackLead()` (전환: inquiry_form/diagnosis_wizard)
+    - 현재 상태: **라이브 확인** (gtag.js 200, google-analytics/g/collect 204, generate_lead dataLayer)
+    - 후속: GA4 관리→이벤트에서 `generate_lead` "주요 이벤트" 표시 (수동)
+  - **Naver wcs** (443e9d63b3a7d)
+    - 환경변수: NEXT_PUBLIC_NAVER_SITE_ID (레포 미커밋, `.env.local` + Vercel Production·Development 등록)
+    - 스크립트: `src/components/analytics/Analytics.tsx` (wcs.pstatic.net/wcslog.js)
+    - 현재 상태: **라이브 확인** (wcs 스크립트 주입)
+  - **Meta Pixel** (ID 미사용, 스캐폴딩만)
+    - 환경변수: NEXT_PUBLIC_META_PIXEL_ID (미입력 상태, 안전한 no-op)
+    - 발급 시 `.env.local` + Vercel에 ID 등록 → Meta fbq 활성화
+  - 측정 SSOT: `src/lib/analytics/config.ts` (ID 활성화 기준), `src/lib/analytics/track.ts` (API)
 - EmailJS (문의 폼 + 무료 진단 위저드 전송)
   - 키 값은 **레포에 커밋하지 않는다.** 실제 값은 `.env.local`(git 미추적)에만 보관, 형식은 `.env.local.example` 참조
   - 필요 키: `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`

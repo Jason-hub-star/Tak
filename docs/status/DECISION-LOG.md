@@ -4,6 +4,30 @@
 
 ---
 
+## 2026-06-16 | 분석·측정 인프라 통합 (GA4·Naver·Meta)
+
+**결정**: 
+Google Analytics 4 · Naver wcs · Meta Pixel을 중앙화된 분석 라이브러리(`src/lib/analytics/`)로 통합하고, ID 기반 활성화(env SSOT) + 이벤트 배선을 통해 전환 추적을 자동화한다.
+
+**배경**:
+- 배포 완료 후 사용자 전환(문의 폼/진단 위저드 제출) 추적 필요
+- 사업자 정보 확정 후 로컬 비즈니스 성과 측정 기초 마련
+- ID 없는 상태(테스트·개발)에서도 안전한 no-op 처리 필요
+
+**영향**:
+- 신규 파일: `src/lib/analytics/config.ts` (SSOT), `src/lib/analytics/track.ts` (API), `src/components/analytics/Analytics.tsx` (스크립트 주입)
+- 컴포넌트 변경: FloatingCTA/ContactSection/DiagnoseFormShell에 trackLead() 호출 추가
+- Vercel env: NEXT_PUBLIC_GA_ID (G-QE6BN0V7VM) · NEXT_PUBLIC_NAVER_SITE_ID (443e9d63b3a7d) Production·Development 등록
+- `.env.local.example`: 3개 ID 변수 스캐폴딩(발급처 주석)
+- 라이브 검증: takdijang.com에서 gtag.js 200 · collect 204 · generate_lead dataLayer 확인
+
+**후속**:
+- GA4 관리→이벤트에서 `generate_lead` "주요 이벤트" 표시 (수동)
+- Meta Pixel ID 발급 시 NEXT_PUBLIC_META_PIXEL_ID 등록
+- Preview 환경 env 추가 (선택)
+
+---
+
 ## 2026-06-15 | 가격 모델 확장 + 원본 소스 파일 미제공 정책 + 히어로 배경영상 + 로고 워드마크 + 사업자 정보
 
 **결정**: 

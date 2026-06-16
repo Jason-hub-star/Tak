@@ -23,6 +23,34 @@
 
 ## 기록
 
+### [2026-06-16 분석·측정 인프라 추가 (GA4·네이버·Meta) + Vercel 환경변수 등록 + 라이브 검증]
+- 작업 목표: Google Analytics 4 · Naver wcs · Meta Pixel을 통합한 분석 인프라 신설 및 Vercel 배포 환경에 반영, 라이브 takdijang.com에서 수집 동작 검증
+- 범위: 분석 라이브러리 + 이벤트 배선 + Vercel env 등록 + 라이브 테스트
+- 변경 파일:
+  - `src/lib/analytics/config.ts` - 측정 환경 SSOT (NEXT_PUBLIC_GA_ID / NEXT_PUBLIC_META_PIXEL_ID / NEXT_PUBLIC_NAVER_SITE_ID, ID 없으면 no-op)
+  - `src/lib/analytics/track.ts` - `track()` / `trackLead()` 함수 (GA4 gtag + Meta fbq 동시 발화, 미로드 시 안전한 no-op)
+  - `src/components/analytics/Analytics.tsx` - next/script로 GA4·Meta·Naver wcs 스크립트 주입 (ID 있을 때만, layout body 끝)
+  - `src/components/sections/FloatingCTA.tsx` - 카카오톡 클릭 → track("kakao_click", {location:"floating_cta"})
+  - `src/components/sections/ContactSection.tsx` - 폼 제출 성공 → trackLead("inquiry_form", {inquiry_type})
+  - `src/components/diagnose/DiagnoseFormShell.tsx` - 위저드 제출 성공 → trackLead("diagnosis_wizard")
+  - `.env.local.example` - NEXT_PUBLIC_GA_ID / NEXT_PUBLIC_META_PIXEL_ID / NEXT_PUBLIC_NAVER_SITE_ID 발급처 주석 추가
+  - Vercel 환경변수: NEXT_PUBLIC_GA_ID=G-QE6BN0V7VM · NEXT_PUBLIC_NAVER_SITE_ID=443e9d63b3a7d · Production·Development 등록 (Preview 미등록)
+- 검증:
+  - 명령: `npm run build`
+  - 결과: 성공 (28개 라우트 통과, 타입/린트 클린)
+  - 라이브 (takdijang.com, agent-browser):
+    - gtag.js 라이브러리 로드 HTTP 200 확인
+    - google-analytics.com/g/collect → HTTP 204 (수집 성공), tid=G-QE6BN0V7VM, en=page_view 확인
+    - 운영 사이트에서 테스트 문의 제출 → "접수 완료" 도달, EmailJS 발송 성공, generate_lead 이벤트 GA4 dataLayer 발화 확인
+    - 네이버 wcs 스크립트 라이브 주입 확인
+- 다음 작업:
+  1. GA4 관리→이벤트에서 `generate_lead`를 "주요 이벤트(전환)"로 표시 (수동 설정, 이벤트 목록 노출 후)
+  2. (선택) Meta Pixel ID 발급 시 NEXT_PUBLIC_META_PIXEL_ID 등록 → 인스타/페북 광고 리타게팅
+  3. (선택) Preview 환경 env 추가 (Vercel 대시보드)
+  4. GA4/네이버 데이터 반영 모니터링 (관리 화면 "데이터 수집 비활성" 배너는 처리 지연일 뿐, collect 204 정상)
+
+---
+
 ### [2026-06-15 운영 모드 전환 — 포트폴리오·가격·사업자·영상·로고 최종 갱신 + 배포 검증]
 - 작업 목표: 2026-06-15 세션 모든 변경사항(10가지) 운영 환경(takdijang.com)에 반영 완료
 - 범위: 포트폴리오·가격·푸터·로고·히어로·정책 등 다층 갱신 + 배포 후 최종 검증
