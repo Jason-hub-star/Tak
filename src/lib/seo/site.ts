@@ -19,6 +19,8 @@ export const SITE = {
   social: {
     kakao: "https://open.kakao.com/o/suSdZzs",
     smartstore: "https://smartstore.naver.com/takdijang",
+    instagram: "https://www.instagram.com/casamond_tak/",
+    youtube: "https://www.youtube.com/@takdijang",
   },
 } as const;
 

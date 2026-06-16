@@ -16,7 +16,7 @@ export function organizationSchema() {
     url: SITE.url,
     logo: absoluteUrl("/icon"),
     description: SITE.description,
-    sameAs: [SITE.social.kakao, SITE.social.smartstore],
+    sameAs: Object.values(SITE.social),
   };
 }
 

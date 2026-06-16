@@ -1,5 +1,12 @@
 import Image from "next/image";
+import { Instagram, Youtube } from "lucide-react";
 import { KAKAO_CHANNEL_URL } from "@/lib/constants";
+import { SITE } from "@/lib/seo/site";
+
+const SOCIAL_LINKS = [
+  { label: "인스타그램", href: SITE.social.instagram, Icon: Instagram },
+  { label: "유튜브", href: SITE.social.youtube, Icon: Youtube },
+];
 
 const FOOTER_LINKS = {
   서비스: [
@@ -38,6 +45,20 @@ export default function Footer() {
               <br />
               디자인 스튜디오
             </p>
+            <div className="mt-5 flex gap-3">
+              {SOCIAL_LINKS.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Link Columns */}
