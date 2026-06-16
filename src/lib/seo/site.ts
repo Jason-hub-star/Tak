@@ -25,8 +25,6 @@ export const SITE = {
   /**
    * 사업자 NAP — 푸터에 이미 공개된 공식 정보(법적 표기 의무).
    * LocalBusiness 스키마와 푸터가 함께 참조한다(단일 진실 원천).
-   * 시/구·우편번호가 확정되면 addressLocality/addressRegion/postalCode 를 채워
-   * 지역검색(local pack) 신호를 강화한다.
    */
   business: {
     /** 상호 (푸터 표기) */
@@ -35,8 +33,14 @@ export const SITE = {
     businessNumber: "365-18-00464",
     /** 대표 전화 */
     phone: "010-7153-8014",
-    /** 도로명 주소 (현재 확보된 범위) */
+    /** 도로명 주소 (시/도·시 제외, 상세 도로명만) */
     streetAddress: "덕계로 104 1층",
+    /** 시/군/구 (PostalAddress.addressLocality) */
+    addressLocality: "양산시",
+    /** 시/도 (PostalAddress.addressRegion) */
+    addressRegion: "경상남도",
+    /** 우편번호 (PostalAddress.postalCode) */
+    postalCode: "50553",
     /** 국가 코드 (ISO 3166-1 alpha-2) */
     addressCountry: "KR",
   },

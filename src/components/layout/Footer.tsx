@@ -89,6 +89,7 @@ export default function Footer() {
             {SITE.business.name} · 사업자등록번호 {SITE.business.businessNumber}
             <span className="mx-1.5 hidden md:inline">·</span>
             <br className="md:hidden" />
+            {SITE.business.addressRegion} {SITE.business.addressLocality}{" "}
             {SITE.business.streetAddress} · {SITE.business.phone}
           </p>
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">

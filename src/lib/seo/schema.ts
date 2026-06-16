@@ -1,8 +1,6 @@
 /**
  * schema.org JSON-LD 빌더 모음.
  * NAP(상호·주소·전화)는 SITE.business(푸터와 공유하는 SSOT)에서 가져온다.
- * 시/구·우편번호가 확정되면 SITE.business 에 addressLocality 등을 추가해
- * PostalAddress 를 보강한다(local pack 신호 강화).
  */
 import { SITE, absoluteUrl } from "./site";
 
@@ -22,6 +20,9 @@ export function organizationSchema() {
     address: {
       "@type": "PostalAddress",
       streetAddress: SITE.business.streetAddress,
+      addressLocality: SITE.business.addressLocality,
+      addressRegion: SITE.business.addressRegion,
+      postalCode: SITE.business.postalCode,
       addressCountry: SITE.business.addressCountry,
     },
     sameAs: Object.values(SITE.social),
