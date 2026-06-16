@@ -28,7 +28,7 @@ export default async function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          color: "#FFFFFF",
+          color: "#1A1A1A",
         }}
       >
         {/* 배경 사진 — ImageResponse(satori)는 next/image가 아닌 <img>를 요구함 */}
@@ -40,18 +40,18 @@ export default async function OpengraphImage() {
           height={630}
           style={{ position: "absolute", inset: 0, objectFit: "cover" }}
         />
-        {/* 가독성 스크림 (아래로 갈수록 어둡게) */}
+        {/* 가독성 스크림 (아래로 갈수록 밝게 — 검정 텍스트 대비 확보) */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(to bottom, rgba(20,18,16,0) 32%, rgba(20,18,16,0.45) 64%, rgba(20,18,16,0.82) 100%)",
+              "linear-gradient(to bottom, rgba(250,250,248,0) 30%, rgba(250,250,248,0.62) 60%, rgba(250,250,248,0.92) 100%)",
           }}
         />
         {/* 텍스트 블록 (하단 정렬) */}
         <div style={{ position: "relative", display: "flex", flexDirection: "column", padding: "0 72px 64px" }}>
-          <div style={{ display: "flex", fontSize: 30, color: "#F4C9C8", fontWeight: 700 }}>
+          <div style={{ display: "flex", fontSize: 30, color: "#CB6664", fontWeight: 700 }}>
             {SITE.name} · 디자인 스튜디오
           </div>
           <div
@@ -62,12 +62,15 @@ export default async function OpengraphImage() {
               fontSize: 64,
               fontWeight: 700,
               lineHeight: 1.18,
+              color: "#1A1A1A",
             }}
           >
             <span>고객이 사게 만드는</span>
-            <span>상세페이지부터 홍보까지</span>
+            <span>
+              <span style={{ color: "#CB6664" }}>상세페이지</span>부터 홍보까지
+            </span>
           </div>
-          <div style={{ display: "flex", marginTop: 20, fontSize: 26, color: "rgba(255,255,255,0.82)" }}>
+          <div style={{ display: "flex", marginTop: 20, fontSize: 26, color: "#555555" }}>
             상세페이지 · 웹사이트 제작 · 검색/광고 홍보 · 운영 관리
           </div>
         </div>
