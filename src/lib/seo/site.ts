@@ -22,6 +22,30 @@ export const SITE = {
     instagram: "https://www.instagram.com/casamond_tak/",
     youtube: "https://www.youtube.com/@takdijang",
   },
+  /**
+   * 사업자 NAP — 푸터에 이미 공개된 공식 정보(법적 표기 의무).
+   * LocalBusiness 스키마와 푸터가 함께 참조한다(단일 진실 원천).
+   * 시/구·우편번호가 확정되면 addressLocality/addressRegion/postalCode 를 채워
+   * 지역검색(local pack) 신호를 강화한다.
+   */
+  business: {
+    /** 상호 (푸터 표기) */
+    name: "탁디장스튜디오",
+    /** 사업자등록번호 */
+    businessNumber: "365-18-00464",
+    /** 대표 전화 */
+    phone: "010-7153-8014",
+    /** 도로명 주소 (현재 확보된 범위) */
+    streetAddress: "덕계로 104 1층",
+    /** 국가 코드 (ISO 3166-1 alpha-2) */
+    addressCountry: "KR",
+  },
+  /**
+   * 정적 페이지 콘텐츠 최종 갱신일(sitemap lastmod 안정값).
+   * 빌드마다 바뀌는 new Date() 대신 고정값을 써 "always-fresh" 신호 왜곡을 막는다.
+   * 정적 페이지 본문을 의미 있게 수정하면 이 날짜를 갱신한다.
+   */
+  contentUpdated: "2026-06-16",
 } as const;
 
 /**

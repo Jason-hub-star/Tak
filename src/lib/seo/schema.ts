@@ -1,21 +1,29 @@
 /**
  * schema.org JSON-LD 빌더 모음.
- * 주소·전화 등 NAP가 확정되면 organizationSchema 에 address/telephone 를 추가한다.
- * (현재는 NAP 미확정 → Organization 으로 출력, LocalBusiness 승격은 추후)
+ * NAP(상호·주소·전화)는 SITE.business(푸터와 공유하는 SSOT)에서 가져온다.
+ * 시/구·우편번호가 확정되면 SITE.business 에 addressLocality 등을 추가해
+ * PostalAddress 를 보강한다(local pack 신호 강화).
  */
 import { SITE, absoluteUrl } from "./site";
 
-/** 조직(스튜디오) — 홈에 1회 */
+/** 조직(스튜디오) — 홈에 1회. 물리적 주소가 있으므로 LocalBusiness 로 출력 */
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
     "@id": `${SITE.url}/#organization`,
     name: SITE.legalName,
     alternateName: SITE.name,
     url: SITE.url,
     logo: absoluteUrl("/icon"),
+    image: absoluteUrl("/opengraph-image"),
     description: SITE.description,
+    telephone: SITE.business.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: SITE.business.streetAddress,
+      addressCountry: SITE.business.addressCountry,
+    },
     sameAs: Object.values(SITE.social),
   };
 }

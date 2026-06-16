@@ -38,6 +38,7 @@ export function generateMetadata({
       description: product.summary,
       type: "website",
       locale: "ko_KR",
+      images: product.image ? [{ url: product.image }] : undefined,
     },
   };
 }

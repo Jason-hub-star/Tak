@@ -86,10 +86,10 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-border space-y-4">
           <p className="text-xs leading-relaxed text-muted-foreground">
-            탁디장스튜디오 · 사업자등록번호 365-18-00464
+            {SITE.business.name} · 사업자등록번호 {SITE.business.businessNumber}
             <span className="mx-1.5 hidden md:inline">·</span>
             <br className="md:hidden" />
-            덕계로 104 1층 · 010-7153-8014
+            {SITE.business.streetAddress} · {SITE.business.phone}
           </p>
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
             <p className="text-xs text-muted-foreground">
