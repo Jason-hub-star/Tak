@@ -7,19 +7,23 @@ import { ANALYTICS } from "@/lib/analytics/config";
  * layout 의 <body> 끝에서 1회 렌더한다.
  */
 export function Analytics() {
-  const { ga4, metaPixel, naver } = ANALYTICS;
+  const { ga4, googleAds, metaPixel, naver } = ANALYTICS;
+
+  // gtag.js는 한 번만 로드하고, GA4·Google Ads 등 ID마다 config 를 추가한다.
+  // (라이브러리를 ID별로 중복 로드하면 안 됨 — 구글 권장 방식)
+  const gtagLib = ga4 || googleAds;
 
   return (
     <>
-      {/* ── Google Analytics 4 ─────────────────────────── */}
-      {ga4 && (
+      {/* ── Google gtag (Analytics 4 + Google Ads) ──────── */}
+      {gtagLib && (
         <>
           <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${gtagLib}`}
             strategy="afterInteractive"
           />
-          <Script id="ga4-init" strategy="afterInteractive">
-            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4}');`}
+          <Script id="gtag-init" strategy="afterInteractive">
+            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());${ga4 ? `gtag('config','${ga4}');` : ""}${googleAds ? `gtag('config','${googleAds}');` : ""}`}
           </Script>
         </>
       )}
