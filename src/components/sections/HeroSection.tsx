@@ -4,6 +4,7 @@ import { HERO_COPY } from "@/lib/constants";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { HeroBackgroundVideo } from "./HeroBackgroundVideo";
 
 export default function HeroSection() {
   return (
@@ -11,7 +12,8 @@ export default function HeroSection() {
       id="hero"
       className="relative isolate overflow-hidden section-padding pt-32 md:pt-40 lg:pt-48 pb-16 lg:pb-24"
     >
-      {/* 배경 영상 (모바일은 poster 정지컷, reduced-motion은 영상 숨김) */}
+      {/* 배경 영상 — poster를 기본으로 깔고, 안전조건 통과 시에만 영상을 얹음
+          (모바일=경량 영상 / Save-Data·느린망·reduced-motion=poster 유지) */}
       <div className="absolute inset-0 -z-10" aria-hidden>
         <Image
           src="/hero/hero-poster.jpg"
@@ -21,17 +23,7 @@ export default function HeroSection() {
           sizes="100vw"
           className="object-cover"
         />
-        <video
-          className="absolute inset-0 hidden h-full w-full object-cover md:block motion-reduce:!hidden"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/hero/hero-poster.jpg"
-        >
-          <source src="/hero/hero-montage.webm" type="video/webm" />
-          <source src="/hero/hero-montage.mp4" type="video/mp4" />
-        </video>
+        <HeroBackgroundVideo />
         {/* 가독성 오버레이 */}
         <div className="absolute inset-0 bg-[#FAFAF8]/50" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#FAFAF8]/50 via-transparent to-[#FAFAF8]" />

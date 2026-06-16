@@ -173,8 +173,8 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
         <div className="space-y-5">
           {groups.map((group, g) => (
             <div key={g} className="space-y-5">
-              {/* ── 포트폴리오 이미지 카드 행 (계단식) ── */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end">
+              {/* ── 포트폴리오 이미지 카드 행 ── 모바일: 가로 스와이프 / md+: 계단식 그리드 */}
+              <div className="flex md:grid md:grid-cols-3 gap-5 items-end overflow-x-auto md:overflow-visible snap-x snap-mandatory -mx-5 px-5 md:mx-0 md:px-0 pb-2 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {group.map((item, col) => {
                   const i = idx++;
                   const imageRowDirection = getRowDirection(g * 2);
@@ -187,6 +187,7 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                       initial="hidden"
                       whileInView="visible"
                       viewport={{ once: true, margin: "-40px" }}
+                      className="shrink-0 min-w-[78%] snap-start md:min-w-0 md:shrink"
                     >
                       <Link
                         href={`/portfolio/${item.slug}`}
@@ -226,8 +227,8 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                 })}
               </div>
 
-              {/* ── 스튜디오 강점 카드 행 (계단식) ── */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end">
+              {/* ── 스튜디오 강점 카드 행 ── 모바일: 2열 압축 / md+: 계단식 */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 items-end">
                 {STUDIO_STRENGTHS[g].map((strength, col) => {
                   const i = idx++;
                   const metaRowDirection = getRowDirection(g * 2 + 1);
