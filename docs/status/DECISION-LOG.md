@@ -4,6 +4,35 @@
 
 ---
 
+## 2026-06-17 | 문서 진입 체계 정리 (스킬 통합 + Tier 단일화)
+
+**결정**: 
+에이전트 진입 문서와 스킬 디렉토리 구조를 정리하여 로딩 토큰 절감 및 문서 SSOT 일관성을 확보한다. (1) 디자인 스킬 4개를 `.agents/skills/` → `.claude/skills/`로 이동, (2) AGENTS.md의 로딩 강도를 "항상 읽기(First Read)" 4개로 축소, (3) 문서 Tier 정의를 AGENTS.md와 governance 파일 간 일치시킴.
+
+**배경**:
+- 토큰 효율성: 기존 "Tier 1: Always Read" 6개 문서(~20K 토큰 소모)를 2단계로 분리 → 필수(~8K) + 필요시(~12K)
+- 구조 일관성: AGENTS.md와 `docs/governance/document-management.md`가 prd.md·DECISION-LOG의 로딩 강도를 다르게 정의 → SSOT 충돌
+- 스킬 배치: `.agents/skills/`는 로더가 인식하지 않음 → `.claude/skills/`가 표준 위치
+
+**영향**:
+- 파일 이동: `premium-frontend-design`, `landing-page-guide-v2`, `interaction-design`, `web-design-guidelines` (`.agents/skills/` → `.claude/skills/`)
+- AGENTS.md 변경: "Tier 1: Always Read" → "First Read"(4개) + "On Demand"(2개). prd.md를 "필요시 참조" 우선순위로 격하(우선순위 변화 없음, 로딩강도만)
+- governance 파일 동기화: Tier 정의 명확화, AGENTS.md와 상호참조 추가 (부정 충돌 해소)
+- `.claude/skills/README.md`: 디자인 스킬 4개를 색인에 추가 (Core Skills + Design Skills 섹션 분리)
+- `.agents/` 디렉토리 제거 (더 이상 사용되지 않음)
+
+**검증**:
+- `git status`: 파일 이동(git mv) 기록, 문서 수정(Edit) 적용 확인
+- `rg -n "\.agents/skills"`: 레거시 경로 참조 0건 (안전)
+- `.claude/skills/` 아래 4개 디렉토리 + 기존 스킬: 중복/충돌 없음
+
+**후속**:
+- 세션 시작 시 AGENTS.md의 "First Read" 4개만 로드 (기존 6개 대비 ~33% 토큰 절감)
+- prd.md·DECISION-LOG 참조 필요 시 "On Demand" 섹션에서 명시적으로 선택
+- 새 스킬 추가 시 `.claude/skills/README.md` 색인 동시 갱신
+
+---
+
 ## 2026-06-17 | 고객 후기 섹션 추가 (캐러셀·framer-motion 드래그)
 
 **결정**: 

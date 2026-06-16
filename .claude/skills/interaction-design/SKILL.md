@@ -1,6 +1,7 @@
 ---
 name: interaction-design
-description: Design and implement microinteractions, motion design, transitions, and user feedback patterns. Use when adding polish to UI interactions, implementing loading states, or creating delightful user experiences.
+user_invocable: true
+description: Design and implement microinteractions, motion design, transitions, and user feedback patterns. Use when adding polish to UI interactions, implementing loading states, or creating delightful user experiences. 트리거 — "인터랙션 디자인", "마이크로인터랙션 추가", "모션/전환 효과", "로딩 상태 디자인", "UI 인터랙션 다듬어".
 ---
 
 # Interaction Design

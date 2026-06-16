@@ -1,6 +1,6 @@
 ---
 name: claude-code-health
-description: 에이전트 컨텍스트, 토큰 사용, MCP/스킬 상태, 보안을 점검하고 복구 계획을 세우는 스킬
+description: 에이전트 컨텍스트, 토큰 사용, MCP/스킬 상태, 보안을 점검하고 복구 계획을 세우는 스킬. 트리거 — "에이전트 건강성 체크", "에이전트가 멍청해졌어", "컨텍스트 과밀 점검", "토큰/비용 점검", "MCP/스킬 상태 확인", "agent health".
 user_invocable: true
 tags: [agent-health, context, token, mcp, security]
 trigger: "에이전트가 멍청해짐, 컨텍스트 과밀, 비용/토큰/MCP 점검, 새 프로젝트 agent health"

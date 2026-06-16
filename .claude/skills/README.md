@@ -14,10 +14,20 @@
 |---|---|---|---|
 | `doc-sync` | 코드 변경 후 어떤 문서를 같이 고쳐야 할지 헷갈릴 때 | 문서 누락 판정, companion check | `harnesses/change-class-doc-sync.md` |
 | `thin-doc-update` | 문서 업데이트 요청 시 상태판을 얇게 유지해야 할 때 | current dashboard 정리, daily evidence 분리 | - |
+| `doc-health-audit` | 문서 진입 토큰이 무겁거나 구조가 분산되어 있을 때 | 3축 감사 리포트, 토큰 before/after, 안전 정리 플랜 | - |
 | `evidence-review` | 작업 완료 선언 직전 검증과 근거를 확인할 때 | executed verify, changed docs, release verdict | `harnesses/socratic-review.md` |
 | `session-retro` | 세션 종료 시 성공/실패 패턴을 자산화할 때 | 성공/실패/반복 패턴 기록, 승격 후보 | `harnesses/session-retro.md` |
 | `task-intake-router` | 새 요청을 먼저 분류해야 할 때 | intake verdict, chosen skill, next skill | - |
 | `claude-code-health` | 에이전트 컨텍스트/토큰/MCP 건강을 점검할 때 | health verdict, cleanup actions | `harnesses/claude-code-health.md` |
+
+## Design Skills (탁디장 UI/UX)
+
+| Skill | Use When | Output | Related Harness |
+|---|---|---|---|
+| `premium-frontend-design` | 제작/홍보 페이지의 시각적 완성도를 높일 때 | 디자인 시스템, 컴포넌트 패턴, WebGL 템플릿 | `harnesses/design-to-code.md` |
+| `landing-page-guide-v2` | 고전환율 랜딩페이지를 설계할 때 | 11요소 프레임워크, 카피 + 디자인 통합 | `harnesses/conversion-service-site-spec.md` |
+| `interaction-design` | UI 상호작용과 마이크로인터랙션을 설계할 때 | 상호작용 흐름, 애니메이션 타이밍, 피드백 패턴 | `harnesses/design-to-code.md` |
+| `web-design-guidelines` | 웹 디자인 시스템을 구축하고 일관성을 유지할 때 | 색상/타이포 가이드, 반응형 전략, 접근성 체크 | `harnesses/design-to-code.md` |
 
 ## Selection Rule Of Thumb
 

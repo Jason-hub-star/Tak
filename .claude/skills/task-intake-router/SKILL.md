@@ -1,6 +1,6 @@
 ---
 name: task-intake-router
-description: 새 요청이 들어왔을 때 planning, implementation, doc-sync, review로 분류하고 다음 스킬을 선택하는 스킬
+description: 새 요청이 들어왔을 때 planning, implementation, doc-sync, review로 분류하고 다음 스킬을 선택하는 스킬. 트리거 — "이 일 어떻게 시작하지", "작업 분류해줘", "뭐부터 해야 해", "새 작업 라우팅", "intake".
 user_invocable: true
 tags: [routing, intake, planning, triage]
 trigger: "새 요청이 들어와서 먼저 어떤 종류의 일인지 판정해야 할 때"

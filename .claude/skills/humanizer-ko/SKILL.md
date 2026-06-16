@@ -1,6 +1,7 @@
 ---
 name: humanizer-ko
-description: 한국어 마케팅/랜딩 카피에서 AI가 쓴 티(클리셰·과장·부정병렬·막연한 표현·em대시 등)를 걷어내고 사람이 쓴 듯 자연스럽게 다듬는다. blader/humanizer(MIT)를 한국어 카피용으로 재해석한 버전.
+user_invocable: true
+description: 한국어 마케팅/랜딩 카피에서 AI가 쓴 티(클리셰·과장·부정병렬·막연한 표현·em대시 등)를 걷어내고 사람이 쓴 듯 자연스럽게 다듬는다. blader/humanizer(MIT)를 한국어 카피용으로 재해석한 버전. 트리거 — "랜딩 카피 AI 티 빼줘", "마케팅 문구 자연스럽게", "카피 사람처럼 다듬어", "랜딩 문구 윤문".
 ---
 
 # humanizer-ko — 한국어 카피 정제기

@@ -1,5 +1,7 @@
 # 탁디장 문서 관리 체계
 
+**⚠️ 로딩 강도 (Always Read vs On Demand)**: `AGENTS.md`의 실제 로딩 규칙과 이 파일의 우선순위 모델은 별개다. 구현 문제 시 `AGENTS.md`의 "First Read" / "On Demand" 섹션을 먼저 확인.
+
 ## Tier 모델 (우선순위)
 
 ### Tier 0: 실제 코드와 런타임
@@ -10,12 +12,12 @@
 - `AGENTS.md` — 로딩 순서, 하네스 사용 시점
 - `.claude/claude.md` — 프로젝트 고유 규칙
 
-### Tier 2: 구조 및 현황
-- `docs/prd.md` — 제품 기준 문서 **(최우선)**
+### Tier 2: 구조 및 현황 (정본, 필요 시 참조)
+- `docs/prd.md` — 제품 기준 문서 **(최우선 정본)**
 - `ai-context/master-plan.md` — 협업 기준 (우선순위, 단계, 검증)
 - `ai-context/project-context.md` — 도메인 모델, 외부 서비스
 - `docs/status/PROJECT-STATUS.md` — 현재 대시보드 (60~110줄)
-- `docs/status/DECISION-LOG.md` — 구조적 결정 기록
+- `docs/status/DECISION-LOG.md` — 구조적 결정 기록 (배경과 영향 추적)
 
 ### Tier 3: 상세, 템플릿, 하네스
 - `harnesses/` — 패턴과 체크리스트

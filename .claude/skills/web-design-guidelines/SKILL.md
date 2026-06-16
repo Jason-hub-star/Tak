@@ -1,6 +1,7 @@
 ---
 name: web-design-guidelines
-description: Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility", "audit design", "review UX", or "check my site against best practices".
+user_invocable: true
+description: Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility", "audit design", "review UX", or "check my site against best practices". 트리거 — "내 UI 리뷰해줘", "접근성 점검", "디자인 감사", "UX 리뷰", "웹 가이드라인 점검".
 metadata:
   author: vercel
   version: "1.0.0"

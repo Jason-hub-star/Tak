@@ -1,6 +1,6 @@
 ---
 name: doc-sync
-description: 코드 변경 후 어떤 문서를 같이 고쳐야 하는지 change class 기준으로 좁혀주는 점검 스킬
+description: 코드 변경 후 어떤 문서를 같이 고쳐야 하는지 change class 기준으로 좁혀주는 점검 스킬. 트리거 — "코드 고쳤는데 문서 뭐 고쳐", "문서 동기화", "doc sync", "문서 누락 점검", "어떤 문서 같이 고쳐야 해".
 user_invocable: true
 tags: [documentation, drift, post-edit, ssot]
 trigger: "코드 변경 후 문서 누락이 걱정될 때"

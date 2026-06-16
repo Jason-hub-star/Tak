@@ -1,6 +1,6 @@
 ---
 name: session-retro
-description: 세션 종료 시 성공 패턴, 실패 우회, 반복 수작업을 자산화하는 스킬
+description: 세션 종료 시 성공 패턴, 실패 우회, 반복 수작업을 자산화하는 스킬. 트리거 — "세션 마무리", "오늘 작업 회고", "성공/실패 패턴 정리", "삽질 교훈 남겨", "session retro".
 user_invocable: true
 tags: [retro, reflection, automation, skill-extraction]
 trigger: "작업 세션 종료 시, 또는 삽질 후 교훈을 남기고 싶을 때"

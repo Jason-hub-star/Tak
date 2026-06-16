@@ -1,6 +1,7 @@
 ---
 name: premium-frontend-design
-description: Create award-winning, cinematic frontend interfaces that feel ALIVE. Combines 10+ years of creative frontend experience with technical excellence. Specializes in WebGL, custom shaders, premium animations, and distinctive aesthetics that would win on Awwwards. Use when building landing pages, dashboards, platforms, or any interface where "generic AI slop" is unacceptable.
+user_invocable: true
+description: Create award-winning, cinematic frontend interfaces that feel ALIVE. Combines 10+ years of creative frontend experience with technical excellence. Specializes in WebGL, custom shaders, premium animations, and distinctive aesthetics that would win on Awwwards. Use when building landing pages, dashboards, platforms, or any interface where "generic AI slop" is unacceptable. 트리거 — "고급스러운 프론트엔드", "어워드급 UI", "WebGL/셰이더 화려한 랜딩", "프리미엄 디자인", "AI 티 안 나는 화려한 화면".
 license: MIT
 ---
 

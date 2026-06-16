@@ -2,14 +2,19 @@
 
 탁디장 디자인 스튜디오는 Next.js 14 기반 포트폴리오 + 리드 전환 웹사이트다. 온라인 셀러가 신뢰할 수 있는 디자이너를 판단하고 상담 문의로 전환하도록 돕는다.
 
-## Loading Order (Tier 1: Always Read)
+**Document Loading Priority**: 로딩 강도 규칙은 `docs/governance/document-management.md` 참고.
+
+## First Read (항상 먼저 읽기)
 
 1. `ai-context/master-plan.md` — 협업 기준, 우선순위, 단계 진입 조건 (배포 완료 → 운영 모드)
 2. `ai-context/project-context.md` — 한 줄 정의, 도메인 모델, 외부 서비스 연동 (EmailJS 실연동, 카카오톡 연결)
-3. `docs/prd.md` — 제품 기준 문서 (기능/기술스택/라우팅) **최우선**
-4. `docs/status/PROJECT-STATUS.md` — 현재 상태(라우트 증가), 활성 트랙, 다음 액션
-5. `docs/status/DECISION-LOG.md` — 구조적 결정 기록 (탁몽 확장, 배포 완료)
-6. `harnesses/REGISTRY.md` — 이 프로젝트에 맞는 하네스와 사용 시점
+3. `docs/status/PROJECT-STATUS.md` — 현재 상태(라우트 증가), 활성 트랙, 다음 액션
+4. `harnesses/REGISTRY.md` — 이 프로젝트에 맞는 하네스와 사용 시점
+
+## On Demand (필요 시 참조)
+
+- `docs/prd.md` — 제품 기준 문서 (기능/기술스택/라우팅) **최우선 정본** — 작업에 필요한 부분 참조
+- `docs/status/DECISION-LOG.md` — 구조적 결정 기록 (탁몽 확장, 배포 완료) — 의사결정 배경 확인 시
 
 ## Architecture (Tier 2: Reference)
 
@@ -43,7 +48,7 @@
 
 ## Hard Rules
 
-- **정본 우선**: `docs/prd.md` > `ai-context/` > `docs/status/` > 이 파일
+- **정본 우선**: `docs/prd.md` > `ai-context/` > `docs/status/` > 이 파일 (Tier 우선순위는 `docs/governance/document-management.md` 참고)
 - **검증 명령**: `npm run build` (타입체크, 린트, 빌드 포함)
 - **비밀 보호**: `.env.local`은 커밋 안함. 형식은 `.env.local.example` 참조 (EmailJS 키, Vercel 환경변수)
 - **협업**: 문서 충돌 시 `docs/prd.md` 우선. 구현은 Codex 리뷰 대기 모드 준수.

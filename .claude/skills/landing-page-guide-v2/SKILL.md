@@ -1,6 +1,7 @@
 ---
 name: landing-page-guide-v2
-description: Create distinctive, high-converting landing pages that combine proven conversion elements with exceptional design quality. Build beautiful, memorable landing pages using Next.js 14+ and ShadCN UI that avoid generic AI aesthetics while following the 11 essential elements framework.
+user_invocable: true
+description: Create distinctive, high-converting landing pages that combine proven conversion elements with exceptional design quality. Build beautiful, memorable landing pages using Next.js 14+ and ShadCN UI that avoid generic AI aesthetics while following the 11 essential elements framework. 트리거 — "고전환 랜딩페이지 설계", "랜딩페이지 만들어", "11요소 랜딩 가이드", "전환율 높은 랜딩".
 ---
 
 # Landing Page Guide V2

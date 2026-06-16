@@ -23,6 +23,68 @@
 
 ## 기록
 
+### [2026-06-17 스킬 11종 description에 한국어 트리거 구문 내장 + user_invocable 보강]
+- 작업 목표: 탁디장 스킬들이 자연어(한국어)로 자연스럽게 발동되도록 frontmatter를 보강하여 하네스의 skill matching 정확도 향상
+- 범위: 기존 스킬 11종 description 후미에 한국어 트리거 구문 추가 + 필요한 파일에 `user_invocable: true` 추가
+- 변경 파일:
+  - `.claude/skills/claude-code-health/SKILL.md` - description에 "에이전트 건강성 체크", "에이전트가 멍청해졌어", "컨텍스트 과밀 점검" 등 6종 트리거 구문 추가
+  - `.claude/skills/doc-sync/SKILL.md` - description에 "코드 고쳤는데 문서 뭐 고쳐", "문서 동기화", "doc sync" 등 5종 트리거 구문 추가
+  - `.claude/skills/evidence-review/SKILL.md` - description에 "이거 완료해도 돼?", "증거 검토", "릴리스 가능한지" 등 5종 트리거 구문 추가
+  - `.claude/skills/session-retro/SKILL.md` - description에 "세션 마무리", "오늘 작업 회고", "성공/실패 패턴 정리" 등 5종 트리거 구문 추가
+  - `.claude/skills/task-intake-router/SKILL.md` - description에 "이 일 어떻게 시작하지", "작업 분류해줘", "뭐부터 해야 해" 등 5종 트리거 구문 추가
+  - `.claude/skills/thin-doc-update/SKILL.md` - description에 "문서 얇게 업데이트", "상태판 정리", "상태 문서 갱신" 등 4종 트리거 구문 추가
+  - `.claude/skills/humanizer-ko/SKILL.md` - user_invocable: true 추가 + description에 "랜딩 카피 AI 티 빼줘", "마케팅 문구 자연스럽게" 등 4종 트리거 구문 추가
+  - `.claude/skills/interaction-design/SKILL.md` - user_invocable: true 추가 + description에 "인터랙션 디자인", "마이크로인터랙션 추가", "모션/전환 효과" 등 5종 트리거 구문 추가
+  - `.claude/skills/premium-frontend-design/SKILL.md` - user_invocable: true 추가 + description에 "고급스러운 프론트엔드", "어워드급 UI", "WebGL/셰이더 화려한 랜딩" 등 5종 트리거 구문 추가
+  - `.claude/skills/landing-page-guide-v2/SKILL.md` - user_invocable: true 추가 + description에 "고전환 랜딩페이지 설계", "랜딩페이지 만들어", "11요소 랜딩 가이드" 등 4종 트리거 구문 추가
+  - `.claude/skills/web-design-guidelines/SKILL.md` - user_invocable: true 추가 + description에 "내 UI 리뷰해줘", "접근성 점검", "디자인 감사" 등 5종 트리거 구문 추가
+- 검증:
+  - 명령: `for f in /Users/family/jason/tak/.claude/skills/*/SKILL.md; do head -8 "$f"; done` (frontmatter YAML 검증)
+  - 결과: 모든 11개 파일 frontmatter 정상 파싱 확인, --- 구분자 사이 YAML 문법 무결, user_invocable 값 확인, 한국어 트리거 구문 누락 없음
+- 다음 작업:
+  1. 커밋 금지 (Opus 최종 검토 후 진행)
+  2. 실제 하네스 자연어 matching 테스트 (별도 세션)
+
+---
+
+### [2026-06-17 문서 건강성 감사 스킬 신규 작성 (Opus 성공 패턴 박제)]
+- 작업 목표: Opus가 수행한 "문서 건강성 감사·정리" 워크플로우를 재사용 가능한 스킬로 정식화
+- 범위: 스킬 신규 생성 + 색인 추가 + worklog 기록
+- 변경 파일:
+  - `.claude/skills/doc-health-audit/SKILL.md` - 신규 스킬 작성 (3축 진단: 인덱싱·파일크기·폴더, 측정 명령어, Opus-Sonnet 분담 워크플로우, 카탈로그, 안티패턴, 완료기준)
+  - `.claude/skills/README.md` - Core Skills 표에 `doc-health-audit` 항목 추가 (3행 목)
+- 검증:
+  - 명령: `ls -la .claude/skills/doc-health-audit/`, `grep -c "doc-health-audit" .claude/skills/README.md`
+  - 결과: 스킬 파일 생성 확인, README 색인 1건 추가 확인
+- 다음 작업:
+  1. Opus 최종 리뷰 (frontmatter·본문 톤·컨벤션 준수 확인)
+  2. git commit (작업 내용별)
+
+---
+
+### [2026-06-17 문서 진입 체계 정리 (스킬 통합 + Tier 단일화)]
+- 작업 목표: 에이전트 진입 문서와 스킬 디렉토리 구조를 정리하여 로딩 토큰 절감 및 문서 SSOT 일관성 확보
+- 범위: 스킬 디렉토리 이동 + AGENTS.md 로딩 강도 재분류 + 문서 Tier 정의 일치
+- 변경 파일:
+  - `.agents/skills/` → `.claude/skills/` 이동 (git mv, 4개 디렉토리): `premium-frontend-design`, `landing-page-guide-v2`, `interaction-design`, `web-design-guidelines` (하위 examples/, references/, templates/, shaders/ 통째로)
+  - `.agents/` 디렉토리 제거 (비어있음)
+  - `AGENTS.md` - "Tier 1: Always Read" 분리 → "First Read"(4개) + "On Demand"(2개), governance 참조 주석 추가
+  - `.claude/skills/README.md` - 디자인 스킬 4개 색인 추가 (Design Skills 섹션 신설)
+  - `docs/governance/document-management.md` - AGENTS.md와의 Tier 정의 상호참조 주석 추가, prd/DECISION-LOG 로딩강도 명확화
+  - `docs/status/DECISION-LOG.md` - 2026-06-17 신규 항목 (배경, 영향, 검증, 후속)
+- 검증:
+  - 명령: `git status`, `rg -n "\.agents/skills"` (레거시 참조 확인)
+  - 결과: 
+    - 파일 이동 성공 (git mv 기록), 빈 디렉토리 제거
+    - 스킬 frontmatter name과 디렉토리명 일치 확인 (4개 모두)
+    - `.claude/skills/` 아래 4개 + 기존 스킬 중복/충돌 없음
+    - 레거시 경로 참조 0건 (안전한 이동)
+- 다음 작업:
+  1. Opus 최종 리뷰 (파일 정합성, 깨진 참조 확인)
+  2. PR 생성 및 병합
+
+---
+
 ### [2026-06-17 고객 후기 섹션 신규 추가 (캐러셀·framer-motion 드래그)]
 - 작업 목표: 랜딩 페이지 AboutSection·PricingTeaserSection 사이에 고객 후기 섹션 삽입해 전환 신뢰도 강화
 - 범위: 후기 데이터 SSOT + 대화형 캐러셀 컴포넌트 + 페이지 배선

@@ -1,6 +1,6 @@
 ---
 name: evidence-review
-description: 작업 완료 선언 직전, 실행한 검증, 바뀐 문서, 남은 리스크와 release verdict를 확인하는 스킬
+description: 작업 완료 선언 직전, 실행한 검증, 바뀐 문서, 남은 리스크와 release verdict를 확인하는 스킬. 트리거 — "이거 완료해도 돼?", "증거 검토", "릴리스 가능한지", "작업 끝났는지 확인", "evidence review".
 user_invocable: true
 tags: [verification, release, risk, evidence]
 trigger: "완료 선언 직전, 리뷰 요청 전"
