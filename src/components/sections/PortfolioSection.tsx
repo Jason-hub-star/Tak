@@ -4,19 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
-  Target,
   PenTool,
   Camera,
-  DollarSign,
   Clock,
   FileText,
-  Monitor,
   MessageCircle,
   Gift,
   type LucideIcon,
 } from "lucide-react";
 import type { PortfolioItem } from "@/types";
 import { Badge } from "@/components/ui/Badge";
+import { Card } from "@/components/ui/Card";
 
 interface PortfolioSectionProps {
   portfolios: PortfolioItem[];
@@ -55,9 +53,6 @@ const STAIR_ASPECTS_RIGHT_TO_LEFT = [
   "aspect-[4/5] md:aspect-[4/5]",
 ];
 
-const META_BAR_LEFT_TO_RIGHT = ["h-10 md:h-8", "h-10 md:h-14", "h-10 md:h-20"];
-const META_BAR_RIGHT_TO_LEFT = ["h-10 md:h-20", "h-10 md:h-14", "h-10 md:h-8"];
-
 const DESIGNER_TAGS = [
   "부산상세페이지",
   "상세페이지",
@@ -86,19 +81,16 @@ interface StrengthCard {
 
 const STUDIO_STRENGTHS: StrengthCard[][] = [
   [
-    { icon: Target, title: "설득 중심 설계", description: "예쁜 화면이 아닌, 구매를 이끄는 구조를 만듭니다" },
     { icon: PenTool, title: "콘티 먼저, 디자인은 그 다음", description: "스케치로 방향을 합의한 뒤 제작해 수정을 줄입니다" },
     { icon: Camera, title: "촬영부터 디자인까지 원스톱", description: "기획·촬영·디자인을 한 번에" },
   ],
   [
-    { icon: DollarSign, title: "프로젝트 단위 정가제", description: "길이 기준이 아닌 프로젝트 범위로 견적합니다" },
     { icon: Clock, title: "평균 2~3주 완성", description: "기획부터 납품까지 체계적으로 진행합니다" },
     { icon: FileText, title: "바로 쓰는 완성본 납품", description: "플랫폼 규격에 맞춘 완성 이미지와 운영 가이드를 함께 드립니다" },
   ],
   [
-    { icon: Monitor, title: "모든 플랫폼 대응", description: "스마트스토어·쿠팡·자사몰 가이드라인 반영" },
-    { icon: MessageCircle, title: "24시간 내 회신", description: "빠른 소통으로 프로젝트를 원활하게" },
     { icon: Gift, title: "15분 무료 상담", description: "프로젝트 가능성을 부담 없이 확인하세요" },
+    { icon: MessageCircle, title: "24시간 내 회신", description: "빠른 소통으로 프로젝트를 원활하게" },
   ],
 ];
 
@@ -112,10 +104,6 @@ function getStairAspects(direction: StairDirection): string[] {
   return direction === "leftToRight"
     ? STAIR_ASPECTS_LEFT_TO_RIGHT
     : STAIR_ASPECTS_RIGHT_TO_LEFT;
-}
-
-function getMetaBarHeights(direction: StairDirection): string[] {
-  return direction === "leftToRight" ? META_BAR_LEFT_TO_RIGHT : META_BAR_RIGHT_TO_LEFT;
 }
 
 /** 현재 3개 MDX → 9슬롯 순환 채움 */
@@ -227,44 +215,49 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                 })}
               </div>
 
-              {/* ── 스튜디오 강점 카드 행 ── 모바일: 2열 압축 / md+: 계단식 */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 items-end">
-                {STUDIO_STRENGTHS[g].map((strength, col) => {
-                  const i = idx++;
-                  const metaRowDirection = getRowDirection(g * 2 + 1);
-                  const metaBarHeights = getMetaBarHeights(metaRowDirection);
-                  const Icon = strength.icon;
-                  return (
-                    <motion.div
-                      key={`strength-${g}-${col}`}
-                      custom={i}
-                      variants={cardVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, margin: "-40px" }}
-                    >
-                      <div className="rounded-card bg-white shadow-card overflow-hidden">
-                        <div
-                          className={`${BG_COLORS[(g * 3 + col) % BG_COLORS.length]} ${metaBarHeights[col]}`}
-                        />
-                        <div className="p-5">
-                          <div className="flex items-center gap-3 mb-2">
-                            <div className="w-9 h-9 rounded-full bg-primary-100 flex items-center justify-center text-primary">
-                              <Icon className="w-4 h-4" />
+              {/* ── 스튜디오 강점 카드 행 ── 모바일: 2열 압축 / md+: 2장=가운데, 3장=3열 */}
+              {(() => {
+                const strengthCount = STUDIO_STRENGTHS[g].length;
+                const gridClassName =
+                  strengthCount === 2
+                    ? "grid grid-cols-2 gap-3 md:gap-5 items-stretch md:max-w-2xl md:mx-auto"
+                    : "grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 items-stretch";
+                return (
+                  <div className={gridClassName}>
+                    {STUDIO_STRENGTHS[g].map((strength, col) => {
+                      const i = idx++;
+                      const Icon = strength.icon;
+                      return (
+                        <motion.div
+                          key={`strength-${g}-${col}`}
+                          custom={i}
+                          variants={cardVariants}
+                          initial="hidden"
+                          whileInView="visible"
+                          viewport={{ once: true, margin: "-40px" }}
+                          className="h-full"
+                        >
+                          <Card padded={false} className="h-full">
+                            <div className="p-5 h-full flex flex-col">
+                              <div className="flex items-center gap-3 mb-2">
+                                <div className="w-9 h-9 rounded-full bg-primary-100 flex items-center justify-center text-primary">
+                                  <Icon className="w-4 h-4" />
+                                </div>
+                                <p className="text-sm font-semibold text-foreground break-keep">
+                                  {strength.title}
+                                </p>
+                              </div>
+                              <p className="text-xs text-muted-foreground break-keep text-pretty flex-1">
+                                {strength.description}
+                              </p>
                             </div>
-                            <p className="text-sm font-semibold text-foreground break-keep">
-                              {strength.title}
-                            </p>
-                          </div>
-                          <p className="text-xs text-muted-foreground break-keep text-pretty">
-                            {strength.description}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
+                          </Card>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
 
               {/* ── 그룹 사이 멘트카드 (2개 고정) ── */}
               {g < groups.length - 1 && (
