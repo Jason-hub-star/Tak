@@ -271,14 +271,9 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                 >
                   {(() => {
                     const message = buildMessageCard(g);
-                    const isSecondMessageCard = g === 1;
 
                     return (
-                      <div
-                        className={`flex ${
-                          isSecondMessageCard ? "justify-start md:justify-end" : "justify-start"
-                        }`}
-                      >
+                      <div className="flex justify-start md:justify-center">
                         <div className="w-full md:max-w-2xl rounded-card p-5 md:p-6 bg-white border border-border shadow-card hover:shadow-card-hover hover:-translate-y-3 transition-all duration-200">
                           <div className="text-left">
                             <span className="text-xs font-medium uppercase tracking-widest text-primary/80">
