@@ -23,6 +23,12 @@
 
 ## 기록
 
+### [2026-06-17 doc-health-audit 감사 후속 — 문서 front-door 트리거 + 로그 회전 규칙 추가]
+- 작업 목표: 문서 스킬 과밀(A) + 로그 회전 부재(B) 감사 결과의 경증 2건을 1줄씩 패치
+- 범위: (A) "문서 업데이트/갱신" 자연어 정문 부재 → `thin-doc-update` description에 front-door 트리거 추가 / (B) worklog·DECISION-LOG 회전 규칙 SSOT 부재 → `document-management.md` 운영 주기에 1500줄(또는 분기) 초과 시 `docs/history/`로 회전 규칙 추가
+- 변경 파일: `.claude/skills/thin-doc-update/SKILL.md`, `docs/governance/document-management.md`
+- 검증: 코드 무수정, 깨진 참조 0건(하네스 10종·history 폴더는 회전 도래 시 생성). 감사 시점 최대 로그 worklog 435줄(임계 미달, 규칙만 선제 삽입)
+
 ### [2026-06-17 스킬 11종 description에 한국어 트리거 구문 내장 + user_invocable 보강]
 - 작업 목표: 탁디장 스킬들이 자연어(한국어)로 자연스럽게 발동되도록 frontmatter를 보강하여 하네스의 skill matching 정확도 향상
 - 범위: 기존 스킬 11종 description 후미에 한국어 트리거 구문 추가 + 필요한 파일에 `user_invocable: true` 추가

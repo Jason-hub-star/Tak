@@ -77,4 +77,5 @@
 - **주요 배포 전**: DECISION-LOG에 결정 기록 + PROJECT-STATUS 갱신
 - **세션 종료 시**: worklog + review-log 업데이트 (session-retro harness)
 - **월별**: handover.md 갱신 (진입점, 블로커, 다음 액션)
+- **로그 회전**: `worklog.md`/`DECISION-LOG.md`가 **1500줄 초과(또는 분기 종료)** 시 오래된 항목을 `docs/history/YYYY-Q#.md`로 이동하고, 본문 헤더에 `Archive: docs/history/` 링크 1줄을 남긴다 (회전 처방은 `doc-health-audit` 스킬 참조).
 

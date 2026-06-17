@@ -1,6 +1,6 @@
 ---
 name: thin-doc-update
-description: 문서 업데이트 요청 시 상태판을 얇게 유지하고 상세 증거는 일일 로그로 분리하는 스킬. 트리거 — "문서 얇게 업데이트", "상태판 정리", "상태 문서 갱신", "daily 로그로 분리".
+description: 문서 업데이트/문서 갱신 요청의 기본 입구. 상태판을 얇게 유지하고 상세 증거는 일일 로그로 분리하는 스킬. 트리거 — "문서 업데이트", "문서 갱신", "문서 얇게 업데이트", "상태판 정리", "상태 문서 갱신", "daily 로그로 분리".
 user_invocable: true
 tags: [docs, status, daily, cleanup, doc-sync]
 trigger: "문서 업데이트, doc update, 상태 문서 정리, daily 누적"
