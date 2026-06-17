@@ -1,8 +1,8 @@
 # Tak Djang Design Studio — Project Status
 
-기준일: 2026-06-17  
+기준일: 2026-06-18  
 정본: `docs/prd.md` + `ai-context/master-plan.md`  
-검증: `npm run build` (28개 라우트 통과, 측정 인프라 추가)
+검증: `npm run build` (28개 라우트 통과, 운영 배포 점검 완료)
 
 ## 현재 단계
 
@@ -85,14 +85,17 @@
    - [ ] 썸네일 + 긴 JPG 경로 매핑
 
 4. **성능 모니터링**
-   - [ ] Vercel Analytics (LCP/CLS/INP 점검)
-   - [ ] Core Web Vitals 개선 (필요 시)
+   - [x] 운영 배포 점검(2026-06-18): 하이드레이션·캐싱·이미지·TTFB 실측 양호. 1차 자동점검 오진 2건 교차검증 기각(정적자산 max-age 오진·캐러셀 속도 cold-start 과장)
+   - [ ] Vercel Analytics (LCP/CLS/INP 점검) — 수집 대기 중
+   - [ ] Lighthouse 실측 (desktop/mobile) — 선택사항
 
-## 최근 변경 요약 (2026-06-17)
+## 최근 변경 요약 (최근 5개)
 
-**고객 후기 섹션 신규 추가**: 랜딩 AboutSection 다음·PricingTeaserSection 앞에 `<TestimonialsSection>` 배선. 신규 데이터 SSOT(`src/lib/content/testimonials.ts`, 5개 항목 원문 보존+강점 태그), framer-motion 드래그/자동재생 캐러셀(`TestimonialCarousel.tsx`, 6초·hover/포커스 정지) + 접근성(aria-live/prefers-reduced-motion 존중). `npm run build` 성공(28개 라우트), 로컬 dev 후기 섹션 서버 렌더 확인.
+**운영 배포 점검(2026-06-18)**: https://takdijang.com 커밋 f80dc10 기준 배포 반영·하이드레이션·캐싱·속도·이미지 전부 건강 확인. Opus 직접 curl -sI/-w 교차검증 결과 1차 자동점검 오진 2건 기각(정적 자산 max-age·캐러셀 속도 cold-start 과장). 상세 실측값·오진 근거 `ai-context/worklog.md` 기록.
 
-**이전 변경 요약**: 포트폴리오 컬러화, SEO 셋업(JSON-LD 28개·도메인 정정 takdjang→takdijang), 가격 개편(490k·990k 패키지), 사업자 정보·로고·히어로 배경영상·EmailJS·Vercel 배포 완료. 상세는 `ai-context/worklog.md`·`docs/status/DECISION-LOG.md` 참조.
+**고객 후기 섹션 신규 추가(2026-06-17)**: 랜딩 AboutSection 다음·PricingTeaserSection 앞에 `<TestimonialsSection>` 배선. 신규 데이터 SSOT(`src/lib/content/testimonials.ts`, 5개 항목 원문 보존+강점 태그), framer-motion 드래그/자동재생 캐러셀(`TestimonialCarousel.tsx`, 6초·hover/포커스 정지) + 접근성(aria-live/prefers-reduced-motion 존중). `npm run build` 성공(28개 라우트), 로컬 dev 후기 섹션 서버 렌더 확인.
+
+**이전 변경**: 포트폴리오 컬러화, SEO 셋업(JSON-LD 28개·도메인 정정 takdjang→takdijang), 가격 개편(490k·990k 패키지), 사업자 정보·로고·히어로 배경영상·EmailJS·Vercel 배포. 상세: `ai-context/worklog.md`·`docs/status/DECISION-LOG.md`
 
 ## Handoff Capsule
 

@@ -23,6 +23,52 @@
 
 ## 기록
 
+### [2026-06-18 운영 배포 성능·하이드레이션 점검]
+- 작업 목표: 운영 환경(https://takdijang.com) 최신 커밋 기준 배포 반영·성능·기술 스택 안정성을 Opus 직접 교차검증
+- 범위: 배포 반영 + 하이드레이션 + 캐싱 + 속도(TTFB) + 이미지·영상 최적화 + 선택 액션 검토
+- 변경 파일: 문서만(코드 무수정)
+  - `ai-context/worklog.md` - 실측 결과 기록
+  - `docs/status/PROJECT-STATUS.md` - 상태판 갱신 (기준일 + 다음 액션 + 최근 변경 요약)
+- 점검 일자: 2026-06-18
+- 검증 대상 URL: https://takdijang.com
+- 검증 시점 최신 커밋: f80dc10
+- 직전 커밋(비교군): 9ca8c9b (PortfolioSection 강점카드 Card 컴포넌트 통일 리팩터)
+- 실측 결과(Opus 직접 curl/agent-browser 교차검증):
+  1. **배포 반영**: ✅ 최신 빌드 운영 반영 확인(x-vercel-cache: HIT). 강점카드 2장 가운데정렬 레이아웃(Card 컴포넌트 통일) 라이브 노출.
+  2. **하이드레이션 안정성**: ✅ 이상 없음. 콘솔 에러 0건. SSR/CSR 불일치 회피 구조 확인:
+     - HeroBackgroundVideo: 마운트 후 분기 + poster 항상 SSR
+     - PortfolioSection: framer-motion whileInView + viewport once
+     - FAQ: initial={false}
+  3. **캐싱(실측 헤더 기반 교차검증)**: ✅ 양호 (오진 1건 기각)
+     - 정적 자산 `/_next/static/*.js`: `public,max-age=31536000,immutable` ✅
+     - HTML 문서: `public,max-age=0,must-revalidate` + CDN HIT (SSG 정상, 의도된 값)
+     - 이미지 minimumCacheTTL: 30일(2592000) ✅
+     - **기각 사실**: 1차 자동점검(Sonnet)이 "정적 자산이 max-age=0이라 headers() 추가 필요"라고 진단했으나, Opus가 실제 JS 자산 헤더를 curl -sI로 떠서 **오진임을 확인**. HTML 문서 헤더를 자산 헤더로 착각한 것. next.config에 headers() 추가는 불필요함.
+  4. **속도(TTFB, 3회 반복 실측)**: ✅ 양호
+     - 홈 `/`: 160ms, 190ms, 216ms (평균 188ms)
+     - `/pricing`: 157ms (cold 664ms 1회)
+     - **기각 사실**: 1차 자동점검의 "홈 571ms·/pricing 1.8초" 및 "캐러셀 최적화 High 필요" 결론은 cold-start 단발 측정의 과장으로 **기각함**. 정상 운영 TTFB는 160~216ms 대역.
+  5. **이미지·영상**: ✅ 양호
+     - next/image avif·webp 변환 정상 동작
+     - 포트폴리오 썸네일: lazy + 반응형 sizes
+     - 배경영상(HeroBackgroundVideo): Save-Data/2G/3G 감지 시 자동 스킵, poster 즉시 노출
+  6. **남은 선택 액션(긴급도 낮음, 미적용)**: 
+     - (a) HeroBackgroundVideo preload="metadata"→"none" (미세 절감, 이득 작음)
+     - (b) above-the-fold 첫 이미지 priority → LCP/CLS 실측 미측정(추정만 남음)
+     - (c) Lighthouse 실측 미실시
+- 검증 방법:
+  - 배포 확인: `curl -sI https://takdijang.com | grep x-vercel-cache`
+  - 캐싱 헤더: `curl -sI https://takdijang.com/_next/static/chunks/main.js` (max-age=31536000), `curl -sI https://takdijang.com/` (max-age=0)
+  - 속도: `curl -w '@timing.txt' https://takdijang.com` (3회) → TTFB time_starttransfer 추출, 160~216ms 대역 정상
+  - 하이드레이션: agent-browser 콘솔 에러 0건 확인
+  - 이미지·영상: agent-browser 개발자도구 Network(next/image 변환), Video 요소 동작 확인
+- 다음 작업:
+  1. Vercel Analytics(LCP/CLS/INP) 수집 대기 + 문서 반영 (별도 세션)
+  2. Lighthouse 실측(desktop/mobile) — 선택사항
+  3. (미적용 선택액션) preload/priority 미세 최적화 (이득 검증 후)
+
+---
+
 ### [2026-06-17 doc-health-audit 감사 후속 — 문서 front-door 트리거 + 로그 회전 규칙 추가]
 - 작업 목표: 문서 스킬 과밀(A) + 로그 회전 부재(B) 감사 결과의 경증 2건을 1줄씩 패치
 - 범위: (A) "문서 업데이트/갱신" 자연어 정문 부재 → `thin-doc-update` description에 front-door 트리거 추가 / (B) worklog·DECISION-LOG 회전 규칙 SSOT 부재 → `document-management.md` 운영 주기에 1500줄(또는 분기) 초과 시 `docs/history/`로 회전 규칙 추가
