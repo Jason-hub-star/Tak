@@ -1,18 +1,19 @@
 # Tak Djang Design Studio — Project Status
 
-기준일: 2026-06-18  
+기준일: 2026-06-23
 정본: `docs/prd.md` + `ai-context/master-plan.md`  
-검증: `npm run build` (28개 라우트 통과, 운영 배포 점검 완료)
+검증: `npm run build` (29개 라우트 통과)
 
 ## 현재 단계
 
 **배포 완료 → 운영 모드 (점증적 개선)**
 
 - [x] Next.js 14 App Router + TypeScript + Tailwind + Framer Motion 세팅 완료
-- [x] 핵심 라우팅 (/, /portfolio/[slug], /services, /pricing, /portfolio, /contact, /contact/form, /contact/form/thank-you, /privacy) + sitemap.xml, robots.txt
+- [x] 핵심 라우팅 (/, /portfolio/[slug], /services, /pricing, /portfolio, /blog-management, /contact, /contact/form, /contact/form/thank-you, /privacy) + sitemap.xml, robots.txt
 - [x] 랜딩 7섹션 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
 - [x] **제작+홍보 연계 포지셔닝** (devfive 벤치마킹): `/services` `/pricing` `/portfolio` + 홈 신규 3섹션 완성
-- [x] 포트폴리오 SSG (TS 레지스트리, 내부 상세 9개 + 외부 링크 2개: 탁몽 와디즈 펀딩 상세페이지·금강이지스 현관중문 블로그 운영)
+- [x] 포트폴리오 SSG (TS 레지스트리, 내부 상세 9개 + 외부 링크 1개: 탁몽 와디즈 펀딩 상세페이지)
+- [x] 블로그운영 허브 (`/blog-management`, 금강이지스 현관중문 운영 사례 분리, 네비·푸터·sitemap 반영)
 - [x] 문의 폼 (React Hook Form + Zod + EmailJS + honeypot)
 - [x] **무료 진단 위저드** (`/contact/form`, 13문항 5단계, localStorage 저장, sendDiagnosis)
 - [x] **디자인 에디토리얼 리디자인**: 오프화이트 배경, 근접 블랙 본문, Rose 브랜드, 카드 radius 축소, 플랫 그림자
@@ -20,7 +21,7 @@
 - [x] **블랙 완전 제거**: primary 로즈·footer 라이트·FinalCTA 라이트·FloatingCTA 로즈톤
 - [x] 모션 토큰 (SSOT: `src/lib/motion.ts`, duration/easing)
 - [x] UI 프리미티브 (Button, Badge, Card, Section, Reveal, MediaFrame)
-- [x] **SEO 강화** (JSON-LD 28개 라우트 주입, OG 이미지 동적 생성, sitemap/robots SSOT)
+- [x] **SEO 강화** (JSON-LD 29개 라우트 주입, OG 이미지 동적 생성, sitemap/robots SSOT)
 - [x] 모바일/데스크톱 레이아웃 + 접근성 개선
 
 ## 활성 트랙
@@ -46,6 +47,7 @@
 | `/pricing` | ✓ 완료 | build/care/ads 가격 + 비교표 + FAQ |
 | `/portfolio` | ✓ 완료 | 포트폴리오 목록 |
 | `/portfolio/[slug]` | ✓ 완료 | SSG, MDX 파싱 |
+| `/blog-management` | ✓ 완료 | 블로그운영 사례 허브 (금강이지스 현관중문) |
 | `/contact` | ✓ 완료 | 진단 상담 카드 랜딩 |
 | `/contact/form` | ✓ 완료 | 13문항 5단계 무료 진단 위저드 (localStorage, sendDiagnosis) |
 | `/contact/form/thank-you` | ✓ 완료 | 감사 페이지 |
@@ -91,6 +93,8 @@
 
 ## 최근 변경 요약 (최근 5개)
 
+**블로그운영 허브 분리(2026-06-23)**: 금강이지스 현관중문 블로그 운영 사례를 `/portfolio` 외부 카드에서 제거하고 `/blog-management` 허브로 분리. 포트폴리오 우선순위는 유아침대 → 워터젤리 → 메밀베개 순서로 전체 사이트에 적용. `npm run build` 성공(29개 라우트).
+
 **운영 배포 점검(2026-06-18)**: https://takdijang.com 커밋 f80dc10 기준 배포 반영·하이드레이션·캐싱·속도·이미지 전부 건강 확인. Opus 직접 curl -sI/-w 교차검증 결과 1차 자동점검 오진 2건 기각(정적 자산 max-age·캐러셀 속도 cold-start 과장). 상세 실측값·오진 근거 `ai-context/worklog.md` 기록.
 
 **고객 후기 섹션 신규 추가(2026-06-17)**: 랜딩 AboutSection 다음·PricingTeaserSection 앞에 `<TestimonialsSection>` 배선. 신규 데이터 SSOT(`src/lib/content/testimonials.ts`, 5개 항목 원문 보존+강점 태그), framer-motion 드래그/자동재생 캐러셀(`TestimonialCarousel.tsx`, 6초·hover/포커스 정지) + 접근성(aria-live/prefers-reduced-motion 존중). `npm run build` 성공(28개 라우트), 로컬 dev 후기 섹션 서버 렌더 확인.
@@ -102,7 +106,7 @@
 **진입 체크리스트**:
 - `ai-context/master-plan.md` (우선순위 백로그)
 - `docs/prd.md` (제품 정본)
-- `.env.local` 설정 후 `npm run build` (28개 라우트 + JSON-LD 검증)
+- `.env.local` 설정 후 `npm run build` (29개 라우트 + JSON-LD 검증)
 
 **문서 계층**:
 - 정본: `docs/prd.md` (제품)

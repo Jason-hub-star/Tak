@@ -23,6 +23,22 @@
 
 ## 기록
 
+### [2026-06-23 00:00 KST] 블로그운영 허브 분리 + 포트폴리오 우선순위 고정
+- 작업 목표: `/portfolio`에서 금강이지스 블로그운영 카드를 분리하고, 상세페이지 포트폴리오 노출 순서를 유아침대 → 워터젤리 → 메밀베개 우선으로 고정
+- 범위: 콘텐츠 레지스트리 + 신규 라우트 + 네비/푸터/sitemap + 상태 문서
+- 변경 파일:
+  - `src/lib/content/portfolio-data.ts`, `src/lib/content/portfolio.ts`, `src/types/index.ts` - 블로그운영 항목 분리, `displayOrder` 기반 정렬 추가
+  - `src/lib/content/blog-management.ts`, `src/app/blog-management/page.tsx` - 블로그운영 사례 허브 추가
+  - `src/app/portfolio/page.tsx` - 상세페이지 카드 우선 렌더링, 외부 채널 작업 하단 이동
+  - `src/lib/constants.ts`, `src/components/layout/Header.tsx`, `src/components/layout/Footer.tsx`, `src/app/sitemap.ts`, `src/lib/seo/site.ts` - 블로그운영 링크 및 sitemap 반영
+  - `docs/status/PROJECT-STATUS.md`, `docs/status/DECISION-LOG.md`, `ai-context/project-context.md`, `ai-context/worklog.md` - route/surface 변경 문서 동기화
+- 검증:
+  - 명령: `npm run build`
+  - 결과: 성공 (29개 라우트 정적 생성, `/blog-management` 포함)
+  - 추가: `im-not-ai` quick-rules 기반 S1/S2 텍스트 스캔 0건, Web Interface Guidelines 표면 스캔 통과, Playwright 모바일/데스크탑 오버플로우 0건
+- 다음 작업:
+  1. 운영 배포 후 실제 도메인에서 `/portfolio`, `/blog-management` 색인·콘솔 재확인
+
 ### [2026-06-18 운영 배포 성능·하이드레이션 점검]
 - 작업 목표: 운영 환경(https://takdijang.com) 최신 커밋 기준 배포 반영·성능·기술 스택 안정성을 Opus 직접 교차검증
 - 범위: 배포 반영 + 하이드레이션 + 캐싱 + 속도(TTFB) + 이미지·영상 최적화 + 선택 액션 검토

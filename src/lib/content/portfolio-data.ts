@@ -3,7 +3,8 @@ import type { PortfolioItemData } from "@/types";
 /**
  * 포트폴리오 정적 레지스트리.
  * - 내부 항목: slug = public/portfolio/ 하위 폴더명 (상세페이지 작업)
- * - 외부 항목: externalUrl 지정 (와디즈 펀딩·블로그 운영 등). 내부 상세페이지는 생성하지 않음.
+ * - 외부 항목: externalUrl 지정 (와디즈 펀딩 등). 내부 상세페이지는 생성하지 않음.
+ * - displayOrder: 전체 사이트에서 먼저 보여줄 상세페이지 우선순위.
  */
 export const PORTFOLIO_ITEMS: PortfolioItemData[] = [
   {
@@ -20,20 +21,6 @@ export const PORTFOLIO_ITEMS: PortfolioItemData[] = [
     externalUrl: "https://www.wadiz.kr/web/campaign/detail/384334",
     externalLabel: "탁몽 자세히 보기",
     productHref: "/takmong",
-  },
-  {
-    slug: "artdoorstore-blog",
-    title: "금강이지스 현관중문 · 블로그 운영",
-    clientType: "현관중문 브랜드",
-    category: ["블로그 운영", "콘텐츠 마케팅"],
-    industry: "인테리어 · 홈",
-    deliverables: ["콘텐츠 기획", "포스팅 운영", "검색 노출 관리"],
-    kpi: "누적 48,000+ 방문 · 이웃 1,800명+",
-    publishedAt: "2026-06-10",
-    featured: true,
-    tags: ["블로그운영", "콘텐츠마케팅"],
-    externalUrl: "https://blog.naver.com/artdoorstore",
-    externalLabel: "블로그 바로가기",
   },
   {
     slug: "ricecake",
@@ -61,7 +48,7 @@ export const PORTFOLIO_ITEMS: PortfolioItemData[] = [
   },
   {
     slug: "buckwheat-pillow",
-    title: "메밀배게 상세페이지",
+    title: "메밀베개 상세페이지",
     clientType: "온라인 셀러",
     category: ["상세페이지", "리빙"],
     industry: "리빙",
@@ -69,7 +56,8 @@ export const PORTFOLIO_ITEMS: PortfolioItemData[] = [
     kpi: "구매전환 최적화",
     publishedAt: "2026-01-15",
     featured: true,
-    tags: ["리빙", "상세페이지", "메밀배게"],
+    tags: ["리빙", "상세페이지", "메밀베개"],
+    displayOrder: 3,
   },
   {
     slug: "raw-chicken",
@@ -94,6 +82,7 @@ export const PORTFOLIO_ITEMS: PortfolioItemData[] = [
     publishedAt: "2026-01-20",
     featured: true,
     tags: ["식품", "상세페이지", "워터젤리"],
+    displayOrder: 2,
   },
   {
     slug: "baby-bed",
@@ -106,6 +95,7 @@ export const PORTFOLIO_ITEMS: PortfolioItemData[] = [
     publishedAt: "2026-01-22",
     featured: true,
     tags: ["리빙", "상세페이지", "유아침대"],
+    displayOrder: 1,
   },
   {
     slug: "tv-mount",

@@ -1,6 +1,6 @@
 ﻿# 프로젝트 컨텍스트 (Tak)
 
-기준일: 2026-06-16 (KST)
+기준일: 2026-06-23 (KST)
 프로젝트명: Tak Djang Design Studio
 기준 문서: `docs/prd.md`
 
@@ -24,10 +24,10 @@
 4. 명확한 견적: 길이 단위가 아닌 프로젝트 단위 정가 운영
 
 ## 5) 현재 상태와 기준선
-- 현재 코드베이스: Next.js 14 App Router 기반 구현 + 디자인 정제 완료 (빌드 성공, 25개 라우트)
+- 현재 코드베이스: Next.js 14 App Router 기반 구현 + 디자인 정제 완료 (빌드 성공, 29개 라우트)
 - 구현 완료 항목:
   - 랜딩 10섹션 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
-  - **제작+홍보 연계 풀 IA** (devfive 벤치마킹): `/services`, `/pricing`, `/portfolio` 라우트
+  - **제작+홍보 연계 풀 IA** (devfive 벤치마킹): `/services`, `/pricing`, `/portfolio`, `/blog-management` 라우트
   - **무료 진단 위저드** (`/contact/form`, 13문항 5단계, localStorage)
   - `/portfolio/[slug]` SSG (MDX frontmatter 파싱, 샘플 3개)
   - 문의 폼 (React Hook Form + Zod + EmailJS + honeypot 스팸 방지)
@@ -42,7 +42,9 @@
 
 ## 6) 핵심 도메인 모델 (PRD 기준)
 - PortfolioItem
-  - slug, title, category[], industry, deliverables[], kpi, thumbnail, heroImage, publishedAt, featured, tags[]
+  - slug, title, category[], industry, deliverables[], kpi, thumbnail, heroImage, publishedAt, featured, tags[], displayOrder?
+- BlogManagementCase
+  - slug, title, clientType, industry, summary, deliverables[], kpi, publishedAt, featured, tags[], externalUrl, externalLabel
 - TemplateItem
   - slug, title, description, price, discountedPrice, featured, images[], thumbnailUrl, smartstoreUrl
 - Tag
@@ -58,6 +60,7 @@
 - `/pricing`: 가격 비교표 + FAQ
 - `/portfolio`: 포트폴리오 목록
 - `/portfolio/[slug]`: 포트폴리오 상세 (SSG)
+- `/blog-management`: 블로그 운영 사례 허브
 - `/contact`: 진단 상담 카드 랜딩
 - `/contact/form`: 무료 진단 위저드 (13문항 5단계, localStorage)
 - `/contact/form/thank-you`: 감사 페이지

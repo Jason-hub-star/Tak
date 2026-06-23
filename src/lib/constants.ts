@@ -5,6 +5,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: "서비스", href: "/services" },
   { label: "AI 템플릿", href: "/takmong" },
   { label: "포트폴리오", href: "/portfolio" },
+  { label: "블로그운영", href: "/blog-management" },
   { label: "가격", href: "/pricing" },
   { label: "프로세스", href: "/#process" },
   { label: "FAQ", href: "/#faq" },

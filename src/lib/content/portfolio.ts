@@ -18,6 +18,7 @@ function resolveItem(data: (typeof PORTFOLIO_ITEMS)[number]): PortfolioItem {
     publishedAt: data.publishedAt,
     featured: data.featured,
     tags: data.tags,
+    displayOrder: data.displayOrder,
     detailImages: images.detailImages,
     externalUrl: data.externalUrl,
     externalLabel: data.externalLabel,
@@ -25,25 +26,30 @@ function resolveItem(data: (typeof PORTFOLIO_ITEMS)[number]): PortfolioItem {
   };
 }
 
-const sortByDateDesc = (a: PortfolioItem, b: PortfolioItem) =>
-  new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+const sortPortfolios = (a: PortfolioItem, b: PortfolioItem) => {
+  const aOrder = a.displayOrder ?? Number.POSITIVE_INFINITY;
+  const bOrder = b.displayOrder ?? Number.POSITIVE_INFINITY;
+
+  if (aOrder !== bOrder) return aOrder - bOrder;
+  return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+};
 
 /**
- * 내부 상세페이지 포트폴리오 목록 (최신순).
+ * 내부 상세페이지 포트폴리오 목록 (수동 우선순위 → 최신순).
  * 외부 링크 항목(externalUrl)은 제외 — 홈 계단·서비스·연관추천은 모두 내부 라우팅이라
  * 외부 항목이 섞이면 /portfolio/[slug] 404가 발생하기 때문.
  */
 export function getAllPortfolios(): PortfolioItem[] {
   return PORTFOLIO_ITEMS.filter((p) => !p.externalUrl)
     .map(resolveItem)
-    .sort(sortByDateDesc);
+    .sort(sortPortfolios);
 }
 
-/** 외부 링크 항목 목록 (와디즈 펀딩·블로그 운영 등, 최신순) */
+/** 외부 링크 항목 목록 (와디즈 펀딩 등, 최신순) */
 export function getExternalWorks(): PortfolioItem[] {
   return PORTFOLIO_ITEMS.filter((p) => p.externalUrl)
     .map(resolveItem)
-    .sort(sortByDateDesc);
+    .sort(sortPortfolios);
 }
 
 /** slug 기준 단일 조회 (내부 항목만 — 외부 링크 항목은 상세페이지가 없음) */

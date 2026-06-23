@@ -94,6 +94,8 @@ const STUDIO_STRENGTHS: StrengthCard[][] = [
   ],
 ];
 
+const LANDING_PRIORITY_SLUGS = ["baby-bed", "water-jelly", "buckwheat-pillow"];
+
 type StairDirection = "leftToRight" | "rightToLeft";
 
 function getRowDirection(rowIndex: number): StairDirection {
@@ -109,7 +111,20 @@ function getStairAspects(direction: StairDirection): string[] {
 /** 현재 3개 MDX → 9슬롯 순환 채움 */
 function buildSlots(portfolios: PortfolioItem[], count = 9): PortfolioItem[] {
   if (portfolios.length === 0) return [];
-  return Array.from({ length: count }, (_, i) => portfolios[i % portfolios.length]);
+
+  const prioritized = [
+    ...LANDING_PRIORITY_SLUGS.map((slug) =>
+      portfolios.find((item) => item.slug === slug)
+    ).filter((item): item is PortfolioItem => Boolean(item)),
+    ...portfolios.filter(
+      (item) => !LANDING_PRIORITY_SLUGS.includes(item.slug)
+    ),
+  ];
+
+  return Array.from(
+    { length: count },
+    (_, i) => prioritized[i % prioritized.length]
+  );
 }
 
 interface MessageCardData {
@@ -179,7 +194,7 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                     >
                       <Link
                         href={`/portfolio/${item.slug}`}
-                        className={`group relative block rounded-none overflow-hidden ${BG_COLORS[(g * 3 + col) % BG_COLORS.length]} hover:-translate-y-1 transition-all duration-200`}
+                        className={`group relative block rounded-none overflow-hidden ${BG_COLORS[(g * 3 + col) % BG_COLORS.length]} transition-transform duration-200 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2`}
                       >
                         <div className={`${imageAspects[col]} relative overflow-hidden`}>
                           {item.thumbnail ? (
@@ -188,7 +203,8 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                               alt={item.title}
                               fill
                               sizes="(max-width: 768px) 100vw, 33vw"
-                              className="object-cover transition-all duration-500 group-hover:scale-105"
+                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              priority={g === 0 && col === 0}
                               unoptimized={item.thumbnail.endsWith(".gif")}
                             />
                           ) : (
@@ -274,7 +290,7 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
 
                     return (
                       <div className="flex justify-start md:justify-center">
-                        <div className="w-full md:max-w-2xl rounded-card p-5 md:p-6 bg-white border border-border shadow-card hover:shadow-card-hover hover:-translate-y-3 transition-all duration-200">
+                        <div className="w-full md:max-w-2xl rounded-card p-5 md:p-6 bg-white border border-border shadow-card transition-[box-shadow,transform] duration-200 hover:shadow-card-hover hover:-translate-y-3">
                           <div className="text-left">
                             <span className="text-xs font-medium uppercase tracking-widest text-primary/80">
                               Strategy Note

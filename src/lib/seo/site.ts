@@ -49,7 +49,7 @@ export const SITE = {
    * 빌드마다 바뀌는 new Date() 대신 고정값을 써 "always-fresh" 신호 왜곡을 막는다.
    * 정적 페이지 본문을 의미 있게 수정하면 이 날짜를 갱신한다.
    */
-  contentUpdated: "2026-06-16",
+  contentUpdated: "2026-06-23",
 } as const;
 
 /**

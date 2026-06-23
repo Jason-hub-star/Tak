@@ -14,6 +14,7 @@ const FOOTER_LINKS = {
     { label: "탁몽 (AI 상세페이지)", href: "/takmong" },
     { label: "가격 안내", href: "/pricing" },
     { label: "포트폴리오", href: "/portfolio" },
+    { label: "블로그운영", href: "/blog-management" },
   ],
   정보: [
     { label: "프로세스", href: "/#process" },
