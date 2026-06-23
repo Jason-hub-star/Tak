@@ -2,7 +2,7 @@
 
 기준일: 2026-06-23
 정본: `docs/prd.md` + `ai-context/master-plan.md`  
-검증: `npm run build` (29개 라우트 통과)
+검증: `npm run build` (35개 라우트 통과)
 
 ## 현재 단계
 
@@ -12,7 +12,7 @@
 - [x] 핵심 라우팅 (/, /portfolio/[slug], /services, /pricing, /portfolio, /blog-management, /contact, /contact/form, /contact/form/thank-you, /privacy) + sitemap.xml, robots.txt
 - [x] 랜딩 7섹션 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
 - [x] **제작+홍보 연계 포지셔닝** (devfive 벤치마킹): `/services` `/pricing` `/portfolio` + 홈 신규 3섹션 완성
-- [x] 포트폴리오 SSG (TS 레지스트리, 내부 상세 9개 + 외부 링크 1개: 탁몽 와디즈 펀딩 상세페이지)
+- [x] 포트폴리오 SSG (TS 레지스트리, 내부 상세 15개 + 외부 링크 1개: 탁몽 와디즈 펀딩 상세페이지)
 - [x] 블로그운영 허브 (`/blog-management`, 금강이지스 현관중문 운영 사례 분리, 네비·푸터·sitemap 반영)
 - [x] 문의 폼 (React Hook Form + Zod + EmailJS + honeypot)
 - [x] **무료 진단 위저드** (`/contact/form`, 13문항 5단계, localStorage 저장, sendDiagnosis)
@@ -21,7 +21,7 @@
 - [x] **블랙 완전 제거**: primary 로즈·footer 라이트·FinalCTA 라이트·FloatingCTA 로즈톤
 - [x] 모션 토큰 (SSOT: `src/lib/motion.ts`, duration/easing)
 - [x] UI 프리미티브 (Button, Badge, Card, Section, Reveal, MediaFrame)
-- [x] **SEO 강화** (JSON-LD 29개 라우트 주입, OG 이미지 동적 생성, sitemap/robots SSOT)
+- [x] **SEO 강화** (JSON-LD 35개 라우트 주입, OG 이미지 동적 생성, sitemap/robots SSOT)
 - [x] 모바일/데스크톱 레이아웃 + 접근성 개선
 
 ## 활성 트랙
@@ -34,7 +34,7 @@
    - GA4 (G-QE6BN0V7VM): gtag.js 200, google-analytics/g/collect 204 확인, `generate_lead` 주요 이벤트 표시 대기
    - 네이버 wcs (443e9d63b3a7d): wcs.pstatic.net/wcslog.js 라이브 주입 확인
    - 메타픽셀: 미사용(ID 미입력, 정상 no-op)
-3. **포트폴리오 실데이터**: MDX 9개 확장 (현재 3개 반복 노출 → 실제 포토셋)
+3. **포트폴리오 실데이터**: 내부 상세 15개 운영 (신규 추가분 최상단 노출)
 
 ## 라우팅 현황
 
@@ -81,10 +81,10 @@
    - [x] 템플릿 상세 페이지 SSG 구현 및 상품 링크 연결
    - [ ] 판매 분석 및 리뷰 모니터링
 
-3. **포트폴리오 실데이터 9개 확장 (선택사항)**
-   - [ ] 기존 3개 샘플 유지
-   - [ ] 새 6개 포토셋 추가 (MDX)
-   - [ ] 썸네일 + 긴 JPG 경로 매핑
+3. **포트폴리오 실데이터 운영**
+   - [x] 신규 6개 포토셋 추가 (유아 헤어핀, 유아매트, 쿠키, 베이비룸, 스트랩, 트레이커버)
+   - [x] 랜딩/목록 최상단 우선순위 적용
+   - [ ] 이미지 용량 예산 추가 점검
 
 4. **성능 모니터링**
    - [x] 운영 배포 점검(2026-06-18): 하이드레이션·캐싱·이미지·TTFB 실측 양호. 1차 자동점검 오진 2건 교차검증 기각(정적자산 max-age 오진·캐러셀 속도 cold-start 과장)
@@ -93,7 +93,9 @@
 
 ## 최근 변경 요약 (최근 5개)
 
-**블로그운영 허브 분리(2026-06-23)**: 금강이지스 현관중문 블로그 운영 사례를 `/portfolio` 외부 카드에서 제거하고 `/blog-management` 허브로 분리. 포트폴리오 우선순위는 유아침대 → 워터젤리 → 메밀베개 순서로 전체 사이트에 적용. `npm run build` 성공(29개 라우트).
+**포트폴리오 신규 6개 추가(2026-06-23)**: 유아 헤어핀·유아매트·쿠키·베이비룸·스트랩·트레이커버 상세페이지를 내부 SSG 포트폴리오로 추가. 랜딩/목록 최상단 순서는 유아 헤어핀 → 유아매트 → 쿠키 → 베이비룸 → 스트랩 → 트레이커버 → 유아침대 → 워터젤리 → 메밀베개. 서비스 섹션 모바일 줄맞춤 수정. `npm run build` 성공(35개 라우트).
+
+**블로그운영 허브 분리(2026-06-23)**: 금강이지스 현관중문 블로그 운영 사례를 `/portfolio` 외부 카드에서 제거하고 `/blog-management` 허브로 분리. `npm run build` 성공(29개 라우트).
 
 **운영 배포 점검(2026-06-18)**: https://takdijang.com 커밋 f80dc10 기준 배포 반영·하이드레이션·캐싱·속도·이미지 전부 건강 확인. Opus 직접 curl -sI/-w 교차검증 결과 1차 자동점검 오진 2건 기각(정적 자산 max-age·캐러셀 속도 cold-start 과장). 상세 실측값·오진 근거 `ai-context/worklog.md` 기록.
 
@@ -106,7 +108,7 @@
 **진입 체크리스트**:
 - `ai-context/master-plan.md` (우선순위 백로그)
 - `docs/prd.md` (제품 정본)
-- `.env.local` 설정 후 `npm run build` (29개 라우트 + JSON-LD 검증)
+- `.env.local` 설정 후 `npm run build` (35개 라우트 + JSON-LD 검증)
 
 **문서 계층**:
 - 정본: `docs/prd.md` (제품)

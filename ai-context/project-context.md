@@ -24,12 +24,12 @@
 4. 명확한 견적: 길이 단위가 아닌 프로젝트 단위 정가 운영
 
 ## 5) 현재 상태와 기준선
-- 현재 코드베이스: Next.js 14 App Router 기반 구현 + 디자인 정제 완료 (빌드 성공, 29개 라우트)
+- 현재 코드베이스: Next.js 14 App Router 기반 구현 + 디자인 정제 완료 (빌드 성공, 35개 라우트)
 - 구현 완료 항목:
   - 랜딩 10섹션 (Hero/Services/WebsiteLinkage/Pricing/Portfolio/Process/About/FAQ/Contact/FinalCTA)
   - **제작+홍보 연계 풀 IA** (devfive 벤치마킹): `/services`, `/pricing`, `/portfolio`, `/blog-management` 라우트
   - **무료 진단 위저드** (`/contact/form`, 13문항 5단계, localStorage)
-  - `/portfolio/[slug]` SSG (MDX frontmatter 파싱, 샘플 3개)
+  - `/portfolio/[slug]` SSG (TS 레지스트리, 내부 상세 15개)
   - 문의 폼 (React Hook Form + Zod + EmailJS + honeypot 스팸 방지)
   - **에디토리얼 리디자인** (오프화이트/근접블랙/Rose 토큰, 카드 10px, 플랫 그림자)
   - **카피 정제** (AI 티 제거: 은유·부정병렬·막연한 마무리·em대시)

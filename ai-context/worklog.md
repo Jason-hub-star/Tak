@@ -23,6 +23,38 @@
 
 ## 기록
 
+### [2026-06-23 15:25 KST] 유아 헤어핀 포트폴리오 추가 + 썸네일 카드 채움 보정
+- 작업 목표: 유아 헤어핀 상세페이지를 포트폴리오 최상단에 추가하고, 유아매트·스트랩·트레이커버 썸네일이 카드 양옆 여백 없이 꽉 차게 보이도록 보정
+- 범위: 포트폴리오 이미지 자산 + 콘텐츠 레지스트리 + 랜딩/목록 썸네일 표시 방식 + 상태 문서
+- 변경 파일:
+  - `public/portfolio/baby-hairpin/` - 신규 상세페이지 이미지 세트 및 4:5 카드 썸네일
+  - `public/portfolio/baby-mat/thumbnail.png`, `public/portfolio/strap/thumbnail.png`, `public/portfolio/tray-cover/thumbnail.png` - 카드용 썸네일 교체/유지
+  - `src/lib/content/portfolio-data.ts` - 유아 헤어핀 포트폴리오 등록, `displayOrder: -6` 최상단 적용
+  - `src/components/sections/PortfolioSection.tsx`, `src/app/portfolio/page.tsx` - 특정 썸네일 `object-contain` 예외 제거, 카드 채움 유지
+  - `docs/status/PROJECT-STATUS.md`, `docs/status/DECISION-LOG.md`, `ai-context/project-context.md`, `ai-context/worklog.md` - 내부 상세 15개/35개 라우트 기준 동기화
+- 검증:
+  - 명령: `npm run build`
+  - 결과: 성공 (35개 라우트 정적 생성, `/portfolio/baby-hairpin` 포함)
+  - 추가: Playwright 미사용, 운영자 브라우저 직접 확인 기준
+- 다음 작업:
+  1. 주인님 브라우저 확인 후 필요 시 썸네일 crop y값 미세 조정
+
+### [2026-06-23 14:55 KST] 신규 포트폴리오 5개 추가 + 서비스 모바일 줄맞춤
+- 작업 목표: 유아매트·쿠키·베이비룸·스트랩·트레이커버 상세페이지를 포트폴리오 최상단에 추가하고, 서비스 섹션 모바일 줄바꿈을 지정 지점으로 보정
+- 범위: 포트폴리오 이미지 자산 + 콘텐츠 레지스트리 + 랜딩 섹션 줄맞춤 + 상태 문서
+- 변경 파일:
+  - `public/portfolio/{baby-mat,cookie,baby-room,strap,tray-cover}/` - 신규 상세페이지 이미지 세트
+  - `src/lib/content/portfolio-data.ts` - 신규 5개 포트폴리오 등록, `displayOrder` 최상단 규칙 적용
+  - `src/components/sections/PortfolioSection.tsx` - 랜딩 우선순위 배열 갱신
+  - `src/components/sections/ServicesSection.tsx` - 모바일 제목/설명 줄바꿈 보정
+  - `docs/status/PROJECT-STATUS.md`, `docs/status/DECISION-LOG.md`, `ai-context/project-context.md`, `ai-context/worklog.md` - 상태 동기화
+- 검증:
+  - 명령: `npm run build`
+  - 결과: 성공 (34개 라우트 정적 생성, `/portfolio/baby-mat`, `/portfolio/cookie`, `/portfolio/baby-room`, `/portfolio/strap`, `/portfolio/tray-cover` 포함)
+  - Playwright: 홈/목록 첫 8개 순서 확인, 모바일 서비스 줄바꿈 확인, 콘솔 에러·경고 0건
+- 다음 작업:
+  1. 이미지 용량 예산 추가 점검 후 필요 시 최적화
+
 ### [2026-06-23 00:00 KST] 블로그운영 허브 분리 + 포트폴리오 우선순위 고정
 - 작업 목표: `/portfolio`에서 금강이지스 블로그운영 카드를 분리하고, 상세페이지 포트폴리오 노출 순서를 유아침대 → 워터젤리 → 메밀베개 우선으로 고정
 - 범위: 콘텐츠 레지스트리 + 신규 라우트 + 네비/푸터/sitemap + 상태 문서

@@ -94,7 +94,17 @@ const STUDIO_STRENGTHS: StrengthCard[][] = [
   ],
 ];
 
-const LANDING_PRIORITY_SLUGS = ["baby-bed", "water-jelly", "buckwheat-pillow"];
+const LANDING_PRIORITY_SLUGS = [
+  "baby-hairpin",
+  "baby-mat",
+  "cookie",
+  "baby-room",
+  "strap",
+  "tray-cover",
+  "baby-bed",
+  "water-jelly",
+  "buckwheat-pillow",
+];
 
 type StairDirection = "leftToRight" | "rightToLeft";
 
@@ -108,23 +118,28 @@ function getStairAspects(direction: StairDirection): string[] {
     : STAIR_ASPECTS_RIGHT_TO_LEFT;
 }
 
-/** 현재 3개 MDX → 9슬롯 순환 채움 */
+/** 랜딩에는 우선순위 기준 최대 9개를 중복 없이 노출 */
 function buildSlots(portfolios: PortfolioItem[], count = 9): PortfolioItem[] {
   if (portfolios.length === 0) return [];
 
-  const prioritized = [
-    ...LANDING_PRIORITY_SLUGS.map((slug) =>
-      portfolios.find((item) => item.slug === slug)
-    ).filter((item): item is PortfolioItem => Boolean(item)),
-    ...portfolios.filter(
-      (item) => !LANDING_PRIORITY_SLUGS.includes(item.slug)
-    ),
-  ];
+  const seen = new Set<string>();
+  const prioritized = LANDING_PRIORITY_SLUGS.map((slug) =>
+    portfolios.find((item) => item.slug === slug)
+  )
+    .filter((item): item is PortfolioItem => Boolean(item))
+    .filter((item) => {
+      if (seen.has(item.slug)) return false;
+      seen.add(item.slug);
+      return true;
+    });
 
-  return Array.from(
-    { length: count },
-    (_, i) => prioritized[i % prioritized.length]
-  );
+  const rest = portfolios.filter((item) => {
+    if (seen.has(item.slug)) return false;
+    seen.add(item.slug);
+    return true;
+  });
+
+  return [...prioritized, ...rest].slice(0, count);
 }
 
 interface MessageCardData {
@@ -182,6 +197,7 @@ export default function PortfolioSection({ portfolios }: PortfolioSectionProps) 
                   const i = idx++;
                   const imageRowDirection = getRowDirection(g * 2);
                   const imageAspects = getStairAspects(imageRowDirection);
+
                   return (
                     <motion.div
                       key={`img-${g}-${col}`}

@@ -33,8 +33,23 @@ export default function ServicesSection() {
       <SectionHeader
         className="mb-16 lg:mb-24"
         eyebrow={SERVICES_PAGE_COPY.eyebrow}
-        title={SERVICES_PAGE_COPY.title}
-        sub={SERVICES_PAGE_COPY.sub}
+        title={
+          <>
+            <span className="block sm:inline">만들고, 알리고,</span>
+            <span className="block sm:inline"> 키우는 것까지</span>
+          </>
+        }
+        sub={
+          <>
+            <span className="block sm:inline">
+              상세페이지 제작에서 출발해 웹사이트와 홍보까지,
+            </span>
+            <span className="block sm:inline">
+              {" "}
+              따로 의뢰하지 않아도 한 곳에서 이어집니다.
+            </span>
+          </>
+        }
       />
 
       {/* 비대칭 [텍스트 | 대형 이미지] 교차 행 */}
